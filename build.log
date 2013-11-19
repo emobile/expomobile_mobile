@@ -1,0 +1,317 @@
+Logfile initialized
+[INFO] logfile = /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build.log
+[DEBUG] /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/builder.py install Expomobile /Users/Usuario/android-sdk /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile mx.com.emobile.expomobile 7
+[INFO] Titanium SDK version: 3.1.3 (09/18/13 12:00 222f4d1)
+[DEBUG] Waiting for device to be ready ...
+[TRACE] adb devices returned 1 devices/emulators
+[DEBUG] Device connected... (waited 0 seconds)
+[DEBUG] waited 0.025369 seconds on emulator to get ready
+[DEBUG] mx.com.emobile.expomobile installed? False
+[INFO] Copying CommonJS modules...
+[INFO] Copying project resources..
+[TRACE] COPYING MODIFIED FILE: /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/ui/handheld/exposiciones/DirExposWindow.js => /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/bin/assets/Resources/ui/handheld/exposiciones/DirExposWindow.js
+[DEBUG] LiveView not enabled
+[TRACE] Generating Java Classes
+[DEBUG] Processing Android resource drawables
+[DEBUG] Removed duplicate string [name] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values/strings.xml
+[DEBUG] Removed duplicate string [start_date] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values/strings.xml
+[DEBUG] Removed duplicate string [start_hour] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values/strings.xml
+[DEBUG] Removed duplicate string [end_hour] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values/strings.xml
+[DEBUG] Removed duplicate string [teacher] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values/strings.xml
+[DEBUG] Removed duplicate string [room_id] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values/strings.xml
+[DEBUG] Removed duplicate string [register] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values/strings.xml
+[DEBUG] Removed duplicate string [conferences] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values/strings.xml
+[DEBUG] Removed duplicate string [name] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values/strings.xml
+[DEBUG] Removed duplicate string [alloffers] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] Removed duplicate string [name] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] Removed duplicate string [start_date] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] Removed duplicate string [conferences] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] Removed duplicate string [start_hour] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] Removed duplicate string [end_hour] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] Removed duplicate string [teacher] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] Removed duplicate string [room_id] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] Removed duplicate string [register] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] Removed duplicate string [name] from /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/values-es/strings.xml
+[DEBUG] copying app icon: /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/bin/assets/Resources/appicon.png
+[DEBUG] generating theme.xml
+[DEBUG] found drawable-long-land-hdpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-long-land-hdpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-long-land-hdpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-long-land-hdpi/background.png
+[DEBUG] found drawable-long-land-ldpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-long-land-ldpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-long-land-ldpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-long-land-ldpi/background.png
+[DEBUG] found drawable-long-port-hdpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-long-port-hdpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-long-port-hdpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-long-port-hdpi/background.png
+[DEBUG] found drawable-long-port-ldpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-long-port-ldpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-long-port-ldpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-long-port-ldpi/background.png
+[DEBUG] found drawable-notlong-land-hdpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-land-hdpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-land-hdpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-notlong-land-hdpi/background.png
+[DEBUG] found drawable-notlong-land-ldpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-land-ldpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-land-ldpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-notlong-land-ldpi/background.png
+[DEBUG] found drawable-notlong-land-mdpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-land-mdpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-land-mdpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-notlong-land-mdpi/background.png
+[DEBUG] found drawable-notlong-port-hdpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-port-hdpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-port-hdpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-notlong-port-hdpi/background.png
+[DEBUG] found drawable-notlong-port-ldpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-port-ldpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-port-ldpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-notlong-port-ldpi/background.png
+[DEBUG] found drawable-notlong-port-mdpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-port-mdpi/default.png
+[DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/Resources/android/images/res-notlong-port-mdpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/res/drawable-notlong-port-mdpi/background.png
+[DEBUG] found splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/bin/assets/Resources/default.png
+[TRACE] Writing out AndroidManifest.xml
+[DEBUG] adding /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/gen/mx/com/emobile/expomobile/ExpomobileActivity.java to javac build list
+[DEBUG] adding /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/gen/mx/com/emobile/expomobile/ExpomobileAppInfo.java to javac build list
+[DEBUG] adding /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/gen/mx/com/emobile/expomobile/ExpomobileApplication.java to javac build list
+[DEBUG] adding /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/gen/mx/com/emobile/expomobile/R.java to javac build list
+[DEBUG] Building Java Sources: "/Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/gen/mx/com/emobile/expomobile/ExpomobileActivity.java" "/Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/gen/mx/com/emobile/expomobile/ExpomobileAppInfo.java" "/Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/gen/mx/com/emobile/expomobile/ExpomobileApplication.java" "/Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/gen/mx/com/emobile/expomobile/R.java"
+[INFO] Compiling Android Resources... This could take some time
+[DEBUG] Android classes.dex built
+[DEBUG] creating unsigned apk: /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/build/android/bin/app-unsigned.apk
+[DEBUG] from resource zip => assets/Resources/images/actividades.png
+[DEBUG] from resource zip => assets/Resources/images/activities.png
+[DEBUG] from resource zip => assets/Resources/images/agenda.png
+[DEBUG] from resource zip => assets/Resources/images/anadic.png
+[DEBUG] from resource zip => assets/Resources/images/anadic2.png
+[DEBUG] from resource zip => assets/Resources/images/anadic_original.png
+[DEBUG] from resource zip => assets/Resources/images/background.png
+[DEBUG] from resource zip => assets/Resources/images/boton_atras.png
+[DEBUG] from resource zip => assets/Resources/images/boton_correo.png
+[DEBUG] from resource zip => assets/Resources/images/boton_entrar.png
+[DEBUG] from resource zip => assets/Resources/images/boton_registro.png
+[DEBUG] from resource zip => assets/Resources/images/bueno.png
+[DEBUG] from resource zip => assets/Resources/images/buttonatras.png
+[DEBUG] from resource zip => assets/Resources/images/buttoncorreo.png
+[DEBUG] from resource zip => assets/Resources/images/buttoncorreo_e.png
+[DEBUG] from resource zip => assets/Resources/images/buttonfinal.png
+[DEBUG] from resource zip => assets/Resources/images/buttonfirst.png
+[DEBUG] from resource zip => assets/Resources/images/buttoningresar.png
+[DEBUG] from resource zip => assets/Resources/images/buttoningresar1.png
+[DEBUG] from resource zip => assets/Resources/images/buttoningresar_e.png
+[DEBUG] from resource zip => assets/Resources/images/buttonregistrologin.png
+[DEBUG] from resource zip => assets/Resources/images/buttonregistrologin1.png
+[DEBUG] from resource zip => assets/Resources/images/buttonregistrologin_e.png
+[DEBUG] from resource zip => assets/Resources/images/buttonsalir.png
+[DEBUG] from resource zip => assets/Resources/images/buttonsalir1.png
+[DEBUG] from resource zip => assets/Resources/images/buttonsalir_e.png
+[DEBUG] from resource zip => assets/Resources/images/buttontorneogolf.png
+[DEBUG] from resource zip => assets/Resources/images/buttontorneogolfa.png
+[DEBUG] from resource zip => assets/Resources/images/calendar.png
+[DEBUG] from resource zip => assets/Resources/images/close.png
+[DEBUG] from resource zip => assets/Resources/images/conferences.png
+[DEBUG] from resource zip => assets/Resources/images/conferencias.png
+[DEBUG] from resource zip => assets/Resources/images/contacto.png
+[DEBUG] from resource zip => assets/Resources/images/default.png
+[DEBUG] from resource zip => assets/Resources/images/diary.png
+[DEBUG] from resource zip => assets/Resources/images/directorio.png
+[DEBUG] from resource zip => assets/Resources/images/expomobile.png
+[DEBUG] from resource zip => assets/Resources/images/exposicion.png
+[DEBUG] from resource zip => assets/Resources/images/exposition.png
+[DEBUG] from resource zip => assets/Resources/images/expositor.png
+[DEBUG] from resource zip => assets/Resources/images/expositores.png
+[DEBUG] from resource zip => assets/Resources/images/facebook.png
+[DEBUG] from resource zip => assets/Resources/images/facetoface.png
+[DEBUG] from resource zip => assets/Resources/images/horarios.png
+[DEBUG] from resource zip => assets/Resources/images/horarios_blanco.png
+[DEBUG] from resource zip => assets/Resources/images/hp.png
+[DEBUG] from resource zip => assets/Resources/images/iconactividades.png
+[DEBUG] from resource zip => assets/Resources/images/iconagenda.png
+[DEBUG] from resource zip => assets/Resources/images/iconconferencias.png
+[DEBUG] from resource zip => assets/Resources/images/iconexposiciones.png
+[DEBUG] from resource zip => assets/Resources/images/iconfacetoface.png
+[DEBUG] from resource zip => assets/Resources/images/icongolf.png
+[DEBUG] from resource zip => assets/Resources/images/iconmapa.png
+[DEBUG] from resource zip => assets/Resources/images/iconofertas.png
+[DEBUG] from resource zip => assets/Resources/images/iconpatrocinadores.png
+[DEBUG] from resource zip => assets/Resources/images/iconregistro.png
+[DEBUG] from resource zip => assets/Resources/images/icontalleres.png
+[DEBUG] from resource zip => assets/Resources/images/mail.png
+[DEBUG] from resource zip => assets/Resources/images/malo.png
+[DEBUG] from resource zip => assets/Resources/images/mapa.png
+[DEBUG] from resource zip => assets/Resources/images/miqrcode.png
+[DEBUG] from resource zip => assets/Resources/images/ofertas.png
+[DEBUG] from resource zip => assets/Resources/images/ofertas_normal.png
+[DEBUG] from resource zip => assets/Resources/images/offers.png
+[DEBUG] from resource zip => assets/Resources/images/patrocinadores.png
+[DEBUG] from resource zip => assets/Resources/images/phone.png
+[DEBUG] from resource zip => assets/Resources/images/register.png
+[DEBUG] from resource zip => assets/Resources/images/registro.png
+[DEBUG] from resource zip => assets/Resources/images/regular.png
+[DEBUG] from resource zip => assets/Resources/images/sponsors.png
+[DEBUG] from resource zip => assets/Resources/images/swipefinger.png
+[DEBUG] from resource zip => assets/Resources/images/talleres.png
+[DEBUG] from resource zip => assets/Resources/images/torneogolf.png
+[DEBUG] from resource zip => assets/Resources/images/twitter.png
+[DEBUG] from resource zip => assets/Resources/images/ubicacion.png
+[DEBUG] from resource zip => assets/Resources/images/unavailable.jpg
+[DEBUG] from resource zip => assets/Resources/images/unavailable_small.jpg
+[DEBUG] from resource zip => assets/Resources/images/web.png
+[DEBUG] from resource zip => assets/Resources/images/workshops.png
+[DEBUG] from resource zip => assets/Resources/lib/network.js
+[DEBUG] from resource zip => assets/Resources/ui/common/ANActivityIndicator.js
+[DEBUG] from resource zip => assets/Resources/ui/common/ContactoWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/common/CreateIndicatorWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/common/CreateIndicatorWindow_backup.js
+[DEBUG] from resource zip => assets/Resources/ui/common/CustomAlertWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/common/FirstView.js
+[DEBUG] from resource zip => assets/Resources/ui/common/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/common/InfoWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/common/LoginView.js
+[DEBUG] from resource zip => assets/Resources/ui/common/RegisterView.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/actividades/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/agenda/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/android/ApplicationWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/conferencias/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/conferencias/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/exposiciones/DetalleWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/exposiciones/DirExposWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/exposiciones/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/exposiciones/ExposicionesInfoWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/exposiciones/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/facetoface/DetalleWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/facetoface/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/mapa/MapaWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/mapa/index.html
+[DEBUG] from resource zip => assets/Resources/ui/handheld/mapa/mapa_anadic.jpg
+[DEBUG] from resource zip => assets/Resources/ui/handheld/ofertas/ExpositoresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/ofertas/OpcionesExpositorWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/patrocinadores/PatrocinadoresInfoWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/talleres/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/talleres/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/torneogolf/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/ActividadesWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/AgendaWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/ApplicationWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/ConferenciasWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/ExposicionesWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/FaceToFaceWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/MainWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/NipWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/OfertasWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/PatrocinadoresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/QrReaderWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/RegistroWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/TalleresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/TorneoGolfWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/actividades/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/agenda/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/conferencias/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/conferencias/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/exposiciones/DetalleWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/exposiciones/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/exposiciones/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/facetoface/DetalleWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/facetoface/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/actividades/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/agenda/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/android/ApplicationWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/conferencias/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/conferencias/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/DetalleWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/DirExposWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/ExposicionesInfoWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/facetoface/DetalleWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/facetoface/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/mapa/MapaWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/mapa/index.html
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/mapa/mapa_anadic.jpg
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ofertas/ExpositoresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ofertas/OpcionesExpositorWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/patrocinadores/PatrocinadoresInfoWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/talleres/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/talleres/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/torneogolf/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ActividadesWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/AgendaWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ApplicationWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ConferenciasWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ExposicionesWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/FaceToFaceWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/MainWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/NipWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/OfertasWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/PatrocinadoresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/QrReaderWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/RegistroWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/TalleresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/TorneoGolfWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/mapa/MapaWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/mapa/index.html
+[DEBUG] from resource zip => assets/Resources/ui/tablet/mapa/mapa_anadic.jpg
+[DEBUG] from resource zip => assets/Resources/ui/tablet/ofertas/ExpositoresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/ofertas/OpcionesExpositorWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/patrocinadores/PatrocinadoresInfoWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/talleres/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/talleres/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/torneogolf/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/ActividadesWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/AgendaWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/ApplicationWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/ConferenciasWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/ExposicionesWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/FaceToFaceWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/MainWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/NipWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/OfertasWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/PatrocinadoresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/QrReaderWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/RegistroWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/TalleresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/TorneoGolfWindow.js
+[DEBUG] from resource zip => assets/Resources/KS_nav_ui.png
+[DEBUG] from resource zip => assets/Resources/KS_nav_views.png
+[DEBUG] from resource zip => assets/Resources/app.js
+[DEBUG] from resource zip => assets/Resources/appicon.png
+[DEBUG] from resource zip => assets/Resources/default.png
+[DEBUG] from resource zip => assets/app.json
+[DEBUG] from resource zip => assets/index.json
+[DEBUG] from resource zip => res/drawable/appicon.png
+[DEBUG] from resource zip => res/drawable/background.png
+[DEBUG] from resource zip => res/drawable/btn_check_buttonless_on_64.png
+[DEBUG] from resource zip => res/drawable/btn_more_64.png
+[DEBUG] from resource zip => res/drawable/disclosure_64.png
+[DEBUG] from resource zip => res/layout/titanium_tabgroup.xml
+[DEBUG] from resource zip => res/layout/titanium_ui_list_header_or_footer.xml
+[DEBUG] from resource zip => res/layout/titanium_ui_list_item.xml
+[DEBUG] from resource zip => AndroidManifest.xml
+[DEBUG] from resource zip => resources.arsc
+[DEBUG] from resource zip => res/drawable-long-land-hdpi/background.png
+[DEBUG] from resource zip => res/drawable-long-land-ldpi/background.png
+[DEBUG] from resource zip => res/drawable-long-port-hdpi/background.png
+[DEBUG] from resource zip => res/drawable-long-port-ldpi/background.png
+[DEBUG] from resource zip => res/drawable-notlong-land-hdpi/background.png
+[DEBUG] from resource zip => res/drawable-notlong-land-ldpi/background.png
+[DEBUG] from resource zip => res/drawable-notlong-land-mdpi/background.png
+[DEBUG] from resource zip => res/drawable-notlong-port-hdpi/background.png
+[DEBUG] from resource zip => res/drawable-notlong-port-ldpi/background.png
+[DEBUG] from resource zip => res/drawable-notlong-port-mdpi/background.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/modules/titanium-ui.jar => ti/modules/titanium/ui/widget/webview/binding.js
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/modules/titanium-ui.jar => ti/modules/titanium/ui/widget/webview/binding.min.js
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/modules/titanium-ui.jar => ti/modules/titanium/ui/widget/webview/json2.js
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/modules/titanium-ui.jar => ti/modules/titanium/ui/widget/webview/polling.js
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/modules/titanium-ui.jar => ti/modules/titanium/ui/widget/webview/polling.min.js
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/build.properties
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/background.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_check_buttonless_on.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_check_buttonless_on_18.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_check_buttonless_on_48.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_check_buttonless_on_64.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_more.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_more_18.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_more_48.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_more_64.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_picker_normal.9.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_picker_pressed.9.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/btn_picker_selected.9.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/default_icon.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/titanium.jar => org/appcelerator/titanium/res/drawable/photoDefault.png
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/thirdparty.jar => org/apache/Commons-NOTICE.txt
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/thirdparty.jar => org/apache/HttpComponents-NOTICE.txt
+[DEBUG] from JAR /Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/android/thirdparty.jar => org/apache/mime4j-NOTICE.txt
+[DEBUG] installing native lib: /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/modules/android/com.mwaysolutions.barcode/0.3/libs/armeabi/libcom.mwaysolutions.barcode.so
+[DEBUG] installing native lib: /Users/Usuario/Documents/Titanium_Studio_Workspace/Expomobile/modules/android/com.mwaysolutions.barcode/0.3/libs/armeabi-v7a/libcom.mwaysolutions.barcode.so
+[DEBUG] installing native SDK libs
+[DEBUG] Waiting for device to be ready ...
+[TRACE] adb devices returned 1 devices/emulators
+[DEBUG] Device connected... (waited 0 seconds)
+[DEBUG] waited 0.025156 seconds on emulator to get ready
+[INFO] Installing application on device
+[INFO] Application installed. Launch from drawer on Home Screen
