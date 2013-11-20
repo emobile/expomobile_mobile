@@ -111,4 +111,5 @@
 	<string name="subgrupo">Subgroup</string>
 	<string name="grupo">Group</string>
 	<string name="hora">Hour</string>
+	<string name="no_ofertas">No offers available</string>
 </resources>

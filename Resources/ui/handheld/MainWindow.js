@@ -290,15 +290,22 @@ function MainWindow(Window) {
 
 	buttonOfertas.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
+		
 		network.getExhibitors(true ,function(response) {
-			if (response != false) {
+			
+			if(response.length == 0) 
+			{
+				alert(L('no_ofertas'));	
+			}	
+    		else if(response.length > 0) 
+			{
 				var Window;
 				var mainWindow = require("ui/handheld/OfertasWindow");
 				new mainWindow(Window).open();
-				/*new mainWindow(Window).open({
-					activityEnterAnimation : Ti.Android.R.anim.fade_in,
-					activityExitAnimation : Ti.Android.R.anim.fade_out
-				});*/
+			}
+    		else 
+			{
+				//error de conexion
 			}
 		});
 	});
@@ -318,19 +325,18 @@ function MainWindow(Window) {
 
 	});
 
-	var alert = Titanium.UI.createAlertDialog({
+	var ventanaAlert = Titanium.UI.createAlertDialog({
 		title : L('tittlealert'),
 		message : L('closeapp'),
 		buttonNames : [L('yes'), L('no')]
 	});
 
-	alert.addEventListener('click', function(e) {
+	ventanaAlert.addEventListener('click', function(e) {
 		if (e.index == 0) {
 			Ti.Media.vibrate();
 			if(Ti.Platform.osname == 'android')
 			{
-				Titanium.Android.currentActivity(); 
-				activity.finish();
+				Titanium.Android.currentActivity.finish();
 			}
 			else
 			{
@@ -342,11 +348,13 @@ function MainWindow(Window) {
 	});
 
 	buttonClose.addEventListener('click', function(e) {
-		alert.show();
+		ventanaAlert.show();
 	});
 
+	//mainWindow.removeEventListener('android:back', e.callback);
+
 	mainWindow.addEventListener('android:back', function(e) {
-		alert.show();
+		ventanaAlert.show();
 	});
 
 	/*Ti.Facebook.addEventListener('login', function(e) {

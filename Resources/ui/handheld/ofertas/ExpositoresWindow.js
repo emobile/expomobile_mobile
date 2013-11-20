@@ -82,8 +82,6 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		left : "10px"
 	});
 
-	
-	
 	viewSlide = Titanium.UI.createImageView({
 		id : "buttonMiddle",
 		image : "/images/swipefinger.png",
@@ -190,7 +188,8 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		width : Ti.UI.SIZE,
 		height : Ti.UI.SIZE,
 		left : '10px',
-		top: '10px'
+		top: '10px',
+		bottom: '30px'
 	});
 
 	line = Ti.UI.createView({

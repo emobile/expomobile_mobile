@@ -1,0 +1,1 @@
+/Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/modules/iphone/tibar/0.4.2/example/app.js

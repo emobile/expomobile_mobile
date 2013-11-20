@@ -13,7 +13,7 @@ function ApplicationWindow() {
 	});
 
 	var db = Ti.Database.open('anadicDB');
-	db.execute('CREATE TABLE IF NOT EXISTS users(userId INTEGER PRIMARY KEY, id TEXT, name TEXT, subgroup_name TEXT, subgroup_leader TEXT, enterprise TEXT, phone TEXT, address TEXT);');
+	db.execute('CREATE TABLE IF NOT EXISTS users(userId INTEGER PRIMARY KEY, id TEXT, name TEXT, group_name TEXT, subgroup_name TEXT, subgroup_leader TEXT, enterprise TEXT, phone TEXT, address TEXT);');
 	var id = db.execute('SELECT id FROM users WHERE userId = 1;');
 	db.close();
 

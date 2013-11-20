@@ -12,7 +12,7 @@ function ContactoWindow() {
 		width: '100%',
 		navBarHidden: true,
 		backgroundColor : 'transparent',
-		//opacity : 0.0,
+		opacity : 1.0,
 		fullscreen: false
 	});
 	
@@ -188,7 +188,7 @@ function ContactoWindow() {
 	
 	contWindow.add(scrollView);
 
-	/*function openView() {
+	function openView() {
 		contWindow.open();
 	}
 
@@ -198,7 +198,7 @@ function ContactoWindow() {
 		contWindow.close();
 	}
 
-	contWindow.closeView = closeView;*/
+	contWindow.closeView = closeView;
 
 	spCalificaciones.addEventListener('change', function(e) {
 		rate = spCalificaciones.getSelectedRow(0).value;

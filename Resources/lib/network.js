@@ -98,7 +98,6 @@ exports.getNip = function(id, nip, callback) {
 			ventana.close();
 		});
 		//vntana-cargando
-
 		//indicator.openIndicator();
 
 		var network = Titanium.Network.createHTTPClient();
@@ -402,8 +401,6 @@ exports.getExhibitorDetail = function(exhibitor_id, callback) {
 		callback(false);
 	}
 };
-
-
 
 exports.getFaceToFaceDays = function(callback) {
 	if (checkInternetConnection()) {

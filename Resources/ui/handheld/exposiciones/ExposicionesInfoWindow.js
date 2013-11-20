@@ -7,7 +7,9 @@ function ExposicionesInfoWindow(id) {
 	expoInfWdw = Titanium.UI.createWindow({
 		//touchEnabled : false,
 		backgroundColor : 'transparent',
-		fullscreen : false
+		fullscreen : false,
+		navBarHidden : true,
+		opacity: 1.0
 	});
 	
 	var blackWdw = Titanium.UI.createView({
@@ -159,10 +161,14 @@ function ExposicionesInfoWindow(id) {
 	});*/
 
 	imageViewPatrocinador = Titanium.UI.createImageView({
-		height : 'auto',
-		center: {x: '50%'},	
-		top : 10,
-		width : 'auto'
+		height : Ti.UI.SIZE,
+		center : {
+			x : '50%'
+		},
+		top : '50',
+		width : Ti.UI.SIZE,
+		opacity: 1.0,
+		backgroundColor: '#000'		
 	});
 
 	buttonClose = Titanium.UI.createImageView({

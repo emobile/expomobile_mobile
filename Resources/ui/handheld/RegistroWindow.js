@@ -6,7 +6,7 @@ function RegistroWindow(Window) {
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
-		height : '100%',
+		height : 'auto',
 		layout : 'vertical',
 		fullscreen: false,
 		navBarHidden: true
@@ -16,12 +16,12 @@ function RegistroWindow(Window) {
 	var colorFontText = 'gray';
 
 	var db = Ti.Database.open('anadicDB');
-	var usuario = db.execute('SELECT id, enterprise, address, phone, subgroup_name FROM users WHERE userId = 1;');
+	var usuario = db.execute('SELECT id, enterprise, address, phone, group_name, subgroup_name FROM users WHERE userId = 1;');
 
-	scrollView = Titanium.UI.createView({
+	scrollView = Titanium.UI.createScrollView({
 		id : "scrollView",
 		backgroundImage : '/images/background.png',
-		height : '100%',
+		height : 'auto',
 		width : '100%',
 		layout : 'vertical'
 	});
@@ -147,8 +147,31 @@ function RegistroWindow(Window) {
 			fontSize : '16dp'
 		},
 		color : colorFontLabel,
-		textAlign : Ti.UI.TEXT_ALIGNMENT_LEFT,
-		top : '10px'
+		textAlign : Ti.UI.TEXT_ALIGNMENT_LEFT
+	});
+
+	textGrupo = Titanium.UI.createTextArea({
+		id : "textSubgrupo",
+		value : usuario.fieldByName("group_name"),
+		height : Ti.UI.SIZE,
+		width : '70%',
+		font : {
+			fontSize : '16dp'
+		},
+		color : colorFontText,
+		enabled : 'false'
+	});
+	
+	labelSubgrupo = Titanium.UI.createLabel({
+		id : "labelSubgrupo",
+		height : 'auto',
+		width : '70%',
+		text : L('subgrupo'),
+		font : {
+			fontSize : '16dp'
+		},
+		color : colorFontLabel,
+		textAlign : Ti.UI.TEXT_ALIGNMENT_LEFT
 	});
 
 	textSubgrupo = Titanium.UI.createTextArea({
@@ -172,7 +195,7 @@ function RegistroWindow(Window) {
 			fontSize : '18dp'
 		},
 		color : 'blue',
-		top : 30,
+		top : '10px',
 		systemButton: Ti.UI.iPhone.SystemButton.CANCEL
 	});
 
@@ -186,6 +209,8 @@ function RegistroWindow(Window) {
 	scrollView.add(labelDireccion);
 	scrollView.add(textDireccion);
 	scrollView.add(labelGrupo);
+	scrollView.add(textGrupo);
+	scrollView.add(labelSubgrupo);
 	scrollView.add(textSubgrupo);
 	scrollView.add(buttonSugerencias);
 

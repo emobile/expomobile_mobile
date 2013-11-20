@@ -1,0 +1,66 @@
+dependencies: \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneProxy.m \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiBase.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiThreading.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiPublicAPI.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiEvaluator.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/KrollContext.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/headers/TiCore/TiCore.h \
+  headers/TiCore/Ti.h headers/TiCore/TiBase.h \
+  headers/TiCore/TiContextRef.h headers/TiCore/TiObjectRef.h \
+  headers/TiCore/TiValueRef.h headers/TiCore/WebKitAvailability.h \
+  headers/TiCore/TiStringRef.h headers/TiCore/TiStringRefCF.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/headers/TiCore/TiContextRefPrivate.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/KrollCallback.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/KrollObject.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiBindingRunLoop.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUtils.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiDimension.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiColor.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/WebFont.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiFile.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiBuffer.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiBlob.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiApp.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiHost.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/Bridge.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiStylesheet.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/KrollBridge.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiModule.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/XHRBridge.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiRootViewController.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiControllerProtocols.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiViewProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIView.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiAnimation.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiPoint.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/ListenerEntry.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/LayoutConstraint.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiGradient.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiRect.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiViewTemplate.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneAnimationStyleProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneStatusBarProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneRowAnimationStyleProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneSystemButtonStyleProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneSystemButtonProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneProgressBarStyleProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneActivityIndicatorStyleProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneSystemIconProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneScrollIndicatorStyleProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneTableViewStyleProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneTableViewSeparatorStyleProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneTableViewScrollPositionProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneTableViewCellSelectionStyleProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneNavigationGroupProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiWindowProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiTab.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiTabGroup.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiViewController.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPadProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPadPopoverProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPadSplitWindowProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiOSDocumentViewerProxy.h \
+  /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/iphone/Classes/TiUIiPhoneAlertDialogStyleProxy.h

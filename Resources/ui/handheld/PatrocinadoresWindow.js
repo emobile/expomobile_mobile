@@ -25,7 +25,6 @@ function PatrocinadoresWindow(Window) {
 		layout : 'vertical'
 	});
 	
-	
 	imageViewBar = Titanium.UI.createView({
 		id : "imageViewBar",
 		backgroundColor : Ti.App.Properties.getString('viewcolor'),
@@ -139,14 +138,9 @@ function PatrocinadoresWindow(Window) {
 	    cerrar();
 	});
 
-	Ti.API.info('bum18');
-	
 	return patrocinadoresWdw;
-	
-	Ti.API.info('bum19');
 }
 
 module.exports = PatrocinadoresWindow;
 
-Ti.API.info('bum21');
 

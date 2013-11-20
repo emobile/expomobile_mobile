@@ -75,7 +75,7 @@ function DirExposWindow(Window) {
 
 	imageView = Titanium.UI.createImageView({
 		id : "imageView",
-		image : "/images/iconpatrocinadores.png",
+		image : "/images/iconexposiciones.png",
 		width : 60,
 		height : 60,
 		top : '10dp',
@@ -86,7 +86,7 @@ function DirExposWindow(Window) {
 		id : "labelTitulo",
 		width: Ti.UI.SIZE,
 		height : 'auto',
-		text : L('sponsors'),
+		text : L('exhibitions'),
 		font : {
 			fontSize : '22dp'
 		},
@@ -133,8 +133,8 @@ function DirExposWindow(Window) {
 			}
 			
 			var etiqueta = db_rows.fieldByName("social_reason");
-			if(etiqueta.length > 31)
-				etiqueta = etiqueta.substring(0,28)+"...";
+			if(etiqueta.length > 25)
+				etiqueta = etiqueta.substring(0,24)+"...";
 			
 			var row = Titanium.UI.createTableViewRow({
 				id : db_rows.fieldByName("id"),

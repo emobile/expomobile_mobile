@@ -158,12 +158,14 @@ function RegisterView() {
 
 	buttonRegistro.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		//var registroValue = textFieldRegistro.value;
-		//if (registroValue != "") {
+		var registroValue = textFieldRegistro.value;
+		if (registroValue != "") {
 		network.getRegistro(textFieldRegistro.value, function(response) {
 			if (response.sent == 'ok') {
+				//response.group_name + "','" +
 				var db = Ti.Database.open('anadicDB');
-				db.execute("INSERT INTO users VALUES (1,'" + textFieldRegistro.value + "', '" + response.name + "', '" + response.subgroup_name + "', '" + response.subgroup_leader + "', '" + response.enterprise + "', '" + response.phone + "', '" + response.address + "');");
+				db.execute("INSERT INTO users VALUES (1,'" + textFieldRegistro.value + "','" + response.name +  "','" +  response.group_name + "','" + response.subgroup_name + "','" + response.subgroup_leader + "', '" +
+													 response.enterprise + "', '" + response.phone + "', '" + response.address + "');");
 				db.close();
 
 				var Window;
@@ -177,9 +179,9 @@ function RegisterView() {
 				//}
 			//}
 		});
-		//} else {
-		//alert(L("empty_register"));
-		//}
+		} else {
+		alert(L("empty_register"));
+		}
 	});
 
 	var alert = Titanium.UI.createAlertDialog({
