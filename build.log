@@ -5,11 +5,10 @@ Logfile initialized
 [DEBUG] Waiting for device to be ready ...
 [TRACE] adb devices returned 1 devices/emulators
 [DEBUG] Device connected... (waited 0 seconds)
-[DEBUG] waited 0.112782 seconds on emulator to get ready
+[DEBUG] waited 0.024838 seconds on emulator to get ready
 [DEBUG] mx.com.emobile.expomobile installed? False
 [INFO] Copying CommonJS modules...
 [INFO] Copying project resources..
-[TRACE] COPYING MODIFIED FILE: /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/Resources/lib/network.js => /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/android/bin/assets/Resources/lib/network.js
 [TRACE] COPYING MODIFIED FILE: /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/Resources/ui/handheld/MainWindow.js => /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/android/bin/assets/Resources/ui/handheld/MainWindow.js
 [DEBUG] LiveView not enabled
 [TRACE] Generating Java Classes
@@ -94,6 +93,7 @@ Logfile initialized
 [DEBUG] from resource zip => assets/Resources/images/buttontorneogolf.png
 [DEBUG] from resource zip => assets/Resources/images/buttontorneogolfa.png
 [DEBUG] from resource zip => assets/Resources/images/calendar.png
+[DEBUG] from resource zip => assets/Resources/images/caraacara.png
 [DEBUG] from resource zip => assets/Resources/images/close.png
 [DEBUG] from resource zip => assets/Resources/images/conferences.png
 [DEBUG] from resource zip => assets/Resources/images/conferencias.png
@@ -313,6 +313,6 @@ Logfile initialized
 [DEBUG] Waiting for device to be ready ...
 [TRACE] adb devices returned 1 devices/emulators
 [DEBUG] Device connected... (waited 0 seconds)
-[DEBUG] waited 0.025241 seconds on emulator to get ready
+[DEBUG] waited 0.024714 seconds on emulator to get ready
 [INFO] Installing application on device
 [INFO] Application installed. Launch from drawer on Home Screen

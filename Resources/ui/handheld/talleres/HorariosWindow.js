@@ -1,4 +1,4 @@
-function HorariosWindow(Window) {
+function HorariosWindow(dias,Window) {
 	var network = require('lib/network');
 
 	var sub_group = '';
@@ -119,7 +119,7 @@ function HorariosWindow(Window) {
 	var eventosCargadosLabels = new Array();
 	//cada propiedad es un dia que contiene un arreglo de eventos
 
-	var customAlert = Ti.UI.createAlertDialog({
+	/*var customAlert = Ti.UI.createAlertDialog({
 			message: L('no_workshops'),
 			ok: L('ok'),
 			title: L('alert_title')
@@ -138,15 +138,21 @@ function HorariosWindow(Window) {
 	{
 		dias = response;
 		
-		if(dias == false)
+		if(response.length == 0) 
 		{
 			customAlert.show();
-		}
-		else
+		}	
+		else if(response.length > 0) 
 		{
-		 	populateTable();
+			populateTable();
 		}
-	});
+		else 
+		{
+			//error de conexion
+		}
+		
+	});*/
+
 
 	function populateTable() 
 	{
@@ -172,13 +178,13 @@ function HorariosWindow(Window) {
 			});
 
 			eventosCargados[titulo.toString()] = new Array();
-
 			data.push(row);
 		});
 
 		table.setData(data);
 	}
 
+	populateTable();
 
 	table.addEventListener('click', function(e) {
 		if (e.row.isparent) {

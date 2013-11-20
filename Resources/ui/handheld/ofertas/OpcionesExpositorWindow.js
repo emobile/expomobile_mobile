@@ -6,7 +6,7 @@ function OpcionesExpositorWindow(Window) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		oldWin:Ti.currentWindow,
+		//oldWin:Ti.currentWindow,
 		fullscreen: false,
 		navBarHidden: true
 	});

@@ -108,10 +108,31 @@ function AgendaWindow(Window) {
 	populateTable();
 
 	table.addEventListener('click', function(e) {
-		if (e.rowData.id == 2) {
-			var Window;
-			var mainWindow = require("ui/handheld/agenda/HorariosWindow");
-			new mainWindow(Window).open();
+		if (e.rowData.id == 2) 
+		{
+			var network = require('lib/network');
+			network.getData(network.SERVICES.DIARIES_DAYS, function(response)
+			{
+				if(response.length == 0) 
+				{
+					Ti.UI.createAlertDialog({
+					message: L('no_eventos'),
+					ok: L('ok'),
+					title: L('alert_title')
+					}).show();
+				}	
+	    		else if(response.length > 0) 
+				{
+					var Window;
+					var mainWindow = require("ui/handheld/agenda/HorariosWindow");
+					new mainWindow(response, Window).open();
+				}
+	    		else 
+				{
+					//error de conexion
+				}	
+			}); 
+			
 		} else if (e.rowData.id == 3) {
 			var Window;
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");

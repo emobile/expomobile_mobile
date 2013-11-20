@@ -6,7 +6,7 @@ function TalleresWindow(Window) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-//		fullscreen: false,
+		fullscreen: false,
 		navBarHidden: true
 	});
 
@@ -121,10 +121,32 @@ function TalleresWindow(Window) {
 	populateTable();
 
 	table.addEventListener('click', function(e) {
-		if (e.rowData.id == 1) {
-			var Window;
-			var mainWindow = require("ui/handheld/talleres/HorariosWindow");
-			new mainWindow(Window).open();
+		if (e.rowData.id == 1) 
+		{
+			var network = require('lib/network');
+			network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response)
+			{
+				if(response.length == 0) 
+				{
+					Ti.UI.createAlertDialog({
+					message: L('no_workshops'),
+					ok: L('ok'),
+					title: L('alert_title')
+					}).show();
+				}	
+	    		else if(response.length > 0) 
+				{
+					var Window;
+					var mainWindow = require("ui/handheld/talleres/HorariosWindow");
+					new mainWindow(response,Window).open();
+				}
+	    		else 
+				{
+					//error de conexion
+				}	
+			}); 
+			
+			
 		} else if (e.rowData.id == 2) {
 			var Window;
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");

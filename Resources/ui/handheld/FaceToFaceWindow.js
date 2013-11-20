@@ -117,7 +117,11 @@ function FaceToFaceWindow(Window) {
 				
 			if(response.length == 0) 
 			{
-				alert(L('no_appoinments'));	
+				Ti.UI.createAlertDialog({
+				message: L('no_appoinments'),
+				ok: L('ok'),
+				title: L('alert_title')
+				}).show();
 			}	
     		else if(response.length > 0) 
 			{
@@ -131,6 +135,8 @@ function FaceToFaceWindow(Window) {
 			}	
 				
 			});
+			
+			
 		} else if (e.rowData.id == 3) {
 			var Window;
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");

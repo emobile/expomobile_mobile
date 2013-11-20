@@ -96,11 +96,11 @@ function LoginView() {
 			top : 10
 		});
 
-		buttonCorreo = Titanium.UI.createImageView({
+		/*buttonCorreo = Titanium.UI.createImageView({
 			id : "buttonCorreo",
 			width : '95%',
 			top : 5
-		});
+		});*/
 
 		buttonSalir = Titanium.UI.createImageView({
 			id : "buttonSalir",
@@ -110,11 +110,11 @@ function LoginView() {
 
 		if (L("language") == "es") {
 			buttonIngresar.image = "/images/buttoningresar.png";
-			buttonCorreo.image = "/images/buttoncorreo.png";
+			//buttonCorreo.image = "/images/buttoncorreo.png";
 			buttonSalir.image = "/images/buttonsalir.png";
 		} else {
 			buttonIngresar.image = "/images/buttoningresar_e.png";
-			buttonCorreo.image = "/images/buttoncorreo_e.png";
+			//buttonCorreo.image = "/images/buttoncorreo_e.png";
 			buttonSalir.image = "/images/buttonsalir_e.png";
 		}
 
@@ -129,10 +129,23 @@ function LoginView() {
 			width : '60%',
 			passwordMask : true,
 			top:'10',
-			borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+			borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+			enabled: false
 		});
 		
+		var db = Ti.Database.open('anadicDB');
+		var nipNumber = db.execute('SELECT nipNumber FROM nip WHERE nipId = 1');
+
+		var nip = '';
+
+		if (nipNumber.isValidRow()) {
+			nip = nipNumber.fieldByName('nipNumber');
+		}
+		
+		textFieldRegistro.value = nip;
 		textFieldRegistro.focus();
+		
+		nipNumber.close();
 
 	};
 
@@ -191,19 +204,19 @@ function LoginView() {
 		//}
 	});
 
-	buttonCorreo.addEventListener('click', function(e) {
+	/*buttonCorreo.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
 		Ti.Platform.openURL("http://www.google.com");
-	});
+	});*/
 
 
-	var alert = Titanium.UI.createAlertDialog({
+	var ventanaAlert = Titanium.UI.createAlertDialog({
 		title : L('tittlealert'),
 		message : L('closeapp'),
 		buttonNames : [L('yes'), L('no')]
 	});
 	
-	alert.addEventListener('click', function(e) {
+	ventanaAlert.addEventListener('click', function(e) {
 		if (e.index == 0) {
 			Ti.Media.vibrate();
 			
@@ -221,7 +234,7 @@ function LoginView() {
 
 	buttonSalir.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		alert.show();
+		ventanaAlert.show();
 	});
 
 	//Quitar focus

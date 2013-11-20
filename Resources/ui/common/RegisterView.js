@@ -60,10 +60,13 @@ function RegisterView() {
 		width : 'auto',
 		text : L('indications'),
 		font : {
-			fontSize : '12dp'
+			fontSize : '16dp',
+			fontWeight:'bold'
 		},
-		color : 'gray',
-		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+		color : 'gray',//'#0078b6',
+		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+		left: '10dp',
+		right: '10dp'
 	});
 
 	var createAttachChScrollView_1 = function() {
@@ -119,7 +122,7 @@ function RegisterView() {
 			autocapitalization : Ti.UI.TEXT_AUTOCAPITALIZATION_ALL,
 			width : '60%',
 			top : 0,
-			borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+			borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
 		});
 		
 		textFieldRegistro.focus();

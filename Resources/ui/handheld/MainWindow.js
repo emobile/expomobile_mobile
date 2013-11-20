@@ -235,13 +235,13 @@ function MainWindow(Window) {
 		Ti.Media.vibrate();
 		network.getSponsors(function(response) {
 			if (response != false) {
-				var Window;
+				var Window2;
 				var mainWindow = require("ui/handheld/PatrocinadoresWindow");
-				new mainWindow(Window).open();
+				new patWindow(Window2).open();	
 			}
 		});
 	});
-
+	
 	buttonExposiciones.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
 		network.getSponsors(function(response) {
@@ -295,7 +295,11 @@ function MainWindow(Window) {
 			
 			if(response.length == 0) 
 			{
-				alert(L('no_ofertas'));	
+				Ti.UI.createAlertDialog({
+				message:L('no_ofertas'),
+				ok: L('ok'),
+				title: L('alert_title')
+				}).show();
 			}	
     		else if(response.length > 0) 
 			{
@@ -356,6 +360,7 @@ function MainWindow(Window) {
 	mainWindow.addEventListener('android:back', function(e) {
 		ventanaAlert.show();
 	});
+	
 
 	/*Ti.Facebook.addEventListener('login', function(e) {
 		if (e.success) {

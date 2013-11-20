@@ -103,7 +103,7 @@
 	<string name="qualified2">Your rating was:</string>
 	<string name="comments">Comments</string>
 	<string name="facebook_message">Connect with facebook</string>
-	<string name="indications">If you do not have a registration number, go to module to get it</string>
+	<string name="indications">In order to view the content of the app you must have a registration number.\nIf you don't have one, you can get it at registration module.</string>
 	<string name="no_eventos">No events scheduled</string>
 	<string name="no_actividades">No activities scheduled</string>
 	<string name="no_conferencias">No conferences scheduled</string>

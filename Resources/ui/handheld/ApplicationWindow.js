@@ -38,7 +38,7 @@ function ApplicationWindow() {
 			
 			if(Ti.Platform.osname == 'android')
 			{
-				var activity = Titanium.Android.currentActivity(); 
+				var activity = Titanium.Android.currentActivity; 
 				activity.finish();
 			}
 			else

@@ -151,8 +151,8 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		height : Ti.UI.SIZE,
 		width : Ti.UI.SIZE,
 		text : L('exhibitor'),
-		top: 35,
-		right : 10,
+		top: 70,
+		left : 10,
 		font : {
 			fontWeight : 'bold',
 			fontSize : '18dp'
@@ -178,7 +178,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 			fontWeight : 'bold'
 		},
 		color : '#686868',
-		top : 55,
+		top : 70,
 		right : 10
 	});
 
@@ -188,7 +188,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		width : Ti.UI.SIZE,
 		height : Ti.UI.SIZE,
 		left : '10px',
-		top: '10px',
+		top: '25px',
 		bottom: '30px'
 	});
 
@@ -200,7 +200,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 			x : 0,
 			y : 0
 		},
-		top : 80,
+		top : 95,
 	});
 
 	labelDescripcionTitulo = Titanium.UI.createLabel({
@@ -214,7 +214,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : 'black',
 		left : 10,
-		top: 90
+		top: 105
 	});
 
 	labelDescripcion = Titanium.UI.createLabel({
@@ -227,7 +227,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		left : 10,
-		top: 110
+		top: 125
 	});
 
 	labelPrecioTitulo = Titanium.UI.createLabel({
@@ -241,7 +241,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : 'black',
 		right : 10,
-		top: 90
+		top: 105
 	});
 
 	labelPrecio = Titanium.UI.createLabel({
@@ -254,7 +254,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		right : 10,
-		top: 110
+		top: 125
 	});
 
 	labelUbicacionTitulo = Titanium.UI.createLabel({
@@ -268,7 +268,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : 'black',
 		left : 10,
-		top: 150
+		top: 165
 	});
 
 	labelUbicacion = Titanium.UI.createLabel({
@@ -280,7 +280,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		left : 10,
-		top: 170
+		top: 185
 	});
 
 	labelFechaInicioTitulo = Titanium.UI.createLabel({
@@ -294,7 +294,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : 'black',
 		left : '10',
-		top: '210'
+		top: '225'
 	});
 
 	labelFechaInicio = Titanium.UI.createLabel({
@@ -306,7 +306,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		left : '20',
-		top: '230'
+		top: '245'
 	});
 
 	labelFechaTerminoTitulo = Titanium.UI.createLabel({
@@ -319,7 +319,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 			fontSize : '20dp'
 		},
 		color : 'black',
-		top : '210',
+		top : '225',
 		right: '10'
 	});
 
@@ -332,7 +332,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		right : '10',
-		top: '230'
+		top: '245'
 	});
 
 	viewExpositor.add(imageViewExpositor);

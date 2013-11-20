@@ -11,7 +11,7 @@ function ConferenciasWindow(Window) {
 		navBarHidden: true
 	});
 
- table = Ti.UI.createTableView({
+ 	table = Ti.UI.createTableView({
 		width : '90%',
 		height : '100%'
 	});
@@ -131,16 +131,30 @@ function ConferenciasWindow(Window) {
 	populateTable();
 
 	table.addEventListener('click', function(e) {
-		if (e.rowData.id == 2) {
-			var Window;
-			var mainWindow = require("ui/handheld/conferencias/HorariosWindow");
-			new mainWindow(Window).open();
-			
-			/*var Window;
-			var mainWindow = require("ui/common/HorariosWindow");
-			var params = new Object();
-			params["Titulo"] = "VENTANA UNO";
-			new mainWindow(Window, params).open();*/
+		if (e.rowData.id == 2) 
+		{
+			var network = require('lib/network');
+			network.getData(network.SERVICES.CONFERENCES_DAYS, function(response)
+			{
+				if(response.length == 0) 
+				{
+					Ti.UI.createAlertDialog({
+					message: L('no_conferencias'),
+					ok: L('ok'),
+					title: L('alert_title')
+					}).show();
+				}	
+	    		else if(response.length > 0) 
+				{
+					var Window;
+					var mainWindow = require("ui/handheld/conferencias/HorariosWindow");
+					new mainWindow(response, Window).open();
+				}
+	    		else 
+				{
+					//error de conexion
+				}	
+			}); 
 			
 		} else if (e.rowData.id == 3) {
 			var Window;

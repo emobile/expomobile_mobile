@@ -104,7 +104,7 @@
 	<string name="qualified2">Tu calificación fué:</string>
 	<string name="comments">Comentarios</string>
 	<string name="facebook_message">Conéctate con facebook</string>
-	<string name="indications">Si no cuenta con un número de registro, acudir al módulo correspondiente para obtenerlo</string>
+	<string name="indications">Para ingresar al sistema debe de contar con un número de registro.\nSi aún no le ha sido asignado, acudir al módulo de registro.</string>
 	<string name="no_eventos">No hay eventos en la agenda</string>
 	<string name="no_actividades">No hay actividades en la agenda</string>
 	<string name="no_conferencias">No hay conferencias en la agenda</string>

@@ -25,7 +25,7 @@ function DirExposWindow(Window) {
 		layout : 'vertical'
 	});
 	
-	imageViewBar = Titanium.UI.createView({
+	/*imageViewBar = Titanium.UI.createView({
 		id : "imageViewBar",
 		backgroundColor : Ti.App.Properties.getString('viewcolor'),
 		height : 80,
@@ -43,12 +43,10 @@ function DirExposWindow(Window) {
 		top : 7,
 		right : 3
 	});
-	imageViewBar.add(imageView);
-
+	
 	labelTitulo = Titanium.UI.createLabel({
 		id : "labelTitulo",
 		height : 'auto',
-		width : '70%',
 		text : L('exhibitions'),
 		font : {
 			fontSize : '22dp'
@@ -56,25 +54,70 @@ function DirExposWindow(Window) {
 		color : 'white',
 		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
 	});
-	imageViewBar.add(labelTitulo);
-
+	
 	buttonClose = Titanium.UI.createImageView({
 		id : "buttonClose",
 		image : "/images/close.png",
 		width : 30,
 		height : 30,
-		top : 25
+		top : 10,
+		right: 10
+	});*/
+	
+	imageViewBar = Titanium.UI.createView({
+		id : "imageViewBar",
+		backgroundColor : Ti.App.Properties.getString('viewcolor'),
+		height : 80,
+		left : 0,
+		top : 0,
+		width : '100%'
+	});
+
+	imageView = Titanium.UI.createImageView({
+		id : "imageView",
+		image : "/images/iconexposiciones.png",
+		width : 60,
+		height : 60,
+		top : '10dp',
+		left : '10dp'
+	});
+
+	labelTitulo = Titanium.UI.createLabel({
+		id : "labelTitulo",
+		width: Ti.UI.SIZE,
+		height : 'auto',
+		text : L('exhibitions'),
+		font : {
+			fontSize : '22dp'
+		},
+		color : 'white',
+		center : {
+			x : '50%'
+		},
+		top : 15
 	});
 	
+	buttonClose = Titanium.UI.createImageView({
+		id : "buttonClose",
+		image : "/images/close.png",
+		width : 30,
+		height : 30,
+		top : '10dp',
+		right: '10dp'
+	});
+	
+	imageViewBar.add(labelTitulo);
+	imageViewBar.add(imageView);
 	imageViewBar.add(buttonClose);
 	patrocinadoresWdw.add(imageViewBar);
 	scrollView_1.add(table);
 	patrocinadoresWdw.add(scrollView_1);
 	
-	function populateTable() {
+	function populateTable() 
+	{
 		var data = [];
 
-	var db = Ti.Database.open('anadicDB');
+		var db = Ti.Database.open('anadicDB');
 		var db_rows = db.execute("SELECT * FROM exhibitors");
 		while (db_rows.isValidRow()) {
 			
@@ -89,10 +132,14 @@ function DirExposWindow(Window) {
 				urlImage = 'http://' + Ti.App.Properties.getString('hostname') + db_rows.fieldByName('mobile_logo_url');	
 			}
 			
+			var etiqueta = db_rows.fieldByName("social_reason");
+			if(etiqueta.length > 25)
+				etiqueta = etiqueta.substring(0,24)+"...";
+			
 			var row = Titanium.UI.createTableViewRow({
 				id : db_rows.fieldByName("id"),
 				//title : db_rows.fieldByName("name"),
-				title : db_rows.fieldByName("social_reason"),
+				title : etiqueta,
 				//leftImage : urlImage,
 				isparent : true,
 				opened : false,

@@ -97,7 +97,7 @@
 "qualified2" = "Your rating was:";
 "comments" = "Comments";
 "facebook_message" = "Connect with facebook";
-"indications" = "If you do not have a registration number, go to module to get it";
+"indications" = "In order to view the content of the app you must have a registration number.\nIf you don't have one, you can get it at registration module.";
 "no_eventos" = "No events scheduled";
 "no_actividades" = "No activities scheduled";
 "no_conferencias" = "No conferences scheduled";
@@ -105,3 +105,4 @@
 "subgrupo" = "Subgroup";
 "grupo" = "Group";
 "hora" = "Hour";
+"no_ofertas" = "No offers available";

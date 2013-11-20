@@ -97,7 +97,7 @@
 "qualified2" = "Tu calificación fué:";
 "comments" = "Comentarios";
 "facebook_message" = "Conéctate con facebook";
-"indications" = "Si no cuenta con un número de registro, acudir al módulo correspondiente para obtenerlo";
+"indications" = "Para ingresar al sistema debe de contar con un número de registro.\nSi aún no le ha sido asignado, acudir al módulo de registro.";
 "no_eventos" = "No hay eventos en la agenda";
 "no_actividades" = "No hay actividades en la agenda";
 "no_conferencias" = "No hay conferencias en la agenda";
@@ -105,3 +105,4 @@
 "grupo" = "Grupo";
 "subgrupo" = "Subgrupo";
 "hora" = "Hora";
+"no_ofertas" = "No hay ofertas disponibles";

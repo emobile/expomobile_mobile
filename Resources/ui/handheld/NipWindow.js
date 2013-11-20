@@ -3,10 +3,20 @@ function NipWindow(Window) {
 	var network = require('lib/network');
 
 	var usuario = '';
+	var nip = '';
 
 	var db = Ti.Database.open('anadicDB');
 	var id = db.execute('SELECT name FROM users WHERE userId = 1;');
+
+	db.execute('CREATE TABLE IF NOT EXISTS nip(nipId INTEGER PRIMARY KEY, nipNumber TEXT);');
+	var nipNumber = db.execute('SELECT nipNumber FROM nip WHERE nipId = 1;');
+
+	if (nipNumber.isValidRow()) {
+		nip = nipNumber.fieldByName('nipNumber');
+	}
 	
+	nipNumber.close();
+
 	if (id.isValidRow()) {
 		usuario = id.fieldByName('name');
 		id.close();
@@ -18,7 +28,7 @@ function NipWindow(Window) {
 	}
 
 	db.close();
-	
+
 	var nipWindow = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "black",
@@ -152,8 +162,13 @@ function NipWindow(Window) {
 			hintText : "Ingresar NIP",
 			id : "textFieldNip",
 			width : '60%',
-			passwordMask : true
+			passwordMask : true,
+			value : nip
 		});
+
+		if (nip != '') {
+			textFieldNip.value = nip;
+		}
 
 	};
 
@@ -186,41 +201,52 @@ function NipWindow(Window) {
 	};
 
 	createAttachChWindow();
+	
+	if (nip != '') {
+			textFieldNip.value = nip;
+		}
 
 	buttonIngresar.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
 
-		if (!textFieldNip.value == '') 
-		{
+		if (!textFieldNip.value == '') {
 			var db = Ti.Database.open('anadicDB');
 			var id = db.execute('SELECT id FROM users WHERE userId = 1;');
-			
+
 			network.getNip(id.fieldByName('id'), textFieldNip.value, function(response) {
 				if (response.access == 'ok') {
-	
+
+					var db = Ti.Database.open('anadicDB');
+					var nipNumber = db.execute('SELECT nipNumber FROM nip WHERE nipId = 1;');
+
+					if (!nipNumber.isValidRow()) {
+						db.execute('INSERT INTO nip VALUES (1, "' + textFieldNip.value + '");');
+					}
+
+					nipNumber.close();
+					db.close();
+
 					textFieldNip.blur();
 					var Window;
 					var mainWindow = require("ui/handheld/MainWindow");
 					new mainWindow(Window).open();
-	
-				} 
-			//else {
+
+				}
+				//else {
 				//if (response != false) {
-					//alert(response.msg);
+				//alert(response.msg);
 				//}
-			//}
+				//}
 			});
-	
+
 			db.close();
-		
-		} 
-		else 
-		{
+
+		} else {
 			Ti.UI.createAlertDialog({
-				message: response.msg,
-				ok: L('empty'),
-				title: L('alert_title')
-				}).show();
+				message : response.msg,
+				ok : L('empty'),
+				title : L('alert_title')
+			}).show();
 		}
 
 	});
@@ -241,13 +267,13 @@ function NipWindow(Window) {
 		}
 	});
 
-	var alert = Titanium.UI.createAlertDialog({
+	var ventanaAlert = Titanium.UI.createAlertDialog({
 		title : L('alert_title'),
 		message : L('closeapp'),
 		buttonNames : [L('yes'), L('no')]
 	});
 
-	alert.addEventListener('click', function(e) {
+	ventanaAlert.addEventListener('click', function(e) {
 		if (e.index == 0) {
 			Ti.Media.vibrate();
 			Titanium.Android.currentActivity.finish();
@@ -256,16 +282,15 @@ function NipWindow(Window) {
 
 	buttonAtras.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		alert.show();
+		ventanaAlert.show();
 	});
 
 	nipWindow.addEventListener('android:back', function() {
 		Ti.Media.vibrate();
-		alert.show();
+		ventanaAlert.show();
 	});
 
 	return nipWindow;
 }
 
 module.exports = NipWindow;
-
