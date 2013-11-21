@@ -235,9 +235,9 @@ function MainWindow(Window) {
 		Ti.Media.vibrate();
 		network.getSponsors(function(response) {
 			if (response != false) {
-				var Window;
+				var Window2;
 				var mainWindow = require("ui/handheld/PatrocinadoresWindow");
-				new mainWindow(Window).open();	
+				new patWindow(Window2).open();	
 			}
 		});
 	});

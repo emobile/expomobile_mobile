@@ -1,16 +1,18 @@
-function TalleresWindow(Window) {
+function OfertasWindow(Window) {
 
-	talleresWdw = Titanium.UI.createWindow({
+	windowOfertas = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen : false,
-		navBarHidden : true
+		oldWin:Ti.currentWindow,
+		fullscreen: false,
+		navBarHidden: true
 	});
 
 	table = Ti.UI.createTableView({
+		top : 10,
 		width : '90%',
 		height : '100%'
 	});
@@ -37,7 +39,7 @@ function TalleresWindow(Window) {
 
 	imageView = Titanium.UI.createImageView({
 		id : "imageView",
-		image : "/images/icontalleres.png",
+		image : "/images/iconofertas.png",
 		width : 60,
 		height : 60,
 		top : 7,
@@ -49,7 +51,7 @@ function TalleresWindow(Window) {
 		id : "labelTitulo",
 		height : 'auto',
 		width : '70%',
-		text : L('workshops'),
+		text : L('offers'),
 		font : {
 			fontSize : '22dp'
 		},
@@ -66,17 +68,18 @@ function TalleresWindow(Window) {
 		top : 25
 	});
 	imageViewBar.add(buttonClose);
-	talleresWdw.add(imageViewBar);
 
-	talleresWdw.add(scrollView_1);
+	windowOfertas.add(imageViewBar);
+
+	windowOfertas.add(scrollView_1);
 
 	function populateTable() {
 		var data = [];
 
 		var row = Titanium.UI.createTableViewRow({
 			id : 1,
-			title : L('my_schedule'),
-			leftImage : '/images/horarios.png',
+			title : L('byexhibitor'),
+			leftImage : '/images/expositor.png',
 			isparent : true,
 			opened : false,
 			hasChild : false,
@@ -89,8 +92,8 @@ function TalleresWindow(Window) {
 
 		var row = Titanium.UI.createTableViewRow({
 			id : 2,
-			title : L('map'),
-			leftImage : '/images/mapa.png',
+			title : L('alloffers'),
+			leftImage : '/images/expositores.png',
 			isparent : true,
 			opened : false,
 			hasChild : false,
@@ -103,8 +106,8 @@ function TalleresWindow(Window) {
 
 		var row = Titanium.UI.createTableViewRow({
 			id : 3,
-			title : L('register_asistence'),
-			leftImage : '/images/miqrcode.png',
+			title : L('map'),
+			leftImage : '/images/mapa.png',
 			isparent : true,
 			opened : false,
 			hasChild : false,
@@ -122,52 +125,34 @@ function TalleresWindow(Window) {
 
 	table.addEventListener('click', function(e) {
 		if (e.rowData.id == 1) {
-			var network = require('lib/network');
-			network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response) {
-				if (response.length == 0) {
-					Ti.UI.createAlertDialog({
-						message : L('no_workshops'),
-						ok : L('ok'),
-						title : L('alert_title')
-					}).show();
-				} else if (response.length > 0) {
-					var Window;
-					var mainWindow = require("ui/handheld/talleres/HorariosWindow");
-					new mainWindow(response, Window).open();
-				} else {
-					//error de conexion
-				}
-			});
-
+			var Window;
+			var mainWindow = require("ui/handheld/ofertas/OpcionesExpositorWindow");
+			new mainWindow(Window).open();
 		} else if (e.rowData.id == 2) {
+			var Window;
+			var mainWindow = require("ui/handheld/ofertas/ExpositoresWindow");
+			new mainWindow(Window, 0, 0, 0).open();
+		} else if (e.rowData.id == 3) {
 			var Window;
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");
 			new mainWindow(Window).open();
-		} else if (e.rowData.id == 3) {
-			if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') {
-				var Window;
-				var mainWindow = require("ui/handheld/QrReaderIOSWindow");
-				new mainWindow(Window, 'talleres').open();
-			} else {
-				var Window;
-				var mainWindow = require("ui/handheld/QrReaderWindow");
-				new mainWindow(Window, 'talleres').open();
-			}
-
 		}
+	});
+
+	windowOfertas.addEventListener('android:back', function(e) {
+		Ti.Media.vibrate();
+		windowOfertas.close();
 	});
 
 	buttonClose.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		talleresWdw.close();
+		windowOfertas.close();
 	});
+	
+	
 
-	talleresWdw.addEventListener('android:back', function(e) {
-		Ti.Media.vibrate();
-		talleresWdw.close();
-	});
-
-	return talleresWdw;
+	return windowOfertas;
 }
 
-module.exports = TalleresWindow;
+module.exports = OfertasWindow;
+

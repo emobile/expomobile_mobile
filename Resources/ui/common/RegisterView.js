@@ -122,7 +122,7 @@ function RegisterView() {
 			autocapitalization : Ti.UI.TEXT_AUTOCAPITALIZATION_ALL,
 			width : '60%',
 			top : 0,
-			borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+			borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 		});
 		
 		textFieldRegistro.focus();

@@ -134,6 +134,7 @@ function LoginView() {
 		});
 		
 		var db = Ti.Database.open('anadicDB');
+		db.execute('CREATE TABLE IF NOT EXISTS nip(nipId INTEGER PRIMARY KEY, nipNumber TEXT)');
 		var nipNumber = db.execute('SELECT nipNumber FROM nip WHERE nipId = 1');
 
 		var nip = '';

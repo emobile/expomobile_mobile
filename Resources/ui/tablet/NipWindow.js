@@ -118,7 +118,7 @@ function NipWindow(Window) {
 
 		scrollView_1.add(buttonIngresar);
 
-		//scrollView_1.add(buttonCorreo);
+		scrollView_1.add(buttonCorreo);
 
 		scrollView_1.add(buttonAtras);
 

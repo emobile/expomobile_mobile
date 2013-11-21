@@ -1,16 +1,17 @@
-function TalleresWindow(Window) {
 
-	talleresWdw = Titanium.UI.createWindow({
+function ConferenciasWindow(Window) {
+
+	confWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen : false,
-		navBarHidden : true
+		fullscreen: false,
+		navBarHidden: true
 	});
 
-	table = Ti.UI.createTableView({
+ 	table = Ti.UI.createTableView({
 		width : '90%',
 		height : '100%'
 	});
@@ -22,7 +23,6 @@ function TalleresWindow(Window) {
 		width : '100%',
 		layout : 'vertical'
 	});
-
 	scrollView_1.add(table);
 
 	imageViewBar = Titanium.UI.createView({
@@ -37,7 +37,7 @@ function TalleresWindow(Window) {
 
 	imageView = Titanium.UI.createImageView({
 		id : "imageView",
-		image : "/images/icontalleres.png",
+		image : "/images/iconconferencias.png",
 		width : 60,
 		height : 60,
 		top : 7,
@@ -49,7 +49,7 @@ function TalleresWindow(Window) {
 		id : "labelTitulo",
 		height : 'auto',
 		width : '70%',
-		text : L('workshops'),
+		text : L('conferences'),
 		font : {
 			fontSize : '22dp'
 		},
@@ -66,34 +66,41 @@ function TalleresWindow(Window) {
 		top : 25
 	});
 	imageViewBar.add(buttonClose);
-	talleresWdw.add(imageViewBar);
 
-	talleresWdw.add(scrollView_1);
+	confWdw.add(imageViewBar);
+
+	confWdw.add(scrollView_1);
 
 	function populateTable() {
 		var data = [];
 
-		var row = Titanium.UI.createTableViewRow({
+		/*var row = Titanium.UI.createTableViewRow({
 			id : 1,
-			title : L('my_schedule'),
-			leftImage : '/images/horarios.png',
+			title : L('directory'),
+			leftImage : '/images/directorio.png',
 			isparent : true,
 			opened : false,
 			hasChild : false,
+			sub : [{
+				title : "Child 1"
+			}],
 			font : {
 				fontSize : '22dp'
 			},
 			color : 'black'
 		});
-		data.push(row);
+		data.push(row);*/
 
 		var row = Titanium.UI.createTableViewRow({
 			id : 2,
-			title : L('map'),
-			leftImage : '/images/mapa.png',
+			title : L('schedules'),
+			leftImage : '/images/horarios.png',
 			isparent : true,
 			opened : false,
 			hasChild : false,
+			sub : [{
+				title : "Child 1"
+			}],
 			font : {
 				fontSize : '22dp'
 			},
@@ -103,11 +110,14 @@ function TalleresWindow(Window) {
 
 		var row = Titanium.UI.createTableViewRow({
 			id : 3,
-			title : L('register_asistence'),
-			leftImage : '/images/miqrcode.png',
+			title : L('map'),
+			leftImage : '/images/mapa.png',
 			isparent : true,
 			opened : false,
 			hasChild : false,
+			sub : [{
+				title : "Child 1"
+			}],
 			font : {
 				fontSize : '22dp'
 			},
@@ -121,53 +131,51 @@ function TalleresWindow(Window) {
 	populateTable();
 
 	table.addEventListener('click', function(e) {
-		if (e.rowData.id == 1) {
+		if (e.rowData.id == 2) 
+		{
 			var network = require('lib/network');
-			network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response) {
-				if (response.length == 0) {
+			network.getData(network.SERVICES.CONFERENCES_DAYS, function(response)
+			{
+				if(response.length == 0) 
+				{
 					Ti.UI.createAlertDialog({
-						message : L('no_workshops'),
-						ok : L('ok'),
-						title : L('alert_title')
+					message: L('no_conferencias'),
+					ok: L('ok'),
+					title: L('alert_title')
 					}).show();
-				} else if (response.length > 0) {
+				}	
+	    		else if(response.length > 0) 
+				{
 					var Window;
-					var mainWindow = require("ui/handheld/talleres/HorariosWindow");
+					var mainWindow = require("ui/handheld/conferencias/HorariosWindow");
 					new mainWindow(response, Window).open();
-				} else {
-					//error de conexion
 				}
-			});
-
-		} else if (e.rowData.id == 2) {
+	    		else 
+				{
+					//error de conexion
+				}	
+			}); 
+			
+		} else if (e.rowData.id == 3) {
 			var Window;
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");
 			new mainWindow(Window).open();
-		} else if (e.rowData.id == 3) {
-			if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') {
-				var Window;
-				var mainWindow = require("ui/handheld/QrReaderIOSWindow");
-				new mainWindow(Window, 'talleres').open();
-			} else {
-				var Window;
-				var mainWindow = require("ui/handheld/QrReaderWindow");
-				new mainWindow(Window, 'talleres').open();
-			}
-
 		}
 	});
 
 	buttonClose.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		talleresWdw.close();
+		confWdw.close();
 	});
 
-	talleresWdw.addEventListener('android:back', function(e) {
+	confWdw.addEventListener('android:back', function(e) {
+		//confWdw.removeEventListener('android:back');
 		Ti.Media.vibrate();
-		talleresWdw.close();
+		confWdw.close();
 	});
 
-	return talleresWdw;
+	return confWdw;
 }
 
-module.exports = TalleresWindow;
+module.exports = ConferenciasWindow;
+

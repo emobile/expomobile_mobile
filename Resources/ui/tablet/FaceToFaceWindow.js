@@ -1,13 +1,14 @@
-function TalleresWindow(Window) {
+function FaceToFaceWindow(Window) {
+	var network = require('lib/network');
 
-	talleresWdw = Titanium.UI.createWindow({
+	faceToFaceWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen : false,
-		navBarHidden : true
+		fullscreen: false,
+		navBarHidden: true
 	});
 
 	table = Ti.UI.createTableView({
@@ -37,7 +38,7 @@ function TalleresWindow(Window) {
 
 	imageView = Titanium.UI.createImageView({
 		id : "imageView",
-		image : "/images/icontalleres.png",
+		image : "/images/iconfacetoface.png",
 		width : 60,
 		height : 60,
 		top : 7,
@@ -49,7 +50,7 @@ function TalleresWindow(Window) {
 		id : "labelTitulo",
 		height : 'auto',
 		width : '70%',
-		text : L('workshops'),
+		text : L('facetoface'),
 		font : {
 			fontSize : '22dp'
 		},
@@ -65,17 +66,19 @@ function TalleresWindow(Window) {
 		height : 30,
 		top : 25
 	});
-	imageViewBar.add(buttonClose);
-	talleresWdw.add(imageViewBar);
 
-	talleresWdw.add(scrollView_1);
+	imageViewBar.add(buttonClose);
+
+	faceToFaceWdw.add(imageViewBar);
+
+	faceToFaceWdw.add(scrollView_1);
 
 	function populateTable() {
 		var data = [];
 
 		var row = Titanium.UI.createTableViewRow({
-			id : 1,
-			title : L('my_schedule'),
+			id : 2,
+			title : L('schedules'),
 			leftImage : '/images/horarios.png',
 			isparent : true,
 			opened : false,
@@ -88,23 +91,9 @@ function TalleresWindow(Window) {
 		data.push(row);
 
 		var row = Titanium.UI.createTableViewRow({
-			id : 2,
+			id : 3,
 			title : L('map'),
 			leftImage : '/images/mapa.png',
-			isparent : true,
-			opened : false,
-			hasChild : false,
-			font : {
-				fontSize : '22dp'
-			},
-			color : 'black'
-		});
-		data.push(row);
-
-		var row = Titanium.UI.createTableViewRow({
-			id : 3,
-			title : L('register_asistence'),
-			leftImage : '/images/miqrcode.png',
 			isparent : true,
 			opened : false,
 			hasChild : false,
@@ -120,54 +109,53 @@ function TalleresWindow(Window) {
 
 	populateTable();
 
-	table.addEventListener('click', function(e) {
-		if (e.rowData.id == 1) {
-			var network = require('lib/network');
-			network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response) {
-				if (response.length == 0) {
-					Ti.UI.createAlertDialog({
-						message : L('no_workshops'),
-						ok : L('ok'),
-						title : L('alert_title')
-					}).show();
-				} else if (response.length > 0) {
-					var Window;
-					var mainWindow = require("ui/handheld/talleres/HorariosWindow");
-					new mainWindow(response, Window).open();
-				} else {
-					//error de conexion
-				}
+	table.addEventListener('click', function(e) 
+	{
+		if (e.rowData.id == 2) {
+			
+			network.getFaceToFaceDays(function(response) {
+				
+			if(response.length == 0) 
+			{
+				Ti.UI.createAlertDialog({
+				message: L('no_appoinments'),
+				ok: L('ok'),
+				title: L('alert_title')
+				}).show();
+			}	
+    		else if(response.length > 0) 
+			{
+				var Window;
+				var mainWindow = require("ui/handheld/facetoface/HorariosWindow");
+				new mainWindow(Window, response).open();
+			}
+    		else 
+			{
+				//error de conexion
+			}	
+				
 			});
-
-		} else if (e.rowData.id == 2) {
+			
+			
+		} else if (e.rowData.id == 3) {
 			var Window;
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");
 			new mainWindow(Window).open();
-		} else if (e.rowData.id == 3) {
-			if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') {
-				var Window;
-				var mainWindow = require("ui/handheld/QrReaderIOSWindow");
-				new mainWindow(Window, 'talleres').open();
-			} else {
-				var Window;
-				var mainWindow = require("ui/handheld/QrReaderWindow");
-				new mainWindow(Window, 'talleres').open();
-			}
-
 		}
 	});
 
 	buttonClose.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		talleresWdw.close();
+		faceToFaceWdw.close();
 	});
 
-	talleresWdw.addEventListener('android:back', function(e) {
+	faceToFaceWdw.addEventListener('android:back', function(e) {
 		Ti.Media.vibrate();
-		talleresWdw.close();
+		faceToFaceWdw.close();
 	});
 
-	return talleresWdw;
+	return faceToFaceWdw;
 }
 
-module.exports = TalleresWindow;
+module.exports = FaceToFaceWindow;
+

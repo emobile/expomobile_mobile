@@ -22,6 +22,7 @@
  * For more information, see http://www.scandit.com/support or
  * contact us at info@scandit.com. 
  */
+function QRReaderIOSWindow(Window) {
 
 // load the Scandit SDK module
 var scanditsdk = require("com.mirasense.scanditsdk");
@@ -46,9 +47,8 @@ var openScanner = function() {
 		width:"100%",
 		height:"100%"
 	});
-	
 	// Initialize the barcode picker, remember to paste your own app key here.
-	picker.init("XWkcvlLgEeOZgSuLYTIqxK5VJ0cL3LOltYWM/qYAWTM",0);
+	picker.init("JTTTrvZJEeKLx5g+O4JvntJwaaxtzmsrrZdzp44+OTI", 0);
 
 
 	picker.showSearchBar(true);
@@ -122,4 +122,7 @@ var rootWindow = Titanium.UI.createWindow({
     backgroundColor:'#000'
 });
 rootWindow.add(button);
-rootWindow.open();
+}
+
+
+module.exports = TalleresWindow;

@@ -6,8 +6,8 @@ function TalleresWindow(Window) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen : false,
-		navBarHidden : true
+		fullscreen: false,
+		navBarHidden: true
 	});
 
 	table = Ti.UI.createTableView({
@@ -121,39 +121,40 @@ function TalleresWindow(Window) {
 	populateTable();
 
 	table.addEventListener('click', function(e) {
-		if (e.rowData.id == 1) {
+		if (e.rowData.id == 1) 
+		{
 			var network = require('lib/network');
-			network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response) {
-				if (response.length == 0) {
+			network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response)
+			{
+				if(response.length == 0) 
+				{
 					Ti.UI.createAlertDialog({
-						message : L('no_workshops'),
-						ok : L('ok'),
-						title : L('alert_title')
+					message: L('no_workshops'),
+					ok: L('ok'),
+					title: L('alert_title')
 					}).show();
-				} else if (response.length > 0) {
+				}	
+	    		else if(response.length > 0) 
+				{
 					var Window;
 					var mainWindow = require("ui/handheld/talleres/HorariosWindow");
-					new mainWindow(response, Window).open();
-				} else {
-					//error de conexion
+					new mainWindow(response,Window).open();
 				}
-			});
-
+	    		else 
+				{
+					//error de conexion
+				}	
+			}); 
+			
+			
 		} else if (e.rowData.id == 2) {
 			var Window;
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");
 			new mainWindow(Window).open();
 		} else if (e.rowData.id == 3) {
-			if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') {
-				var Window;
-				var mainWindow = require("ui/handheld/QrReaderIOSWindow");
-				new mainWindow(Window, 'talleres').open();
-			} else {
-				var Window;
-				var mainWindow = require("ui/handheld/QrReaderWindow");
-				new mainWindow(Window, 'talleres').open();
-			}
-
+			var Window;
+			var mainWindow = require("ui/handheld/QrReaderWindow");
+			new mainWindow(Window, 'talleres').open();
 		}
 	});
 
