@@ -1,5 +1,5 @@
-function LoginView() {
-
+function LoginView() 
+{
 	var network = require('lib/network');
 
 	var usuario = '';
@@ -7,7 +7,6 @@ function LoginView() {
 	var db = Ti.Database.open('anadicDB');
 	var id = db.execute('SELECT name FROM users WHERE userId = 1;');
 	
-
 	if (id.isValidRow()) {
 		usuario = id.fieldByName('name');
 		id.close();
@@ -83,38 +82,38 @@ function LoginView() {
 
 		scrollView_1.add(buttonIngresar);
 
-		//scrollView_1.add(buttonCorreo);
-
-		scrollView_1.add(buttonSalir);
+		if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad')
+		{
+			//boton salir solo para android
+		}
+		else
+		{
+			scrollView_1.add(buttonSalir);
+		}
+		
 	};
 
 	var createbuttons = function() {
 
 		buttonIngresar = Titanium.UI.createImageView({
 			id : "buttonIngresar",
-			width : '95%',
+			width : Ti.UI.SIZE,
+			height: Ti.UI.SIZE,
 			top : 10
 		});
 
-		/*buttonCorreo = Titanium.UI.createImageView({
-			id : "buttonCorreo",
-			width : '95%',
-			top : 5
-		});*/
-
 		buttonSalir = Titanium.UI.createImageView({
 			id : "buttonSalir",
-			width : '95%',
+			width : Ti.UI.SIZE,
+			height: Ti.UI.SIZE,
 			top : 5
 		});
-
+		
 		if (L("language") == "es") {
 			buttonIngresar.image = "/images/buttoningresar.png";
-			//buttonCorreo.image = "/images/buttoncorreo.png";
 			buttonSalir.image = "/images/buttonsalir.png";
 		} else {
 			buttonIngresar.image = "/images/buttoningresar_e.png";
-			//buttonCorreo.image = "/images/buttoncorreo_e.png";
 			buttonSalir.image = "/images/buttonsalir_e.png";
 		}
 
@@ -125,17 +124,16 @@ function LoginView() {
 		textFieldRegistro = Titanium.UI.createTextField({
 			hintText : L('nip'),
 			id : "textFieldRegistro",
-			//value : "uja1",
-			width : '60%',
+			width : '250dp',
 			passwordMask : true,
 			top:'10',
-			borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-			enabled: false
+			borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+			//enabled: false
 		});
 		
 		var db = Ti.Database.open('anadicDB');
 		db.execute('CREATE TABLE IF NOT EXISTS nip(nipId INTEGER PRIMARY KEY, nipNumber TEXT)');
-		var nipNumber = db.execute('SELECT nipNumber FROM nip WHERE nipId = 1');
+		var nipNumber = db.execute('SELECT nipNumber FROM nip WHERE nipId = 1;');
 
 		var nip = '';
 
@@ -181,35 +179,49 @@ function LoginView() {
 	buttonIngresar.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
 
-		//if (!textFieldRegistro.value == '') {
-		var db = Ti.Database.open('anadicDB');
-		var id = db.execute('SELECT id FROM users WHERE userId = 1;');
-		
-		network.getNip(id.fieldByName('id'), textFieldRegistro.value, function(response) {
-			if (response.access == 'ok') {
-				textFieldRegistro.blur();
-				var Window;
-				var mainWindow = require("ui/handheld/MainWindow");
-				new mainWindow(Window).open();
+		if (!textFieldRegistro.value == '') 
+		{
+			var db = Ti.Database.open('anadicDB');
+			var id = db.execute('SELECT id FROM users WHERE userId = 1;');
+			
+			network.getNip(id.fieldByName('id'), textFieldRegistro.value, function(response) {
+				if (response.access == 'ok') {
+					/*textFieldRegistro.blur();
+					var Window;
+					var mainWindow = require("ui/handheld/MainWindow");
+					new mainWindow(Window).open();*/
+					
+					var db = Ti.Database.open('anadicDB');
+					var nipNumber = db.execute('SELECT nipNumber FROM nip WHERE nipId = 1;');
 
-			} 
-			//else if (response.access == 'no') {
-				//alert(response.msg);
-			//}
-		});
-		
-		db.close();
+					if (!nipNumber.isValidRow()) {
+						db.execute('INSERT INTO nip VALUES (1, "' + textFieldRegistro.value + '");');
+					}
 
-		//} else {
-		//alert(L('empty'));
-		//}
+					nipNumber.close();
+					db.close();
+
+					textFieldRegistro.blur();
+					var Window;
+					var mainWindow = require("ui/handheld/MainWindow");
+					new mainWindow(Window).open();
+				} 
+				//else if (response.access == 'no') {
+					//alert(response.msg);
+				//}
+			});
+			
+			db.close();
+
+		} else 
+		{
+			Ti.UI.createAlertDialog({
+				message: L('empty'),
+				title: L('alert_title'),
+				ok: L('ok')
+			});
+		}
 	});
-
-	/*buttonCorreo.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		Ti.Platform.openURL("http://www.google.com");
-	});*/
-
 
 	var ventanaAlert = Titanium.UI.createAlertDialog({
 		title : L('tittlealert'),
@@ -227,7 +239,6 @@ function LoginView() {
 			}
 			else
 			{
-				//createAttachChWindow.close();
 				loginView.getParent().close();
 			}
 		}

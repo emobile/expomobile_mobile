@@ -1,6 +1,9 @@
 function DirExposWindow(Window) {
 
 	var expoInfoWindow = require("ui/handheld/exposiciones/ExposicionesInfoWindow");
+	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	patrocinadoresWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
@@ -8,7 +11,7 @@ function DirExposWindow(Window) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 

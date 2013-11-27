@@ -113,4 +113,5 @@
 	<string name="subgrupo">Subgrupo</string>
 	<string name="hora">Hora</string>
 	<string name="no_ofertas">No hay ofertas disponibles</string>
+	<string name="cancelar">Cancelar</string>
 </resources>

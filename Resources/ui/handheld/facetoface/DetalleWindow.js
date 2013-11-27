@@ -5,11 +5,11 @@ function DetalleWindow(Window, day) {
 
 	var db = Ti.Database.open('anadicDB');
 	var id = db.execute('SELECT name FROM users WHERE userId = 1;');
-	db.close();
+	
 
 	if (id.isValidRow()) {
 		usuario = id.fieldByName('name');
-		id.close();
+		
 		if (usuario === 'undefined' || usuario == 'null') {
 			usuario = '';
 		}
@@ -17,11 +17,16 @@ function DetalleWindow(Window, day) {
 		usuario = '';
 	}
 
+	id.close();
+	db.close();
+
 	var citas;
 	var contenedor;
 	var totalCitas;
 	var citaActual = 0;
 	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	faceDetWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
@@ -29,7 +34,7 @@ function DetalleWindow(Window, day) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -112,7 +117,7 @@ function DetalleWindow(Window, day) {
 		height : 48,
 		center : {
 			x : '50%',
-			y : '0%'
+			y : '50%'
 		}
 	});
 
@@ -202,7 +207,8 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	labelEmpresaTitulo = Titanium.UI.createLabel({
@@ -225,7 +231,8 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	labelEmailTitulo = Titanium.UI.createLabel({
@@ -271,7 +278,8 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	labelFechaInicio = Titanium.UI.createLabel({
@@ -294,7 +302,8 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	labelFechaTermino = Titanium.UI.createLabel({
@@ -317,7 +326,8 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	contenedor.add(labelCuentaCitas);

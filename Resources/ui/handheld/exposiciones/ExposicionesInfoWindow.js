@@ -3,11 +3,14 @@ function ExposicionesInfoWindow(id) {
 
 	var width = '100%', height = '90%';
 	var top = '10%';
+	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	expoInfWdw = Titanium.UI.createWindow({
 		//touchEnabled : false,
 		backgroundColor : 'transparent',
-		fullscreen : false,
+		fullscreen : pantallaCompleta,
 		navBarHidden : true,
 		opacity: 1.0
 	});

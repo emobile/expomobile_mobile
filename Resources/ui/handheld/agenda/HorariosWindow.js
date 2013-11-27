@@ -2,6 +2,9 @@ function HorariosWindow(dias, Window)
 {
 	var network = require('lib/network');
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	var infoWindow = require("ui/common/InfoWindow");
 	var infoView = infoWindow.InfoWindow();
 
@@ -14,7 +17,7 @@ function HorariosWindow(dias, Window)
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 

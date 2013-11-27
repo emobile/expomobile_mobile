@@ -1,3 +1,12 @@
+android/ATTR_MINIFY=true
+android/ATTR_PROJECT_NAME=expomobile_mobile
+android/abi=x86
+android/distribute_path=/Users/Usuario/Desktop
+android/keystore_alias=emobile
+android/keystore_password=appjuan2013
+android/keystore_path=/Users/Usuario/Desktop/new_key/keyEmob.keystore
+android/recent_output=/Users/Usuario/Desktop
+android/sdk_version=Android 4.0.3
 eclipse.preferences.version=1
 iosLaunchConfigurationAttributes/ATTR_MINIFY=true
 iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=expomobile_mobile

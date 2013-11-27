@@ -5,6 +5,9 @@ function CreateIndicatorWindow(args) {
 	var top = args.top || 10;
 	var text = args.text || L('loading');
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	var customAlertWdw = Titanium.UI.createWindow({
 		height : height,
 		width : width,
@@ -12,7 +15,8 @@ function CreateIndicatorWindow(args) {
 		borderRadius : 10,
 		touchEnabled : false,
 		backgroundColor : '#000',
-		opacity : 0.6
+		opacity : 0.6,
+		fullscreen: pantallaCompleta
 	});
 
 	var view = Ti.UI.createView({

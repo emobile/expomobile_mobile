@@ -22,22 +22,29 @@
  * For more information, see http://www.scandit.com/support or
  * contact us at info@scandit.com. 
  */
-function QRReaderIOSWindow(Window) {
 
 // load the Scandit SDK module
 var scanditsdk = require("com.mirasense.scanditsdk");
+var network = require("lib/network");
 
 // disable the status bar for the camera view on the iphone and ipad
-if(Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad'){
-    	Titanium.UI.iPhone.statusBarHidden = true;
-	}
+if(Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad')
+{
+    Titanium.UI.iPhone.statusBarHidden = true;
+}
 
+var win_name = Ti.UI.currentWindow.win_name;
 
 var picker;
 // Create a window to add the picker to and display it. 
 var window = Titanium.UI.createWindow({  
 		title:'Scandit SDK',
-		navBarHidden:true
+		navBarHidden:true,
+		width: '100%',
+		height:'100%',
+		layout: 'composite',
+		modal:true,
+		fullscreen: false
 });
 
 // Sets up the scanner and starts it in a new window.
@@ -45,21 +52,29 @@ var openScanner = function() {
 	// Instantiate the Scandit SDK Barcode Picker view
 	picker = scanditsdk.createView({
 		width:"100%",
-		height:"100%"
+		height:"100%",
+		zIndex: 0,
 	});
+	
 	// Initialize the barcode picker, remember to paste your own app key here.
-	picker.init("JTTTrvZJEeKLx5g+O4JvntJwaaxtzmsrrZdzp44+OTI", 0);
+	picker.init("XWkcvlLgEeOZgSuLYTIqxK5VJ0cL3LOltYWM/qYAWTM",0);
 
+	picker.setSearchBarCancelButtonCaption(L('cancelar')); 
 
-	picker.showSearchBar(true);
+	//picker.showSearchBar(true);
 	// add a tool bar at the bottom of the scan view with a cancel button (iphone/ipad only)
 	picker.showToolBar(true);
 
 	// Set callback functions for when scanning succeedes and for when the 
 	// scanning is canceled.
-	picker.setSuccessCallback(function(e) {
-		alert("success (" + e.symbology + "): " + e.barcode);
+	picker.setSuccessCallback(function(e) 
+	{
+		var qrCode = validarQR(e.barcode);
+		if(qrCode != false)
+			sendQr(qrCode);
+		
 	});
+	
 	picker.setCancelCallback(function(e) {
 		closeScanner();
 	});
@@ -91,6 +106,7 @@ var closeScanner = function() {
 		window.remove(picker);
 	}
 	window.close();
+	Ti.UI.currentWindow.close();
 };
 
 // Changes the picker dimensions and the video feed orientation when the
@@ -107,22 +123,39 @@ Ti.Gesture.addEventListener('orientationchange', function(e) {
 	}
 });
 
-// create start scanner button
-var button = Titanium.UI.createButton({
-	"width":200,
-	"height": 80,
-	"title": "start scanner"
-});
+openScanner();
 
-button.addEventListener('click', function() {
-	openScanner();
-});
-
-var rootWindow = Titanium.UI.createWindow({
-    backgroundColor:'#000'
-});
-rootWindow.add(button);
+function sendQr(qrcode) {
+	if (win_name == 'talleres') {
+		network.postVisitWorkshop(qrcode, function(response) {
+			if (response != false) 
+			{
+				Ti.UI.createAlertDialog({
+					message: response.msg,
+					ok: L('ok'),
+					title: L('alert_title') 
+				}).show();
+			}
+		});
+	} else if (win_name == 'exposiciones') {
+		network.postVisitExposition(qrcode, function(response) {
+			if (response != false) {
+				Ti.UI.createAlertDialog({
+					message: response.msg,
+					ok: L('ok'),
+					title: L('alert_title') 
+				}).show();
+			}
+		});
+	}
 }
 
+function validarQR(qrcode) {
+	var qr = qrcode.split(':');
+	if (qr[0] == "emobile") {
+		return qr[1];
+	} else {
+		return false;
+	}
+}
 
-module.exports = TalleresWindow;

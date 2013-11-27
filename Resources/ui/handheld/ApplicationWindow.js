@@ -7,9 +7,14 @@ function ApplicationWindow() {
 	var RegisterView = require('ui/common/RegisterView');
 	var LoginView = require('ui/common/LoginView');
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	//create component instance
 	var self = Ti.UI.createWindow({
-		backgroundColor : '#ffffff'
+		backgroundColor : '#FFFFFF',
+		fullscreen: pantallaCompleta,
+		navBarHidden:true
 	});
 
 	var db = Ti.Database.open('anadicDB');
@@ -26,13 +31,13 @@ function ApplicationWindow() {
 			self.add(registerView);
 		}
 	
-	var alert = Titanium.UI.createAlertDialog({
+	var ventanaAlert = Titanium.UI.createAlertDialog({
 		title : L('tittlealert'),
 		message : L('closeapp'),
 		buttonNames : [L('yes'), L('no')]
 	});
 
-	alert.addEventListener('click', function(e) {
+	ventanaAlert.addEventListener('click', function(e) {
 		if (e.index == 0) {
 			Ti.Media.vibrate();
 			
@@ -52,7 +57,7 @@ function ApplicationWindow() {
 	});
 
 	self.addEventListener('android:back', function() {
-		alert.show();
+		ventanaAlert.show();
 	});
 
 	return self;

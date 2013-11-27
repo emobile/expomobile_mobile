@@ -6,16 +6,18 @@ function DetalleWindow(Window, day) {
 	var totalExposiciones;
 	var exposicionActual = 0;
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	expDetWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundImage : '/images/background.png',
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
-	
 
 	scrollView = Titanium.UI.createView({
 		id : "scrollView",
@@ -92,7 +94,7 @@ function DetalleWindow(Window, day) {
 		height : 48,
 		center : {
 			x : '50%',
-			y : '0%'
+			y : '50%'
 		}
 	});
 

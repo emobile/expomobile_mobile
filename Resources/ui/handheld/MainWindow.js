@@ -2,25 +2,28 @@ function MainWindow(Window) {
 	var network = require('lib/network');
 
 	/*Ti.Facebook = require("facebook");
-	Ti.Facebook.appid = "307992816005643";
-	Ti.Facebook.permissions = ['publish_stream', 'read_stream', 'email', 'user_about_me', 'create_event'];*/
+	 Ti.Facebook.appid = "307992816005643";
+	 Ti.Facebook.permissions = ['publish_stream', 'read_stream', 'email', 'user_about_me', 'create_event'];*/
 
 	var ANActivityIndicator = require('ui/common/ANActivityIndicator');
 	var info = new ANActivityIndicator(L('loading'));
 
 	/*var facebookAlert = Titanium.UI.createAlertDialog({
-		title : L('tittlealert'),
-		message : L('facebook_message'),
-		buttonNames : [L('yes'), L('no')]
-	});
+	 title : L('tittlealert'),
+	 message : L('facebook_message'),
+	 buttonNames : [L('yes'), L('no')]
+	 });
 
-	facebookAlert.show();
+	 facebookAlert.show();
 
-	facebookAlert.addEventListener('click', function(e) {
-		if (e.index == 0) {
-			Ti.Facebook.authorize();
-		}
-	});*/
+	 facebookAlert.addEventListener('click', function(e) {
+	 if (e.index == 0) {
+	 Ti.Facebook.authorize();
+	 }
+	 });*/
+
+	var herramientas = require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	info.show();
 
@@ -29,9 +32,13 @@ function MainWindow(Window) {
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
-		layout : 'vertical'
+		layout : 'vertical',
+		fullscreen : pantallaCompleta,
+		navBarHidden : true
 		//exitOnClose: true
 	});
+
+	mainWindow.orientationModes = [Ti.UI.PORTRAIT];
 
 	viewTop = Titanium.UI.createView({
 		backgroundColor : "transparent",
@@ -73,9 +80,9 @@ function MainWindow(Window) {
 	imageViewLogo = Titanium.UI.createImageView({
 		id : "imageViewLogo",
 		image : "/images/expomobile.png",
-		height : 89,
-		top : 10,
-		width : 184.5,
+		height : 71.2, //89,
+		top : 0,
+		width : 147.6, //184.5,
 		verticalAlign : 'center'
 	});
 
@@ -87,7 +94,7 @@ function MainWindow(Window) {
 		layout : 'vertical'
 	});
 
-	imageViewBar = Titanium.UI.createView({
+	/*imageViewBar = Titanium.UI.createView({
 		id : "imageViewBar",
 		backgroundColor : Ti.App.Properties.getString('viewcolor'),
 		height : 40,
@@ -108,7 +115,6 @@ function MainWindow(Window) {
 		color : 'white',
 		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
 	});
-	imageViewBar.add(labelTitulo);
 
 	buttonClose = Titanium.UI.createImageView({
 		id : "buttonClose",
@@ -116,8 +122,7 @@ function MainWindow(Window) {
 		width : 30,
 		height : 30,
 		top : 5
-	});
-	imageViewBar.add(buttonClose);
+	});*/
 
 	buttonPatrocinadores = Titanium.UI.createImageView({
 		id : "buttonPatrocinadores",
@@ -194,6 +199,14 @@ function MainWindow(Window) {
 		buttonAgenda.image = "/images/diary.png";
 	}
 
+	imageViewBar.add(labelTitulo);
+
+	if (Titanium.Platform.osname == 'iphone' || Titanium.Platform.osname == 'ipad') {
+		//no se agrega boton de cerrar
+	} else {
+		imageViewBar.add(buttonClose);
+	}
+
 	viewTop.add(buttonPatrocinadores);
 
 	viewTop.add(buttonExposiciones);
@@ -223,13 +236,20 @@ function MainWindow(Window) {
 	scrollView_1.add(viewLogo);
 
 	/*scrollView_1.add(Ti.Facebook.createLoginButton({
-		top : 10,
-		style : Ti.Facebook.BUTTON_STYLE_WIDE
-	}));*/
+	 top : 10,
+	 style : Ti.Facebook.BUTTON_STYLE_WIDE
+	 }));*/
 
-	mainWindow.add(imageViewBar);
+	var cerrarlo = function(e) {
+		ventanaAlert.show();
+	};
 
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('menu'), cerrarlo);
+	mainWindow.add(topBar);
+	//mainWindow.add(imageViewBar);
 	mainWindow.add(scrollView_1);
+
 
 	buttonPatrocinadores.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
@@ -237,11 +257,11 @@ function MainWindow(Window) {
 			if (response != false) {
 				var Window;
 				var mainWindow = require("ui/handheld/PatrocinadoresWindow");
-				new mainWindow(Window).open();	
+				new mainWindow(Window).open();
 			}
 		});
 	});
-	
+
 	buttonExposiciones.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
 		network.getSponsors(function(response) {
@@ -252,13 +272,13 @@ function MainWindow(Window) {
 			}
 		});
 	});
-	
+
 	/*buttonExposiciones.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		var Window;
-		var mainWindow = require("ui/handheld/PatrocinadoresWindow2");
-		new mainWindow(Window).open();
-	});*/
+	 Ti.Media.vibrate();
+	 var Window;
+	 var mainWindow = require("ui/handheld/PatrocinadoresWindow2");
+	 new mainWindow(Window).open();
+	 });*/
 
 	buttonTalleres.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
@@ -290,25 +310,20 @@ function MainWindow(Window) {
 
 	buttonOfertas.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		
-		network.getExhibitors(true ,function(response) {
-			
-			if(response.length == 0) 
-			{
+
+		network.getExhibitors(true, function(response) {
+
+			if (response.length == 0) {
 				Ti.UI.createAlertDialog({
-				message:L('no_ofertas'),
-				ok: L('ok'),
-				title: L('alert_title')
+					message : L('no_ofertas'),
+					ok : L('ok'),
+					title : L('alert_title')
 				}).show();
-			}	
-    		else if(response.length > 0) 
-			{
+			} else if (response.length > 0) {
 				var Window;
 				var mainWindow = require("ui/handheld/OfertasWindow");
 				new mainWindow(Window).open();
-			}
-    		else 
-			{
+			} else {
 				//error de conexion
 			}
 		});
@@ -338,12 +353,9 @@ function MainWindow(Window) {
 	ventanaAlert.addEventListener('click', function(e) {
 		if (e.index == 0) {
 			Ti.Media.vibrate();
-			if(Ti.Platform.osname == 'android')
-			{
+			if (Ti.Platform.osname == 'android') {
 				Titanium.Android.currentActivity.finish();
-			}
-			else
-			{
+			} else {
 				mainWindow.close();
 			}
 		} else {
@@ -360,21 +372,20 @@ function MainWindow(Window) {
 	mainWindow.addEventListener('android:back', function(e) {
 		ventanaAlert.show();
 	});
-	
 
 	/*Ti.Facebook.addEventListener('login', function(e) {
-		if (e.success) {
-			alert("login");
-		} else {
-			if (e.error) {
-				alert(e.error);
-			}
-		}
-	});
+	 if (e.success) {
+	 alert("login");
+	 } else {
+	 if (e.error) {
+	 alert(e.error);
+	 }
+	 }
+	 });
 
-	Ti.Facebook.addEventListener('logout', function(e) {
-		alert('Logged out');
-	});*/
+	 Ti.Facebook.addEventListener('logout', function(e) {
+	 alert('Logged out');
+	 });*/
 
 	info.hide();
 

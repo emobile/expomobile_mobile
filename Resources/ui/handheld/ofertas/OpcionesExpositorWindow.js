@@ -1,5 +1,8 @@
 function OpcionesExpositorWindow(Window) {
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	windowOpc = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
@@ -7,7 +10,7 @@ function OpcionesExpositorWindow(Window) {
 		height : '100%',
 		layout : 'vertical',
 		//oldWin:Ti.currentWindow,
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 

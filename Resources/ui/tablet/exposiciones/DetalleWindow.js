@@ -1,6 +1,9 @@
 function DetalleWindow(Window, day) {
 	var network = require('lib/network');
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	var exposiciones;
 	var contenedor;
 	var totalExposiciones;
@@ -12,7 +15,7 @@ function DetalleWindow(Window, day) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 	

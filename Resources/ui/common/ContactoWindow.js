@@ -6,6 +6,9 @@ function ContactoWindow() {
 
 	var args = args || {};
 	var top = args.top || 80;
+	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	contWindow = Titanium.UI.createWindow({
 		height : '100%',
@@ -13,14 +16,13 @@ function ContactoWindow() {
 		navBarHidden: true,
 		backgroundColor : 'transparent',
 		opacity : 1.0,
-		fullscreen: false
+		fullscreen: pantallaCompleta
 	});
 	
 	blackWindow = Titanium.UI.createView({
 		height : height,
 		width : width,
 		borderRadius : 10,
-		touchEnabled : false,
 		backgroundColor : '#000',
 		opacity : 0.9,
 		center : {
@@ -42,20 +44,21 @@ function ContactoWindow() {
 		id : "imageViewIcono",
 		width : 50,
 		height : 50,
-		left : "30%",
+		left : "10",
 		image : "/images/bueno.png"
 	});
 
 	scrollView = Titanium.UI.createScrollView({
 		width : '100%',
-		height : Ti.UI.FILL,
+		height : '100%',
 		backgroundColor : 'transparent',
 		layout : 'vertical',
+		bottom: 20
 	});
 
 	sugerencias = Titanium.UI.createTextArea({
 		width : "90%",
-		height : '23%',
+		height : 100,
 		top : '2%',
 		left : "5%",
 		hintText : L("comments"),
@@ -139,7 +142,9 @@ function ContactoWindow() {
 
 	spCalificaciones = Ti.UI.createPicker({
 		left : '5%',
-		top : '2%'
+		top : '2%',
+		height: '180',
+		width: '150'
 	});
 
 	var data = new Array();
@@ -181,12 +186,14 @@ function ContactoWindow() {
 	viewContainer.add(sugerencias);
 	viewContainer.add(btnEnvia);
 
-	blackWindow.add(viewTop);
-	blackWindow.add(viewContainer);
+	scrollView.add(viewTop);
+	scrollView.add(viewContainer);
+
+	blackWindow.add(scrollView);
 	
-	scrollView.add(blackWindow);
+	//scrollView.add(blackWindow);
 	
-	contWindow.add(scrollView);
+	contWindow.add(blackWindow);
 
 	function openView() {
 		contWindow.open();

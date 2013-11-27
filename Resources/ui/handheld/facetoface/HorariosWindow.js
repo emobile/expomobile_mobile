@@ -6,13 +6,16 @@ function HorariosWindow(Window, days) {
 	var diasSemana = L('weekDays').split(',');
 	var nomMeses = L('months').split(',');
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	faceHorWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 

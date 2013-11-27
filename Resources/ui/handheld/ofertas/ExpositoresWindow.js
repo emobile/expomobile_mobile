@@ -3,6 +3,9 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 	var network = require('lib/network');
 	//var ANActivityIndicator = require('ui/common/ANActivityIndicator');
 	//var info = new ANActivityIndicator(L('loading'));
+	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	winExpW = Titanium.UI.createWindow({
 		tabBarHidden : true,
@@ -10,7 +13,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 

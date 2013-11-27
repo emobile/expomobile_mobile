@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>mx.com.emobile.expomobile</id>
     <name>Expomobile</name>
-    <version>1.01</version>
+    <version>1.0.2</version>
     <publisher>Emobile</publisher>
     <url>http://emobile.com.mx</url>
     <description>App for events management</description>
@@ -11,8 +11,8 @@
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
     <statusbar-style>default</statusbar-style>
-    <statusbar-hidden>false</statusbar-hidden>
-    <fullscreen>false</fullscreen>
+    <statusbar-hidden>true</statusbar-hidden>
+    <fullscreen>true</fullscreen>
     <navbar-hidden>true</navbar-hidden>
     <analytics>true</analytics>
     <guid>56f01eed-9c22-4c92-9e21-00f65e043be3</guid>
@@ -29,21 +29,25 @@
         </orientations>
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
-    	       <manifest>
+        <manifest package="mx.com.emobile.expomobile" android:versionCode="4" android:versionName="1.0.3">
+        	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16" />
             <supports-screens android:anyDensity="false"/>
-            </manifest>
-           </android>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+        </manifest>
+    </android>
     <mobileweb>
         <precache/>
         <splash>
-            <enabled>true</enabled>
+            <enabled>false</enabled>
             <inline-css-images>true</inline-css-images>
         </splash>
         <theme>default</theme>
     </mobileweb>
     <modules>
         <module platform="android">com.mwaysolutions.barcode</module>
-        <!--<module platform="iphone" version="0.4.2">tibar</module>-->
+        <module version="1.3.1" platform="iphone">com.mirasense.scanditsdk</module>
     </modules>
     <deployment-targets>
         <target device="blackberry">false</target>

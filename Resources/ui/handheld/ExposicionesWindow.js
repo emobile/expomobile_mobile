@@ -1,13 +1,16 @@
 function ExposicionesWindow(Window) {
 	var network = require('lib/network');
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	expoWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -162,9 +165,20 @@ function ExposicionesWindow(Window) {
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");
 			new mainWindow(Window).open();
 		} else if (e.rowData.id == 4) {
-			var Window;
-			var mainWindow = require("ui/handheld/QrReaderWindow");
-			new mainWindow(Window, 'exposiciones').open();
+			if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') 
+			{
+				var w = Titanium.UI.createWindow({
+				  url:'ui/handheld/QRReaderIOSWindow.js',
+				  win_name: 'exposiciones'
+				});
+				
+				w.open();
+			} 
+			else {
+				var Window;
+				var mainWindow = require("ui/handheld/QrReaderWindow");
+				new mainWindow(Window, 'exposiciones').open();
+			}
 		}
 	});
 

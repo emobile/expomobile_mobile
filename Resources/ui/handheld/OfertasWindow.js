@@ -1,5 +1,8 @@
 function OfertasWindow(Window) {
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	windowOfertas = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
@@ -7,7 +10,7 @@ function OfertasWindow(Window) {
 		height : '100%',
 		layout : 'vertical',
 		oldWin:Ti.currentWindow,
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 

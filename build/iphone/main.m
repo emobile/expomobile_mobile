@@ -7,12 +7,12 @@
 #define _QUOTEME(x) #x
 #define STRING(x) _QUOTEME(x)
 
-NSString * const TI_APPLICATION_DEPLOYTYPE = @"development";
+NSString * const TI_APPLICATION_DEPLOYTYPE = @"test";
 NSString * const TI_APPLICATION_ID = @"mx.com.emobile.expomobile";
 NSString * const TI_APPLICATION_PUBLISHER = @"Emobile";
 NSString * const TI_APPLICATION_URL = @"http://emobile.com.mx";
 NSString * const TI_APPLICATION_NAME = @"Expomobile";
-NSString * const TI_APPLICATION_VERSION = @"1.01";
+NSString * const TI_APPLICATION_VERSION = @"1.0.2";
 NSString * const TI_APPLICATION_DESCRIPTION = @"App for events management";
 NSString * const TI_APPLICATION_COPYRIGHT = @"2013 by Emobile";
 NSString * const TI_APPLICATION_GUID = @"56f01eed-9c22-4c92-9e21-00f65e043be3";

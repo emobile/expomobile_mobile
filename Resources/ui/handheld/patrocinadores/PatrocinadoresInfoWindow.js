@@ -3,9 +3,12 @@ function PatrocinadoresInfoWindow(id) {
 
 	var width = '100%', height = '100%';
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	patrocHorWdw = Titanium.UI.createWindow({
 		backgroundColor : 'transparent',
-		fullscreen : false,
+		fullscreen : pantallaCompleta,
 		navBarHidden : true,
 		opacity: 1.0
 		//layout: 'composite'
@@ -17,7 +20,7 @@ function PatrocinadoresInfoWindow(id) {
 		borderRadius : 1,
 		backgroundColor : '#000',
 		opacity : 0.8,
-		top : '80px'
+		top : '80'
 	});
 
 	viewLinea = Titanium.UI.createView({

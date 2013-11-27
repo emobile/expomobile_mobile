@@ -5,11 +5,11 @@ Logfile initialized
 [DEBUG] Waiting for device to be ready ...
 [TRACE] adb devices returned 1 devices/emulators
 [DEBUG] Device connected... (waited 0 seconds)
-[DEBUG] waited 0.024838 seconds on emulator to get ready
+[DEBUG] waited 0.027436 seconds on emulator to get ready
 [DEBUG] mx.com.emobile.expomobile installed? False
 [INFO] Copying CommonJS modules...
 [INFO] Copying project resources..
-[TRACE] COPYING MODIFIED FILE: /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/Resources/ui/handheld/MainWindow.js => /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/android/bin/assets/Resources/ui/handheld/MainWindow.js
+[TRACE] COPYING MODIFIED FILE: /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/Resources/ui/common/LoginView.js => /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/android/bin/assets/Resources/ui/common/LoginView.js
 [DEBUG] LiveView not enabled
 [TRACE] Generating Java Classes
 [DEBUG] Processing Android resource drawables
@@ -55,6 +55,7 @@ Logfile initialized
 [DEBUG] found drawable-notlong-port-mdpi splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/Resources/android/images/res-notlong-port-mdpi/default.png
 [DEBUG] copying /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/Resources/android/images/res-notlong-port-mdpi/default.png splash screen to /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/android/res/drawable-notlong-port-mdpi/background.png
 [DEBUG] found splash screen at /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/android/bin/assets/Resources/default.png
+[DEBUG] Added 'screenSize' to <activity android:configChanges> because targeted api level 16 is >= 13
 [TRACE] Writing out AndroidManifest.xml
 [DEBUG] adding /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/android/gen/mx/com/emobile/expomobile/ExpomobileActivity.java to javac build list
 [DEBUG] adding /Users/Usuario/Documents/Titanium_Studio_Workspace/expomobile_mobile/build/android/gen/mx/com/emobile/expomobile/ExpomobileAppInfo.java to javac build list
@@ -68,7 +69,6 @@ Logfile initialized
 [DEBUG] from resource zip => assets/Resources/images/activities.png
 [DEBUG] from resource zip => assets/Resources/images/agenda.png
 [DEBUG] from resource zip => assets/Resources/images/anadic.png
-[DEBUG] from resource zip => assets/Resources/images/anadic2.png
 [DEBUG] from resource zip => assets/Resources/images/anadic_original.png
 [DEBUG] from resource zip => assets/Resources/images/background.png
 [DEBUG] from resource zip => assets/Resources/images/boton_atras.png
@@ -82,13 +82,10 @@ Logfile initialized
 [DEBUG] from resource zip => assets/Resources/images/buttonfinal.png
 [DEBUG] from resource zip => assets/Resources/images/buttonfirst.png
 [DEBUG] from resource zip => assets/Resources/images/buttoningresar.png
-[DEBUG] from resource zip => assets/Resources/images/buttoningresar1.png
 [DEBUG] from resource zip => assets/Resources/images/buttoningresar_e.png
 [DEBUG] from resource zip => assets/Resources/images/buttonregistrologin.png
-[DEBUG] from resource zip => assets/Resources/images/buttonregistrologin1.png
 [DEBUG] from resource zip => assets/Resources/images/buttonregistrologin_e.png
 [DEBUG] from resource zip => assets/Resources/images/buttonsalir.png
-[DEBUG] from resource zip => assets/Resources/images/buttonsalir1.png
 [DEBUG] from resource zip => assets/Resources/images/buttonsalir_e.png
 [DEBUG] from resource zip => assets/Resources/images/buttontorneogolf.png
 [DEBUG] from resource zip => assets/Resources/images/buttontorneogolfa.png
@@ -116,7 +113,6 @@ Logfile initialized
 [DEBUG] from resource zip => assets/Resources/images/iconconferencias.png
 [DEBUG] from resource zip => assets/Resources/images/iconexposiciones.png
 [DEBUG] from resource zip => assets/Resources/images/iconfacetoface.png
-[DEBUG] from resource zip => assets/Resources/images/icongolf.png
 [DEBUG] from resource zip => assets/Resources/images/iconmapa.png
 [DEBUG] from resource zip => assets/Resources/images/iconofertas.png
 [DEBUG] from resource zip => assets/Resources/images/iconpatrocinadores.png
@@ -169,13 +165,12 @@ Logfile initialized
 [DEBUG] from resource zip => assets/Resources/ui/handheld/facetoface/HorariosWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/mapa/MapaWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/mapa/index.html
-[DEBUG] from resource zip => assets/Resources/ui/handheld/mapa/mapa_anadic.jpg
+[DEBUG] from resource zip => assets/Resources/ui/handheld/mapa/mapa_anadic.png
 [DEBUG] from resource zip => assets/Resources/ui/handheld/ofertas/ExpositoresWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/ofertas/OpcionesExpositorWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/patrocinadores/PatrocinadoresInfoWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/talleres/DirectorioWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/talleres/HorariosWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/handheld/torneogolf/HorariosWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/ActividadesWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/AgendaWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/ApplicationWindow.js
@@ -186,57 +181,26 @@ Logfile initialized
 [DEBUG] from resource zip => assets/Resources/ui/handheld/NipWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/OfertasWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/PatrocinadoresWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/handheld/QRReaderIOSWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/QrReaderWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/RegistroWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/TalleresWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/handheld/TorneoGolfWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/actividades/HorariosWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/agenda/HorariosWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/android/ApplicationWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/conferencias/DirectorioWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/conferencias/HorariosWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/exposiciones/DetalleWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/exposiciones/DirExposWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/exposiciones/DirectorioWindow.js
+[DEBUG] from resource zip => assets/Resources/ui/tablet/exposiciones/ExposicionesInfoWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/exposiciones/HorariosWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/facetoface/DetalleWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/facetoface/HorariosWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/actividades/HorariosWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/agenda/HorariosWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/android/ApplicationWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/conferencias/DirectorioWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/conferencias/HorariosWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/DetalleWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/DirExposWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/DirectorioWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/ExposicionesInfoWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/exposiciones/HorariosWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/facetoface/DetalleWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/facetoface/HorariosWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/mapa/MapaWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/mapa/index.html
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/mapa/mapa_anadic.jpg
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ofertas/ExpositoresWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ofertas/OpcionesExpositorWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/patrocinadores/PatrocinadoresInfoWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/talleres/DirectorioWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/talleres/HorariosWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/torneogolf/HorariosWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ActividadesWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/AgendaWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ApplicationWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ConferenciasWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/ExposicionesWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/FaceToFaceWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/MainWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/NipWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/OfertasWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/PatrocinadoresWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/QrReaderWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/RegistroWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/TalleresWindow.js
-[DEBUG] from resource zip => assets/Resources/ui/tablet/handheld/TorneoGolfWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/mapa/MapaWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/mapa/index.html
-[DEBUG] from resource zip => assets/Resources/ui/tablet/mapa/mapa_anadic.jpg
+[DEBUG] from resource zip => assets/Resources/ui/tablet/mapa/mapa_anadic.png
 [DEBUG] from resource zip => assets/Resources/ui/tablet/ofertas/ExpositoresWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/ofertas/OpcionesExpositorWindow.js
 [DEBUG] from resource zip => assets/Resources/ui/tablet/patrocinadores/PatrocinadoresInfoWindow.js
@@ -262,6 +226,8 @@ Logfile initialized
 [DEBUG] from resource zip => assets/Resources/app.js
 [DEBUG] from resource zip => assets/Resources/appicon.png
 [DEBUG] from resource zip => assets/Resources/default.png
+[DEBUG] from resource zip => assets/Resources/templates.js
+[DEBUG] from resource zip => assets/Resources/tools.js
 [DEBUG] from resource zip => assets/app.json
 [DEBUG] from resource zip => assets/index.json
 [DEBUG] from resource zip => res/drawable/appicon.png
@@ -313,6 +279,6 @@ Logfile initialized
 [DEBUG] Waiting for device to be ready ...
 [TRACE] adb devices returned 1 devices/emulators
 [DEBUG] Device connected... (waited 0 seconds)
-[DEBUG] waited 0.024714 seconds on emulator to get ready
+[DEBUG] waited 0.029772 seconds on emulator to get ready
 [INFO] Installing application on device
 [INFO] Application installed. Launch from drawer on Home Screen

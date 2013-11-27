@@ -5,17 +5,18 @@ function DetalleWindow(Window, day) {
 
 	var db = Ti.Database.open('anadicDB');
 	var id = db.execute('SELECT name FROM users WHERE userId = 1;');
-	db.close();
-
+	
 	if (id.isValidRow()) {
 		usuario = id.fieldByName('name');
-		id.close();
 		if (usuario === 'undefined' || usuario == 'null') {
 			usuario = '';
 		}
 	} else {
 		usuario = '';
 	}
+
+	id.close();
+	db.close();
 
 	var citas;
 	var contenedor;

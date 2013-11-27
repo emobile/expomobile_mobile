@@ -9,12 +9,15 @@ function CreateIndicatorWindow(args)
 	var isAndroid = (Ti.Platform.osname == 'android') ? true : false;
 	var isIphone = (Ti.Platform.osname == 'iphone') ? true : false;
 	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+	
 	var createIndWdw = Titanium.UI.createWindow({
 		height : '100%',
 		width : '100%',
 		backgroundColor : '#000',
 		opacity : 0.0,
-		fullscreen:false,
+		fullscreen:pantallaCompleta,
 		navBarHidden: true,
 		//zIndex:-20,
 		//modal: true,
@@ -80,6 +83,8 @@ function CreateIndicatorWindow(args)
 		if(isIphone){
 		    // window container
 		    indWin = Titanium.UI.createWindow();
+		    
+		    indWin.fullscreen = true;
 
 		    //  view
 		    var indView = Titanium.UI.createView({height:150,width:250,borderRadius:10,backgroundColor:'#bbb',opacity:.8});

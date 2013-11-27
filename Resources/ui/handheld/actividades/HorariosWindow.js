@@ -7,6 +7,9 @@ function HorariosWindow(dias, Window)
 
 	var diasSemana = L('weekDays').split(',');
     var nomMeses   = L('months').split(',');
+    
+    var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 	  
 	var actHorWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
@@ -14,7 +17,7 @@ function HorariosWindow(dias, Window)
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 

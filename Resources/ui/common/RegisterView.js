@@ -66,7 +66,8 @@ function RegisterView() {
 		color : 'gray',//'#0078b6',
 		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 		left: '10dp',
-		right: '10dp'
+		right: '10dp',
+		center:{ x: '50%' }
 	});
 
 	var createAttachChScrollView_1 = function() {
@@ -187,13 +188,13 @@ function RegisterView() {
 		}
 	});
 
-	var alert = Titanium.UI.createAlertDialog({
+	var ventanaAlert = Titanium.UI.createAlertDialog({
 		title : L('tittlealert'),
 		message : L('closeapp'),
 		buttonNames : [L('yes'), L('no')]
 	});
 
-	alert.addEventListener('click', function(e) {
+	ventanaAlert.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
 		
 		if(Ti.Platform.osname == 'android')
@@ -209,7 +210,7 @@ function RegisterView() {
 
 	buttonSalir.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		alert.show();
+		ventanaAlert.show();
 	});
 
 	//Quitar focus

@@ -4,13 +4,16 @@ function InfoWindow(args) {
 
 	var args = args || {};
 	var top = args.top || '3%';
+	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	infoWdw = Titanium.UI.createWindow({
 		height : '100%',
 		width: '100%',
 		navBarHidden: true,
 		backgroundColor : 'transparent',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		//touchEnabled : false
 		//backgroundColor : '#000',
 		opacity : 1.0

@@ -2,13 +2,16 @@ function PatrocinadoresWindow(Window) {
 
 	var patrocinadoresWindow = require("ui/handheld/patrocinadores/PatrocinadoresInfoWindow");
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	patrocinadoresWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 

@@ -3,6 +3,9 @@ function HorariosWindow(Window, days) {
 	var totalExposiciones;
 	var exposicionActual = 0;
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	var diasSemana = L('weekDays').split(',');
     var nomMeses   = L('months').split(',');
 
@@ -12,7 +15,7 @@ function HorariosWindow(Window, days) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
