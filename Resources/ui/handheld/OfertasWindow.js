@@ -30,50 +30,16 @@ function OfertasWindow(Window) {
 
 	scrollView_1.add(table);
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
+	function cerrarOfertas()
+	{
+		Ti.Media.vibrate();
+		windowOfertas.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('offers'),'/images/iconofertas.png', cerrarOfertas);
 
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconofertas.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('offers'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-
-	windowOfertas.add(imageViewBar);
-
+	windowOfertas.add(topBar);
 	windowOfertas.add(scrollView_1);
 
 	function populateTable() {
@@ -142,18 +108,10 @@ function OfertasWindow(Window) {
 		}
 	});
 
-	windowOfertas.addEventListener('android:back', function(e) {
-		Ti.Media.vibrate();
-		windowOfertas.close();
+	windowOfertas.addEventListener('android:back', evento = function(e){
+	    e.source.removeEventListener('android:back', arguments.callee);
+	    cerrarOfertas();
 	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		windowOfertas.close();
-	});
-	
-	
-
 	return windowOfertas;
 }
 

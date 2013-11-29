@@ -216,11 +216,12 @@ DEFINE_SUBPROXY_AS(ListViewCellSelectionStyle, TableViewCellSelectionStyle, list
 #endif
 
 -(void)hideStatusBar:(id)args
-{
+{/*
     if ([TiUtils isIOS7OrGreater]) {
         DebugLog(@"hideStatusBar method is not supported on IOS7. Ignoring call. Use the fullScreen property of the window");
         return;
     }
+  */
     ENSURE_SINGLE_ARG_OR_NIL(args,NSDictionary);
     ENSURE_UI_THREAD(hideStatusBar,args);
     DebugLog(@"hideStatusBar method deprecated in 3.1.3. Removed in 3.2.0");

@@ -27,50 +27,17 @@ function TalleresWindow(Window) {
 	});
 
 	scrollView_1.add(table);
-
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/icontalleres.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('workshops'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-	talleresWdw.add(imageViewBar);
-
+	
+	function cerrarTalleres()
+	{
+		Ti.Media.vibrate();
+		talleresWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('workshops'),'/images/icontalleres.png', cerrarTalleres);
+	
+	talleresWdw.add(topBar);
 	talleresWdw.add(scrollView_1);
 
 	function populateTable() {
@@ -162,12 +129,6 @@ function TalleresWindow(Window) {
 				new mainWindow(Window, 'talleres').open();
 			}
 		}
-	});
-	
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		talleresWdw.close();
 	});
 
 	talleresWdw.addEventListener('android:back', function(e) {

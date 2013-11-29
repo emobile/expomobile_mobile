@@ -94,26 +94,28 @@ function MainWindow(Window) {
 		layout : 'vertical'
 	});
 
-	/*imageViewBar = Titanium.UI.createView({
+	imageViewBar = Titanium.UI.createView({
 		id : "imageViewBar",
 		backgroundColor : Ti.App.Properties.getString('viewcolor'),
 		height : 40,
 		left : 0,
 		top : 0,
 		width : '100%',
-		layout : 'horizontal'
+		layout : 'composite'
 	});
 
 	labelTitulo = Titanium.UI.createLabel({
 		id : "labelTitulo",
-		height : 'auto',
-		width : '90%',
+		height : Ti.UI.SIZE,
+		width : Ti.UI.SIZE,
 		text : L('menu'),
 		font : {
-			fontSize : '22dp'
+			fontSize : '24dp',
+			fontWeight: 'bold'
 		},
 		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
+		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+		center:{ x: '50%', y: '50%' }
 	});
 
 	buttonClose = Titanium.UI.createImageView({
@@ -121,8 +123,9 @@ function MainWindow(Window) {
 		image : "/images/close.png",
 		width : 30,
 		height : 30,
-		top : 5
-	});*/
+		top : 5,
+		right: 5
+	});
 
 	buttonPatrocinadores = Titanium.UI.createImageView({
 		id : "buttonPatrocinadores",
@@ -160,6 +163,20 @@ function MainWindow(Window) {
 		width : '32.5%',
 		height : '90%'
 	});
+
+	/*buttonFaceToFace.addEventListener('touchstart', 
+		function(e)
+		{
+			buttonFaceToFace.image = "/images/facetoface_touch.png";
+		}
+	);
+
+	buttonFaceToFace.addEventListener('touchend', 
+		function(e)
+		{
+			buttonFaceToFace.image = "/images/facetoface.png";
+		}
+	);*/
 
 	buttonOfertas = Titanium.UI.createImageView({
 		id : "buttonOfertas",
@@ -207,6 +224,18 @@ function MainWindow(Window) {
 		imageViewBar.add(buttonClose);
 	}
 
+	
+
+	viewLogo.add(imageViewLogo);
+
+	scrollView_1.add(viewTop);
+
+	scrollView_1.add(viewMiddle);
+
+	scrollView_1.add(viewBottom);
+
+	scrollView_1.add(viewLogo);
+	
 	viewTop.add(buttonPatrocinadores);
 
 	viewTop.add(buttonExposiciones);
@@ -225,29 +254,12 @@ function MainWindow(Window) {
 
 	viewBottom.add(buttonAgenda);
 
-	viewLogo.add(imageViewLogo);
-
-	scrollView_1.add(viewTop);
-
-	scrollView_1.add(viewMiddle);
-
-	scrollView_1.add(viewBottom);
-
-	scrollView_1.add(viewLogo);
-
 	/*scrollView_1.add(Ti.Facebook.createLoginButton({
 	 top : 10,
 	 style : Ti.Facebook.BUTTON_STYLE_WIDE
 	 }));*/
 
-	var cerrarlo = function(e) {
-		ventanaAlert.show();
-	};
-
-	var templates = require('templates');
-	var topBar = templates.getTopBar(L('menu'), cerrarlo);
-	mainWindow.add(topBar);
-	//mainWindow.add(imageViewBar);
+	mainWindow.add(imageViewBar);
 	mainWindow.add(scrollView_1);
 
 

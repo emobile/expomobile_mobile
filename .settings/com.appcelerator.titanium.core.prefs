@@ -2,3 +2,6 @@ eclipse.preferences.version=1
 provisioning_profiles/development/B43E1CF4-B552-497A-908F-586D4E0FFE92/appid=mx.com.emobile.*
 provisioning_profiles/development/B43E1CF4-B552-497A-908F-586D4E0FFE92/name=Profile Dev
 provisioning_profiles/development/B43E1CF4-B552-497A-908F-586D4E0FFE92/uuid=B43E1CF4-B552-497A-908F-586D4E0FFE92
+provisioning_profiles/development/CC21BEB2-9AA2-4F20-AF5C-542BE53B3497/appid=mx.com.emobile.*
+provisioning_profiles/development/CC21BEB2-9AA2-4F20-AF5C-542BE53B3497/name=Profile Dev
+provisioning_profiles/development/CC21BEB2-9AA2-4F20-AF5C-542BE53B3497/uuid=CC21BEB2-9AA2-4F20-AF5C-542BE53B3497

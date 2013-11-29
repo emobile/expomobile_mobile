@@ -34,50 +34,16 @@ function HorariosWindow(Window, days) {
 
 	scrollView_1.add(table);
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconfacetoface.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('facetoface'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-
-	imageViewBar.add(buttonClose);
-
-	faceHorWdw.add(imageViewBar);
+	function cerrarFaceHorWdw()
+	{
+		Ti.Media.vibrate();
+		faceHorWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('facetoface'),'/images/horarios_blanco.png', cerrarFaceHorWdw);
+	
+	faceHorWdw.add(topBar);
 	faceHorWdw.add(scrollView_1);
 
 	var dias;
@@ -117,11 +83,6 @@ function HorariosWindow(Window, days) {
 		var Window;
 		var mainWindow = require("ui/handheld/facetoface/DetalleWindow");
 		new mainWindow(Window, dias[e.index]).open();
-	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		faceHorWdw.close();
 	});
 
 	faceHorWdw.addEventListener('android:back', function(e) {

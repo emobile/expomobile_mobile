@@ -50,47 +50,14 @@ function DetalleWindow(Window, day) {
 		layout : 'vertical'
 	});
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconfacetoface.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('facetoface'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
+	function cerrarDetalleWdw()
+	{
+		Ti.Media.vibrate();
+		faceDetWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('facetoface'),'/images/iconfacetoface.png', cerrarDetalleWdw);
 
 	bottomBar = Titanium.UI.createView({
 		id : "bottomBar",
@@ -377,7 +344,7 @@ function DetalleWindow(Window, day) {
 		populateViews();
 	});
 
-	faceDetWdw.add(imageViewBar);
+	faceDetWdw.add(topBar);
 	faceDetWdw.add(scrollView);
 
 	bottomBar.add(buttonFirst);
@@ -430,11 +397,6 @@ function DetalleWindow(Window, day) {
 				Ti.Media.vibrate();
 			}
 		}
-	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		faceDetWdw.close();
 	});
 
 	faceDetWdw.addEventListener('android:back', function() {

@@ -20,6 +20,16 @@ function RegistroWindow(Window) {
 
 	var db = Ti.Database.open('anadicDB');
 	var usuario = db.execute('SELECT id, enterprise, address, phone, group_name, subgroup_name FROM users WHERE userId = 1;');
+	
+	function cerrarRegistro()
+	{
+		Ti.Media.vibrate();
+		registroWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('register'),'/images/iconregistro.png', cerrarRegistro);
+	
 
 	scrollView = Titanium.UI.createScrollView({
 		id : "scrollView",
@@ -27,45 +37,6 @@ function RegistroWindow(Window) {
 		height : 'auto',
 		width : '100%',
 		layout : 'vertical'
-	});
-
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconregistro.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('register'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
 	});
 
 	labelEmpresa = Titanium.UI.createLabel({
@@ -217,11 +188,7 @@ function RegistroWindow(Window) {
 	scrollView.add(textSubgrupo);
 	scrollView.add(buttonSugerencias);
 
-	imageViewBar.add(imageView);
-	imageViewBar.add(labelTitulo);
-	imageViewBar.add(buttonClose);
-
-	registroWdw.add(imageViewBar);
+	registroWdw.add(topBar);
 	registroWdw.add(scrollView);
 
 	buttonSugerencias.addEventListener('click', function(e) {
@@ -245,11 +212,6 @@ function RegistroWindow(Window) {
 			new contactoWindow.ContactoWindow();
 		}
 
-	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		registroWdw.close();
 	});
 
 	registroWdw.addEventListener('android:back', function(e) {

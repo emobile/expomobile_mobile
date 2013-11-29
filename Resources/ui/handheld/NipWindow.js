@@ -48,7 +48,8 @@ function NipWindow(Window) {
 		width : 'auto',
 		text : L('step2'),
 		font : {
-			fontSize : '20dp'
+			fontSize : '20dp',
+			fontWeight: 'bold'
 		},
 		color : 'white'
 	});

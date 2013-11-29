@@ -28,52 +28,16 @@ function PatrocinadoresWindow(Window) {
 		layout : 'vertical'
 	});
 	
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconpatrocinadores.png",
-		width : 60,
-		height : 60,
-		top : '10dp',
-		left : '10dp'
-	});
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		width: Ti.UI.SIZE,
-		height : 'auto',
-		text : L('sponsors'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		center : {
-			x : '50%'
-		},
-		top : 15
-	});
+	function cerrarPatro()
+	{
+		Ti.Media.vibrate();
+		patrocinadoresWdw.close();
+	}
 	
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : '10dp',
-		right: '10dp'
-	});
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('sponsors'),'/images/iconpatrocinadores.png', cerrarPatro);
 	
-	imageViewBar.add(imageView);
-	imageViewBar.add(buttonClose);
-	imageViewBar.add(labelTitulo);
-	patrocinadoresWdw.add(imageViewBar);
+	patrocinadoresWdw.add(topBar);
 	scrollView_1.add(table);
 	
 	patrocinadoresWdw.add(scrollView_1);
@@ -128,17 +92,9 @@ function PatrocinadoresWindow(Window) {
 		patrocinadoresView.openView();
 	});
 
-	buttonClose.addEventListener('click', cerrar);
-	
-	function cerrar()
-	{
-		Ti.Media.vibrate();
-		patrocinadoresWdw.close();
-	}
-	
 	patrocinadoresWdw.addEventListener('android:back', evento = function(e){
 	    e.source.removeEventListener('android:back', arguments.callee);
-	    cerrar();
+	    cerrarPatro();
 	});
 
 	return patrocinadoresWdw;

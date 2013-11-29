@@ -74,7 +74,8 @@ function HorariosWindow(dias,Window) {
 		height : 'auto',
 		text : L('my_schedule'),
 		font : {
-			fontSize : '22dp'
+			fontSize : '22dp',
+			fontWeight: 'bold'
 		},
 		color : 'white',
 		center : {

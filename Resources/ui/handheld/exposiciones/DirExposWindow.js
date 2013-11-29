@@ -28,91 +28,17 @@ function DirExposWindow(Window) {
 		layout : 'vertical'
 	});
 	
-	/*imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconexposiciones.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
+	function cerrarDirExpo()
+	{
+		Ti.Media.vibrate();
+		patrocinadoresWdw.close();
+	}
 	
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		text : L('exhibitions'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('exhibitions'),'/images/iconexposiciones.png', cerrarDirExpo);
 	
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 10,
-		right: 10
-	});*/
+	patrocinadoresWdw.add(topBar);
 	
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconexposiciones.png",
-		width : 60,
-		height : 60,
-		top : '10dp',
-		left : '10dp'
-	});
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		width: Ti.UI.SIZE,
-		height : 'auto',
-		text : L('exhibitions'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		center : {
-			x : '50%'
-		},
-		top : 15
-	});
-	
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : '10dp',
-		right: '10dp'
-	});
-	
-	imageViewBar.add(labelTitulo);
-	imageViewBar.add(imageView);
-	imageViewBar.add(buttonClose);
-	patrocinadoresWdw.add(imageViewBar);
 	scrollView_1.add(table);
 	patrocinadoresWdw.add(scrollView_1);
 	
@@ -168,17 +94,9 @@ function DirExposWindow(Window) {
 		patrocinadoresView.openView();
 	});
 
-	buttonClose.addEventListener('click', cerrar);
-	
-	function cerrar()
-	{
-		Ti.Media.vibrate();
-		patrocinadoresWdw.close();
-	}
-	
 	patrocinadoresWdw.addEventListener('android:back', evento = function(e){
 	    e.source.removeEventListener('android:back', arguments.callee);
-	    cerrar();
+	    cerrarDirExpo();
 	});
 
 	return patrocinadoresWdw;

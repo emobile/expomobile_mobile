@@ -29,50 +29,16 @@ function OpcionesExpositorWindow(Window) {
 
 	scrollView_1.add(table);
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
+	function cerrarOpcExpWin()
+	{
+		Ti.Media.vibrate();
+		windowOpc.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('offers'),'/images/iconofertas.png', cerrarOpcExpWin);
 
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconofertas.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('offers'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-
-	windowOpc.add(imageViewBar);
-
+	windowOpc.add(topBar);
 	windowOpc.add(scrollView_1);
 
 	function populateTable() {

@@ -28,50 +28,16 @@ function AgendaWindow(Window) {
 
 	scrollView_1.add(table);
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
+	function cerrarAgenda()
+	{
+		Ti.Media.vibrate();
+		agendaWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('diary'),'/images/iconagenda.png', cerrarAgenda);
 
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconagenda.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('diary'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-
-	agendaWdw.add(imageViewBar);
-
+	agendaWdw.add(topBar);
 	agendaWdw.add(scrollView_1);
 
 	function populateTable() {
@@ -141,11 +107,6 @@ function AgendaWindow(Window) {
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");
 			new mainWindow(Window).open();
 		}
-	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		agendaWdw.close();
 	});
 
 	agendaWdw.addEventListener('android:back', function(e) {

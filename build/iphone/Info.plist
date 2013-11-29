@@ -32,9 +32,9 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.2.1385244698687</string>
+	<string>1.0.2</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2.1385244698687</string>
+	<string>1.0.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiresPersistentWiFi</key>
@@ -42,7 +42,7 @@
 	<key>UIPrerenderedIcon</key>
 	<false/>
 	<key>UIStatusBarHidden</key>
-	<false/>
+	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>

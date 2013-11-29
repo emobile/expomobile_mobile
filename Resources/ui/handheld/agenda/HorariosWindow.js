@@ -44,99 +44,24 @@ function HorariosWindow(dias, Window)
 		layout : 'vertical'
 	});
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/horarios_blanco.png",
-		width : 60,
-		height : 60,
-		top : 10,
-		left : 10
-	});
+	function cerrarAgHorWin()
+	{
+		Ti.Media.vibrate();
+		ageHorWdw.close();
+	}
 	
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		text : L('diary'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		center: {x: '50%'},
-		top: 15
-	});
-	
-	labelSubTitulo = Titanium.UI.createLabel({
-		id : "labelSubtitulo",
-		height : 'auto',
-		text : "Subtitulo",
-		font : {
-			fontSize : '18dp'
-		},
-		color : 'white',
-		center: {x: '50%'},
-		top: 40
-	});
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 10,
-		right: 10
-	});
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('diary'),'/images/horarios_blanco.png', cerrarAgHorWin);
 	
 	scrollView_1.add(table);
 	
-	imageViewBar.add(imageView);
-	imageViewBar.add(buttonClose);
-	imageViewBar.add(labelTitulo);
-	//imageViewBar.add(labelSubTitulo);
-
-	ageHorWdw.add(imageViewBar);
+	ageHorWdw.add(topBar);
 	ageHorWdw.add(scrollView_1);
 
 	var dias;
 	var eventosCargados = new Array(); //cada propiedad es un dia que contiene un arreglo de eventos
 	var eventosCargadosLabels = new Array(); //cada propiedad es un dia que contiene un arreglo de eventos
 
-	/*var customAlert = Ti.UI.createAlertDialog({
-		message: L('no_eventos'),
-		ok: L('ok'),
-		title: L('alert_title')
-		});
-
-	//ageHorWdw.add(customAlert);
-	
-	customAlert.addEventListener('click', function(ev) 
-	{
-	    if (ev.index == 0) { 
-	    	cerrar(); 
-	    } 
-	});
-
-	//network.getDiaries(function(response) 
-	network.getData(network.SERVICES.DIARIES_DAYS, function(response)
-	{
-		dias = response;
-		if(dias == false)
-		{
-		 	customAlert.show();
-		}
-		else
-		{
-		 	populateTable();
-		}
-	}); */
 
 	function populateTable() 
 	{
@@ -269,10 +194,6 @@ function HorariosWindow(dias, Window)
 		}
 	});
 	
-	buttonClose.addEventListener('click', function(e){
-		cerrar();
-	});
-
 	ageHorWdw.addEventListener('android:back', function(e) 
 	{
 		cerrar();		

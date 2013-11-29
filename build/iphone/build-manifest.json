@@ -1,9 +1,7 @@
 {
-	"target": "device",
-	"deployType": "test",
-	"deviceFamily": "universal",
-	"developerName": "Juan Torres Reyes (X2974B7CMB)",
-	"distributionName": "Juan Torres Reyes (X2974B7CMB)",
+	"target": "simulator",
+	"deployType": "development",
+	"deviceFamily": "iphone",
 	"iosSdkPath": "/Users/Usuario/Library/Application Support/Titanium/mobilesdk/osx/3.1.3.GA/iphone",
 	"appGuid": "56f01eed-9c22-4c92-9e21-00f65e043be3",
 	"tiCoreHash": "77157e1ffaec640cf559356a147b6a4c",
@@ -19,7 +17,7 @@
 	"description": "App for events management",
 	"copyright": "2013 by Emobile",
 	"guid": "56f01eed-9c22-4c92-9e21-00f65e043be3",
-	"skipJSMinification": false,
+	"skipJSMinification": true,
 	"forceCopy": false,
 	"forceCopyAll": false
 }

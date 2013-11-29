@@ -28,85 +28,20 @@ function ActividadesWindow(Window) {
 
 	scrollView_1.add(table);
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
+	function cerrarActividades()
+	{
+		Ti.Media.vibrate();
+		actWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('activities'),'/images/iconactividades.png', cerrarActividades);
 
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconactividades.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('activities'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-
-	actWdw.add(imageViewBar);
-
+	actWdw.add(topBar);
 	actWdw.add(scrollView_1);
 
 	function populateTable() {
 		var data = [];
-
-		/*var row = Titanium.UI.createTableViewRow({
-		 id : 1,
-		 title : L('directory'),
-		 leftImage : '/images/directorio.png',
-		 isparent : true,
-		 opened : false,
-		 hasChild : true,
-		 sub : [{
-		 id : "directorioexpositores",
-		 left : '15%',
-		 title : L("exhibitors"),
-		 font : {
-		 fontSize : '20dp'
-		 },
-		 color : '#424242'
-		 }, {
-		 id : "directorioconferencias",
-		 left : '15%',
-		 title : L("conferences"),
-		 font : {
-		 fontSize : '20dp'
-		 },
-		 color : '#424242'
-		 }],
-		 font : {
-		 fontSize : '22dp'
-		 },
-		 color : 'black'
-		 });
-		 data.push(row);*/
 
 		var row = Titanium.UI.createTableViewRow({
 			id : 2,
@@ -222,11 +157,6 @@ function ActividadesWindow(Window) {
 		 new mainWindow(Window).open();
 		 }
 		 }*/
-	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		actWdw.close();
 	});
 
 	actWdw.addEventListener('android:back', function(e) {

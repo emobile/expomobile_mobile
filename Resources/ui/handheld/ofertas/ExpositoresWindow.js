@@ -25,54 +25,12 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		layout : 'vertical'
 	});
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconofertas.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('offers'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-
 	bottomBar = Titanium.UI.createView({
 		id : "bottomBar",
 		backgroundColor : "transparent",
 		height : '10%',
 		width : '100%',
-		top : "-1px",
+		top : "-1",
 		left : 0
 	});
 
@@ -82,7 +40,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		width : 48,
 		height : 48,
 		top : "0%",
-		left : "10px"
+		left : "10"
 	});
 
 	viewSlide = Titanium.UI.createImageView({
@@ -102,7 +60,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		width : 48,
 		height : 48,
 		top : "0%",
-		right : "10px"
+		right : "10"
 	});
 
 	var ofertas;
@@ -145,8 +103,8 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#2c2c2c',
 		textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
-		right: '10px',
-		top:'0px'
+		right: '10',
+		top:'0'
 	});
 
 	labelExpositorTitulo = Titanium.UI.createLabel({
@@ -190,9 +148,9 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		image : "images/unavailable.jpg",
 		width : Ti.UI.SIZE,
 		height : Ti.UI.SIZE,
-		left : '10px',
-		top: '25px',
-		bottom: '30px'
+		left : '10',
+		top: '25',
+		bottom: '30'
 	});
 
 	line = Ti.UI.createView({
@@ -297,7 +255,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : 'black',
 		left : '10',
-		top: '225'
+		top: '260'
 	});
 
 	labelFechaInicio = Titanium.UI.createLabel({
@@ -309,7 +267,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		left : '20',
-		top: '245'
+		top: '280'
 	});
 
 	labelFechaTerminoTitulo = Titanium.UI.createLabel({
@@ -322,7 +280,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 			fontSize : '20dp'
 		},
 		color : 'black',
-		top : '225',
+		top : '260',
 		right: '10'
 	});
 
@@ -335,9 +293,19 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		right : '10',
-		top: '245'
+		top: '280'
 	});
+	
+	function cerrarExpWin()
+	{
+		Ti.Media.vibrate();
+		winExpW.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('offers'),'/images/iconofertas.png', cerrarExpWin);
 
+	
 	viewExpositor.add(imageViewExpositor);
 	viewExpositor.add(labelExpositor);
 	viewExpositor.add(labelCuentaOfertas);
@@ -360,19 +328,6 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 
 	function populateViews() {
 		if (totalOfertas > 0) {
-			//info.show();
-			
-			/*var toast = Titanium.UI.createNotification({
-			    duration: Ti.UI.NOTIFICATION_DURATION_LONG,
-			    message: L('loading'),
-			});
-			
-			toast.show();
-			
-			var indicatorWindow = require('ui/common/CreateIndicatorWindow');
-			var indicator = indicatorWindow.CreateIndicatorWindow();
-			indicator.openIndicator();*/
-			
 
 			//Si es igual a cero mostrara todas las ofertas
 			if (expositorId == 0) 
@@ -424,7 +379,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 	}
 
 
-	winExpW.add(imageViewBar);
+	winExpW.add(topBar);
 	winExpW.add(scrollView);
 
 	bottomBar.add(buttonFirst);

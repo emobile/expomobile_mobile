@@ -46,48 +46,6 @@ function DetalleWindow(Window, day) {
 		layout : 'vertical'
 	});
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconfacetoface.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('facetoface'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-
 	bottomBar = Titanium.UI.createView({
 		id : "bottomBar",
 		backgroundColor : "transparent",
@@ -329,8 +287,6 @@ function DetalleWindow(Window, day) {
 	contenedor.add(textFieldEntrevista);
 	contenedor.add(labelEmpresaTitulo);
 	contenedor.add(textFieldEmpresa);
-	//contenedor.add(labelEmailTitulo);
-	//contenedor.add(textFieldEmail);
 	contenedor.add(labelTelefonoTitulo);
 	contenedor.add(textFieldTelefono);
 	contenedor.add(labelFechaInicio);
@@ -352,7 +308,6 @@ function DetalleWindow(Window, day) {
 			labelCuentaCitas.text = citaActual + 1 + " " + L('of') + " " + totalCitas;
 			textFieldEntrevista.value = citas[citaActual].int_name;
 			textFieldEmpresa.value = citas[citaActual].int_social_reason;
-			//textFieldEmail.value = citas[citaActual].app_email;
 			textFieldTelefono.value = citas[citaActual].attendee_phone;
 			textFieldFechaInicio.value = formatDate(citas[citaActual].start_date);
 			textFieldFechaTermino.value = formatDate(citas[citaActual].end_date);
@@ -362,13 +317,22 @@ function DetalleWindow(Window, day) {
 		}
 	}
 
+	function cerrarDetalleFace()
+	{
+		Ti.Media.vibrate();
+		faceDetWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('facetoface'),'/images/iconfacetoface.png', cerrarDetalleFace);
+
 	network.getFacetoFace(day, function(response) {
 		citas = response;
 		totalCitas = citas.length;
 		populateViews();
 	});
 
-	faceDetWdw.add(imageViewBar);
+	faceDetWdw.add(topBar);
 	faceDetWdw.add(scrollView);
 
 	bottomBar.add(buttonFirst);
@@ -423,14 +387,8 @@ function DetalleWindow(Window, day) {
 		}
 	});
 
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		faceDetWdw.close();
-	});
-
 	faceDetWdw.addEventListener('android:back', function() {
-		Ti.Media.vibrate();
-		faceDetWdw.close();
+		cerrarDetalleFace();
 	});
 
 	return faceDetWdw;

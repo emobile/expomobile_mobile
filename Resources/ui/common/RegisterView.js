@@ -25,7 +25,8 @@ function RegisterView() {
 		width : 'auto',
 		text : L('step1'),
 		font : {
-			fontSize : '20dp'
+			fontSize : '20dp',
+			fontWeight: 'bold'
 		},
 		color : 'white'
 	});
@@ -65,8 +66,8 @@ function RegisterView() {
 		},
 		color : 'gray',//'#0078b6',
 		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-		left: '10dp',
-		right: '10dp',
+		//left: '10dp',
+		//right: '10dp',
 		center:{ x: '50%' }
 	});
 
@@ -163,19 +164,23 @@ function RegisterView() {
 	buttonRegistro.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
 		var registroValue = textFieldRegistro.value;
-		if (registroValue != "") {
-		network.getRegistro(textFieldRegistro.value, function(response) {
-			if (response.sent == 'ok') {
-				//response.group_name + "','" +
-				var db = Ti.Database.open('anadicDB');
-				db.execute("INSERT INTO users VALUES (1,'" + textFieldRegistro.value + "','" + response.name +  "','" +  response.group_name + "','" + response.subgroup_name + "','" + response.subgroup_leader + "', '" +
-													 response.enterprise + "', '" + response.phone + "', '" + response.address + "');");
-				db.close();
-
-				var Window;
-				var mainWindow = require("ui/handheld/NipWindow");
-				new mainWindow(Window).open();
-
+		if (registroValue != "") 
+		{
+			registroValue = registroValue.toUpperCase();
+			
+			network.getRegistro(registroValue, function(response) 
+			{
+				if (response.sent == 'ok') {
+					//response.group_name + "','" +
+					var db = Ti.Database.open('anadicDB');
+					db.execute("INSERT INTO users VALUES (1,'" + registroValue + "','" + response.name +  "','" +  response.group_name + "','" + response.subgroup_name + "','" + response.subgroup_leader + "', '" +
+														 response.enterprise + "', '" + response.phone + "', '" + response.address + "');");
+					db.close();
+	
+					var Window;
+					var mainWindow = require("ui/handheld/NipWindow");
+					new mainWindow(Window).open();
+	
 			}
 			//else {
 				//if (response != false) {

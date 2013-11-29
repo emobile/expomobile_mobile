@@ -29,51 +29,16 @@ function FaceToFaceWindow(Window) {
 
 	scrollView_1.add(table);
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
+	function cerrarFace()
+	{
+		Ti.Media.vibrate();
+		faceToFaceWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('facetoface'),'/images/iconfacetoface.png', cerrarFace);
 
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconfacetoface.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('facetoface'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-
-	imageViewBar.add(buttonClose);
-
-	faceToFaceWdw.add(imageViewBar);
-
+	faceToFaceWdw.add(topBar);
 	faceToFaceWdw.add(scrollView_1);
 
 	function populateTable() {
@@ -145,11 +110,6 @@ function FaceToFaceWindow(Window) {
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");
 			new mainWindow(Window).open();
 		}
-	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		faceToFaceWdw.close();
 	});
 
 	faceToFaceWdw.addEventListener('android:back', function(e) {
