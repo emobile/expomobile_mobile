@@ -1,13 +1,16 @@
 function ExposicionesWindow(Window) {
 	var network = require('lib/network');
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	expoWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -24,54 +27,17 @@ function ExposicionesWindow(Window) {
 		layout : 'vertical'
 	});
 
-	scrollView_1.add(table);
-
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconexposiciones.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
+	function cerrarExpo()
+	{
+		Ti.Media.vibrate();
+		expoWdw.close();
+	}
 	
-	imageViewBar.add(imageView);
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('exhibitions'),'/images/iconexposiciones.png', cerrarExpo);
 
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('exhibitions'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-
-	imageViewBar.add(buttonClose);
-
-	expoWdw.add(imageViewBar);
-
+	scrollView_1.add(table);
+	expoWdw.add(topBar);
 	expoWdw.add(scrollView_1);
 
 	function populateTable() {
@@ -162,9 +128,20 @@ function ExposicionesWindow(Window) {
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");
 			new mainWindow(Window).open();
 		} else if (e.rowData.id == 4) {
-			var Window;
-			var mainWindow = require("ui/handheld/QrReaderWindow");
-			new mainWindow(Window, 'exposiciones').open();
+			if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') 
+			{
+				var w = Titanium.UI.createWindow({
+				  url:'ui/handheld/QRReaderIOSWindow.js',
+				  win_name: 'exposiciones'
+				});
+				
+				w.open();
+			} 
+			else {
+				var Window;
+				var mainWindow = require("ui/handheld/QrReaderWindow");
+				new mainWindow(Window, 'exposiciones').open();
+			}
 		}
 	});
 

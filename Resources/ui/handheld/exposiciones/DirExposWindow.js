@@ -1,6 +1,7 @@
 function DirExposWindow(Window) {
 
-	var expoInfoWindow = require("ui/handheld/exposiciones/ExposicionesInfoWindow");
+	//var expoInfoWindow = require("ui/handheld/exposiciones/ExposicionesInfoWindow");
+	var expoInfoWindow = require("ui/handheld/exposiciones/ExpoInfoWindow");
 	
 	var herramientas =  require('tools');
 	var pantallaCompleta = herramientas.isiOS7Plus();
@@ -42,9 +43,11 @@ function DirExposWindow(Window) {
 	scrollView_1.add(table);
 	patrocinadoresWdw.add(scrollView_1);
 	
+	var data;
+	
 	function populateTable() 
 	{
-		var data = [];
+		data = [];
 
 		var db = Ti.Database.open('anadicDB');
 		var db_rows = db.execute("SELECT * FROM exhibitors");
@@ -62,8 +65,8 @@ function DirExposWindow(Window) {
 			}
 			
 			var etiqueta = db_rows.fieldByName("social_reason");
-			if(etiqueta.length > 25)
-				etiqueta = etiqueta.substring(0,24)+"...";
+			//if(etiqueta.length > 25)
+				//etiqueta = etiqueta.substring(0,24)+"...";
 			
 			var row = Titanium.UI.createTableViewRow({
 				id : db_rows.fieldByName("id"),
@@ -74,7 +77,8 @@ function DirExposWindow(Window) {
 				opened : false,
 				hasChild : true,
 				color : 'black',
-				height: 32
+				height: 32,
+				horizontalWrap: false
 			});
 			data.push(row);
 
@@ -90,7 +94,8 @@ function DirExposWindow(Window) {
 	
 	table.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		var patrocinadoresView = expoInfoWindow.ExposicionesInfoWindow(e.rowData.id);
+		//var patrocinadoresView = expoInfoWindow.ExposicionesInfoWindow(e.rowData.id);
+		var patrocinadoresView = expoInfoWindow.ExpoInfoWindow(e.index, e.rowData.id, data);
 		patrocinadoresView.openView();
 	});
 

@@ -117,7 +117,7 @@ function TalleresWindow(Window) {
 			if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') 
 			{
 				var w = Titanium.UI.createWindow({
-				  url:'QRReaderIOSWindow.js',
+				  url:'ui/handheld/QRReaderIOSWindow.js',
 				  win_name: 'talleres'
 				});
 				

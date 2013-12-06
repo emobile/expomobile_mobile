@@ -7,6 +7,9 @@ function HorariosWindow(dias, Window)
 
 	var diasSemana = L('weekDays').split(',');
     var nomMeses   = L('months').split(',');
+    
+    var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 	  
 	var actHorWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
@@ -14,7 +17,7 @@ function HorariosWindow(dias, Window)
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -32,98 +35,23 @@ function HorariosWindow(dias, Window)
 		layout : 'vertical'
 	});
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/horarios_blanco.png",
-		width : 60,
-		height : 60,
-		top : 10,
-		left : 10
-	});
+	function cerrarActHorWdw()
+	{
+		Ti.Media.vibrate();
+		actHorWdw.close();
+	}
 	
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		text : L('activities'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		center: {x: '50%'},
-		top: 15
-	});
-	
-	labelSubTitulo = Titanium.UI.createLabel({
-		id : "labelSubtitulo",
-		height : 'auto',
-		text : "Subtitulo",
-		font : {
-			fontSize : '18dp'
-		},
-		color : 'white',
-		center: {x: '50%'},
-		top: 40
-	});
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 10,
-		right: 10
-	});
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('activities'),'/images/horarios_blanco.png', cerrarActHorWdw);
 	
 	scrollView_1.add(table);
+	actHorWdw.add(topBar);
 	
-	imageViewBar.add(imageView);
-	imageViewBar.add(buttonClose);
-	imageViewBar.add(labelTitulo);
-	//imageViewBar.add(labelSubTitulo);
-
-	actHorWdw.add(imageViewBar);
 	actHorWdw.add(scrollView_1);
 
 	//var dias;
 	var eventosCargados = new Array(); //cada propiedad es un dia que contiene un arreglo de eventos
 	var eventosCargadosLabels = new Array(); //cada propiedad es un dia que contiene un arreglo de eventos
-
-	/*var customAlert = Ti.UI.createAlertDialog({
-		message: L('no_actividades'),
-		ok: L('ok'),
-		title: L('alert_title')
-		});
-
-	//actHorWdw.add(customAlert);
-	
-	customAlert.addEventListener('click', function(ev) 
-	{
-	    if (ev.index == 0) { 
-	    	cerrar(); 
-	    } 
-	});
-	
-	network.getData(network.SERVICES.ACTIVITIES_DAYS, function(response) 
-	{
-		dias = response;
-		if(dias == false)
-		{
-			customAlert.show();
-		}
-		else
-		{
-		 	populateTable();
-		}
-	}); */
 
 	function populateTable() 
 	{

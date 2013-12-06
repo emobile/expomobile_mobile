@@ -2,36 +2,40 @@ function MainWindow(Window) {
 	var network = require('lib/network');
 
 	/*Ti.Facebook = require("facebook");
-	Ti.Facebook.appid = "307992816005643";
-	Ti.Facebook.permissions = ['publish_stream', 'read_stream', 'email', 'user_about_me', 'create_event'];*/
+	 Ti.Facebook.appid = "307992816005643";
+	 Ti.Facebook.permissions = ['publish_stream', 'read_stream', 'email', 'user_about_me', 'create_event'];*/
 
 	var ANActivityIndicator = require('ui/common/ANActivityIndicator');
-	var info = new ANActivityIndicator(L('loading'));
 
 	/*var facebookAlert = Titanium.UI.createAlertDialog({
-		title : L('tittlealert'),
-		message : L('facebook_message'),
-		buttonNames : [L('yes'), L('no')]
-	});
+	 title : L('tittlealert'),
+	 message : L('facebook_message'),
+	 buttonNames : [L('yes'), L('no')]
+	 });
 
-	facebookAlert.show();
+	 facebookAlert.show();
 
-	facebookAlert.addEventListener('click', function(e) {
-		if (e.index == 0) {
-			Ti.Facebook.authorize();
-		}
-	});*/
+	 facebookAlert.addEventListener('click', function(e) {
+	 if (e.index == 0) {
+	 Ti.Facebook.authorize();
+	 }
+	 });*/
 
-	info.show();
+	var herramientas = require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	mainWindow = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
-		layout : 'vertical'
+		layout : 'vertical',
+		fullscreen : pantallaCompleta,
+		navBarHidden : true
 		//exitOnClose: true
 	});
+
+	mainWindow.orientationModes = [Ti.UI.PORTRAIT];
 
 	viewTop = Titanium.UI.createView({
 		backgroundColor : "transparent",
@@ -73,9 +77,9 @@ function MainWindow(Window) {
 	imageViewLogo = Titanium.UI.createImageView({
 		id : "imageViewLogo",
 		image : "/images/expomobile.png",
-		height : 89,
-		top : 10,
-		width : 184.5,
+		height : 71.2, //89,
+		top : 0,
+		width : 147.6, //184.5,
 		verticalAlign : 'center'
 	});
 
@@ -94,30 +98,31 @@ function MainWindow(Window) {
 		left : 0,
 		top : 0,
 		width : '100%',
-		layout : 'horizontal'
+		layout : 'composite'
 	});
 
 	labelTitulo = Titanium.UI.createLabel({
 		id : "labelTitulo",
-		height : 'auto',
-		width : '90%',
+		height : Ti.UI.SIZE,
+		width : Ti.UI.SIZE,
 		text : L('menu'),
 		font : {
-			fontSize : '22dp'
+			fontSize : '24dp',
+			fontWeight: 'bold'
 		},
 		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
+		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+		center:{ x: '50%', y: '50%' }
 	});
-	imageViewBar.add(labelTitulo);
 
 	buttonClose = Titanium.UI.createImageView({
 		id : "buttonClose",
 		image : "/images/close.png",
 		width : 30,
 		height : 30,
-		top : 5
+		top : 5,
+		right: 5
 	});
-	imageViewBar.add(buttonClose);
 
 	buttonPatrocinadores = Titanium.UI.createImageView({
 		id : "buttonPatrocinadores",
@@ -155,6 +160,20 @@ function MainWindow(Window) {
 		width : '32.5%',
 		height : '90%'
 	});
+
+	/*buttonFaceToFace.addEventListener('touchstart', 
+		function(e)
+		{
+			buttonFaceToFace.image = "/images/facetoface_touch.png";
+		}
+	);
+
+	buttonFaceToFace.addEventListener('touchend', 
+		function(e)
+		{
+			buttonFaceToFace.image = "/images/facetoface.png";
+		}
+	);*/
 
 	buttonOfertas = Titanium.UI.createImageView({
 		id : "buttonOfertas",
@@ -194,6 +213,26 @@ function MainWindow(Window) {
 		buttonAgenda.image = "/images/diary.png";
 	}
 
+	imageViewBar.add(labelTitulo);
+
+	if (Titanium.Platform.osname == 'iphone' || Titanium.Platform.osname == 'ipad') {
+		//no se agrega boton de cerrar
+	} else {
+		imageViewBar.add(buttonClose);
+	}
+
+	
+
+	viewLogo.add(imageViewLogo);
+
+	scrollView_1.add(viewTop);
+
+	scrollView_1.add(viewMiddle);
+
+	scrollView_1.add(viewBottom);
+
+	scrollView_1.add(viewLogo);
+	
 	viewTop.add(buttonPatrocinadores);
 
 	viewTop.add(buttonExposiciones);
@@ -212,36 +251,26 @@ function MainWindow(Window) {
 
 	viewBottom.add(buttonAgenda);
 
-	viewLogo.add(imageViewLogo);
-
-	scrollView_1.add(viewTop);
-
-	scrollView_1.add(viewMiddle);
-
-	scrollView_1.add(viewBottom);
-
-	scrollView_1.add(viewLogo);
-
 	/*scrollView_1.add(Ti.Facebook.createLoginButton({
-		top : 10,
-		style : Ti.Facebook.BUTTON_STYLE_WIDE
-	}));*/
+	 top : 10,
+	 style : Ti.Facebook.BUTTON_STYLE_WIDE
+	 }));*/
 
 	mainWindow.add(imageViewBar);
-
 	mainWindow.add(scrollView_1);
+
 
 	buttonPatrocinadores.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
 		network.getSponsors(function(response) {
 			if (response != false) {
-				var Window2;
+				var Window;
 				var mainWindow = require("ui/handheld/PatrocinadoresWindow");
-				new patWindow(Window2).open();	
+				new mainWindow(Window).open();
 			}
 		});
 	});
-	
+
 	buttonExposiciones.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
 		network.getSponsors(function(response) {
@@ -252,13 +281,13 @@ function MainWindow(Window) {
 			}
 		});
 	});
-	
+
 	/*buttonExposiciones.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		var Window;
-		var mainWindow = require("ui/handheld/PatrocinadoresWindow2");
-		new mainWindow(Window).open();
-	});*/
+	 Ti.Media.vibrate();
+	 var Window;
+	 var mainWindow = require("ui/handheld/PatrocinadoresWindow2");
+	 new mainWindow(Window).open();
+	 });*/
 
 	buttonTalleres.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
@@ -290,25 +319,20 @@ function MainWindow(Window) {
 
 	buttonOfertas.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		
-		network.getExhibitors(true ,function(response) {
-			
-			if(response.length == 0) 
-			{
+
+		network.getExhibitors(true, function(response) {
+
+			if (response.length == 0) {
 				Ti.UI.createAlertDialog({
-				message:L('no_ofertas'),
-				ok: L('ok'),
-				title: L('alert_title')
+					message : L('no_ofertas'),
+					ok : L('ok'),
+					title : L('alert_title')
 				}).show();
-			}	
-    		else if(response.length > 0) 
-			{
+			} else if (response.length > 0) {
 				var Window;
 				var mainWindow = require("ui/handheld/OfertasWindow");
 				new mainWindow(Window).open();
-			}
-    		else 
-			{
+			} else {
 				//error de conexion
 			}
 		});
@@ -338,12 +362,9 @@ function MainWindow(Window) {
 	ventanaAlert.addEventListener('click', function(e) {
 		if (e.index == 0) {
 			Ti.Media.vibrate();
-			if(Ti.Platform.osname == 'android')
-			{
+			if (Ti.Platform.osname == 'android') {
 				Titanium.Android.currentActivity.finish();
-			}
-			else
-			{
+			} else {
 				mainWindow.close();
 			}
 		} else {
@@ -360,23 +381,22 @@ function MainWindow(Window) {
 	mainWindow.addEventListener('android:back', function(e) {
 		ventanaAlert.show();
 	});
-	
 
 	/*Ti.Facebook.addEventListener('login', function(e) {
-		if (e.success) {
-			alert("login");
-		} else {
-			if (e.error) {
-				alert(e.error);
-			}
-		}
-	});
+	 if (e.success) {
+	 alert("login");
+	 } else {
+	 if (e.error) {
+	 alert(e.error);
+	 }
+	 }
+	 });
 
-	Ti.Facebook.addEventListener('logout', function(e) {
-		alert('Logged out');
-	});*/
+	 Ti.Facebook.addEventListener('logout', function(e) {
+	 alert('Logged out');
+	 });*/
 
-	info.hide();
+	//info.hide();
 
 	return mainWindow;
 }

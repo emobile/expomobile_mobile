@@ -1,16 +1,19 @@
 function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 
 	var network = require('lib/network');
-	//var ANActivityIndicator = require('ui/common/ANActivityIndicator');
-	//var info = new ANActivityIndicator(L('loading'));
+	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+	
+	var espacio_vertical = 0;
 
 	winExpW = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundImage : '/images/background.png',
 		width : '100%',
 		height : '100%',
-		layout : 'vertical',
-		fullscreen: false,
+		layout : 'composite',
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -22,54 +25,12 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		layout : 'vertical'
 	});
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconofertas.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('offers'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-
 	bottomBar = Titanium.UI.createView({
 		id : "bottomBar",
 		backgroundColor : "transparent",
-		height : '10%',
+		height : Ti.UI.SIZE,
 		width : '100%',
-		top : "-1px",
+		bottom : "5",
 		left : 0
 	});
 
@@ -79,18 +40,16 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		width : 48,
 		height : 48,
 		top : "0%",
-		left : "10px"
+		left : "10"
 	});
-
-	viewSlide = Titanium.UI.createImageView({
-		id : "buttonMiddle",
-		image : "/images/swipefinger.png",
+	
+	buttonPrev = Titanium.UI.createImageView({
+		id : "buttonPrev",
+		image : "/images/previous.png",
 		width : 48,
 		height : 48,
-		center : {
-			x : '50%',
-			y : '50%'
-		}
+		top : "0%",
+		left : "68"
 	});
 
 	buttonLast = Titanium.UI.createImageView({
@@ -99,7 +58,16 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		width : 48,
 		height : 48,
 		top : "0%",
-		right : "10px"
+		right : "10"
+	});
+	
+	buttonNext = Titanium.UI.createImageView({
+		id : "buttonNext",
+		image : "/images/next.png",
+		width : 48,
+		height : 48,
+		top : "0%",
+		right : "68"
 	});
 
 	var ofertas;
@@ -111,25 +79,22 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		network.getAllOffers(function(response) {
 			ofertas = response;
 			totalOfertas = ofertas.length;
-
 			populateViews();
-
 		});
 	} else {
 		network.getOffers(expositorId, function(response) {
 			ofertas = response;
 			totalOfertas = ofertas.length;
-
 			populateViews();
-
 		});
 	}
 
-	contenedor = Titanium.UI.createScrollView({
+	contenedor = Titanium.UI.createView({
 		backgroundColor : "transparent",
 		width : '100%',
-		height : '100%',
-		layout : 'composite'
+		height : Ti.UI.SIZE,
+		layout : 'composite',
+		top: 200
 	});
 
 	labelCuentaOfertas = Titanium.UI.createLabel({
@@ -142,8 +107,8 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#2c2c2c',
 		textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
-		right: '10px',
-		top:'0px'
+		right: '10',
+		top:'0'
 	});
 
 	labelExpositorTitulo = Titanium.UI.createLabel({
@@ -151,7 +116,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		height : Ti.UI.SIZE,
 		width : Ti.UI.SIZE,
 		text : L('exhibitor'),
-		top: 70,
+		top: 100,
 		left : 10,
 		font : {
 			fontWeight : 'bold',
@@ -166,7 +131,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		width : '100%',
 		layout : 'composite',
 		left : 0,
-		top:0
+		top: 80
 	});
 
 	labelExpositor = Titanium.UI.createLabel({
@@ -178,7 +143,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 			fontWeight : 'bold'
 		},
 		color : '#686868',
-		top : 70,
+		top : 100,
 		right : 10
 	});
 
@@ -187,20 +152,22 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		image : "images/unavailable.jpg",
 		width : Ti.UI.SIZE,
 		height : Ti.UI.SIZE,
-		left : '10px',
-		top: '25px',
-		bottom: '30px'
+		left : '10',
+		top: '25',
+		bottom: '30'
 	});
 
 	line = Ti.UI.createView({
-		width : '90%',
+		width : '100%',
 		height : 1,
 		backgroundColor : 'black',
 		anchorPoint : {
 			x : 0,
 			y : 0
 		},
-		top : 95,
+		top : 5,
+		left: 10,
+		right: 10
 	});
 
 	labelDescripcionTitulo = Titanium.UI.createLabel({
@@ -214,20 +181,35 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : 'black',
 		left : 10,
-		top: 105
+		top: espacio_vertical + 5
 	});
 
-	labelDescripcion = Titanium.UI.createLabel({
+	labelDescripcion = Titanium.UI.createTextArea({
 		id : "labelDescripcion",
-		height : 'auto',
-		width : 'auto',
+		height : Ti.UI.SIZE,
+		width : Ti.UI.SIZE,
 		font : {
 			fontSize : '20dp',
 			fontWeight : 'bold'
 		},
 		color : '#686868',
+		width : '65%',
+		height : 140,
 		left : 10,
-		top: 125
+		top: espacio_vertical + 30,
+		editable: false,
+		borderRadius: '10',
+		scrollsToTop: true
+	});
+	
+	scrollText = Titanium.UI.createScrollView({
+		width : 180,
+		height : 95,
+		left : 10,
+		top: espacio_vertical + 30,
+		borderColor: '#444444',
+		borderWidth: 1,
+		backgroundColor: '#FFFFFF'
 	});
 
 	labelPrecioTitulo = Titanium.UI.createLabel({
@@ -241,7 +223,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : 'black',
 		right : 10,
-		top: 105
+		top: espacio_vertical + 5
 	});
 
 	labelPrecio = Titanium.UI.createLabel({
@@ -254,7 +236,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		right : 10,
-		top: 125
+		top: espacio_vertical + 20
 	});
 
 	labelUbicacionTitulo = Titanium.UI.createLabel({
@@ -267,8 +249,8 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 			fontSize : '20dp'
 		},
 		color : 'black',
-		left : 10,
-		top: 165
+		right : 10,
+		top: espacio_vertical + 95
 	});
 
 	labelUbicacion = Titanium.UI.createLabel({
@@ -279,8 +261,8 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 			fontSize : '18dp'
 		},
 		color : '#686868',
-		left : 10,
-		top: 185
+		right : 10,
+		top: espacio_vertical + 115
 	});
 
 	labelFechaInicioTitulo = Titanium.UI.createLabel({
@@ -294,7 +276,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : 'black',
 		left : '10',
-		top: '225'
+		top: espacio_vertical + 180
 	});
 
 	labelFechaInicio = Titanium.UI.createLabel({
@@ -306,7 +288,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		left : '20',
-		top: '245'
+		top: espacio_vertical + 200
 	});
 
 	labelFechaTerminoTitulo = Titanium.UI.createLabel({
@@ -319,7 +301,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 			fontSize : '20dp'
 		},
 		color : 'black',
-		top : '225',
+		top : espacio_vertical + 180,
 		right: '10'
 	});
 
@@ -332,17 +314,27 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		},
 		color : '#686868',
 		right : '10',
-		top: '245'
+		top: espacio_vertical + 200
 	});
+	
+	function cerrarExpWin()
+	{
+		Ti.Media.vibrate();
+		winExpW.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('offers'),'/images/iconofertas.png', cerrarExpWin);
 
+	
 	viewExpositor.add(imageViewExpositor);
 	viewExpositor.add(labelExpositor);
 	viewExpositor.add(labelCuentaOfertas);
 	viewExpositor.add(labelExpositorTitulo);
 	
-	contenedor.add(viewExpositor);
 	contenedor.add(line);
 	contenedor.add(labelDescripcionTitulo);
+	//scrollText.add(labelDescripcion);
 	contenedor.add(labelDescripcion);
 	contenedor.add(labelPrecioTitulo);
 	contenedor.add(labelPrecio);
@@ -353,23 +345,8 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 	contenedor.add(labelFechaTerminoTitulo);
 	contenedor.add(labelFechaTermino);
 
-	scrollView.add(contenedor);
-
 	function populateViews() {
 		if (totalOfertas > 0) {
-			//info.show();
-			
-			/*var toast = Titanium.UI.createNotification({
-			    duration: Ti.UI.NOTIFICATION_DURATION_LONG,
-			    message: L('loading'),
-			});
-			
-			toast.show();
-			
-			var indicatorWindow = require('ui/common/CreateIndicatorWindow');
-			var indicator = indicatorWindow.CreateIndicatorWindow();
-			indicator.openIndicator();*/
-			
 
 			//Si es igual a cero mostrara todas las ofertas
 			if (expositorId == 0) 
@@ -394,7 +371,7 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 
 			labelCuentaOfertas.text = ofertaActual + 1 + " " + L('of') + " " + totalOfertas;
 			labelExpositor.text = ofertas[ofertaActual].exhibitor_name;
-			labelDescripcion.text = ofertas[ofertaActual].description;
+			labelDescripcion.value = ofertas[ofertaActual].description;
 			labelUbicacion.text = ofertas[ofertaActual].location;
 			labelPrecio.text = "$" + precio[0];
 			labelFechaInicio.text = formatDate(ofertas[ofertaActual].start_date);
@@ -420,31 +397,45 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		}
 	}
 
-
-	winExpW.add(imageViewBar);
-	winExpW.add(scrollView);
-
 	bottomBar.add(buttonFirst);
-	bottomBar.add(viewSlide);
+	bottomBar.add(buttonPrev);
+	bottomBar.add(buttonNext);
 	bottomBar.add(buttonLast);
 
+	winExpW.add(topBar);
+	winExpW.add(viewExpositor);
+	winExpW.add(contenedor);
 	winExpW.add(bottomBar);
 
 	buttonFirst.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		ofertaActual = 0;
-
-		//limpiarVistas();
-		populateViews();
+		cambiarOferta(0);
 	});
 
 	buttonLast.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		ofertaActual = totalOfertas - 1;
-
-		//limpiarVistas();
-		populateViews();
+		cambiarOferta(totalOfertas - 1);
 	});
+	
+	buttonPrev.addEventListener('click', function(e) {
+		if (ofertaActual > 0) 
+			cambiarOferta(ofertaActual - 1);
+		else
+			Ti.Media.vibrate();
+	});
+	
+	buttonNext.addEventListener('click', function(e) {
+		if (ofertaActual < totalOfertas - 1) 
+			cambiarOferta(ofertaActual + 1);
+		else
+			Ti.Media.vibrate();
+	});
+	
+
+	function cambiarOferta(idOferta)
+	{
+		Ti.Media.vibrate();
+		ofertaActual = idOferta;
+		populateViews();
+	}
 
 	function limpiarVistas() {
 		scrollView.getChildren().forEach(function(vista) {
@@ -461,36 +452,9 @@ function ExpositoresWindow(Window, expositorId, rowName, rowImage) {
 		return formattedDate;
 	}
 
-
-	scrollView.addEventListener('swipe', function(e) {
-		if (e.direction == 'left') {
-			if (ofertaActual < totalOfertas - 1) {
-				ofertaActual++;
-				//limpiarVistas();
-				populateViews();
-			} else {
-				Ti.Media.vibrate();
-			}
-		} else if (e.direction == 'right') {
-			if (ofertaActual > 0) {
-				ofertaActual--;
-				//limpiarVistas();
-				populateViews();
-			} else {
-				Ti.Media.vibrate();
-			}
-		}
-	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		winExpW.close();
-	});
-
 	winExpW.addEventListener('android:back', function(e) {
 		Ti.Media.vibrate();
 		winExpW.close();
-		
 	});
 
 	return winExpW;

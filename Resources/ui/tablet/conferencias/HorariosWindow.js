@@ -5,6 +5,9 @@ function HorariosWindow(dias, Window)
 
 	var infoWindow = require("ui/common/InfoWindow");
 	var infoView = infoWindow.InfoWindow();
+	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	var diasSemana = L('weekDays').split(',');
     var nomMeses   = L('months').split(',');
@@ -15,7 +18,7 @@ function HorariosWindow(dias, Window)
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -33,7 +36,7 @@ function HorariosWindow(dias, Window)
 		layout : 'vertical'
 	});
 
-	imageViewBar = Titanium.UI.createView({
+	/*imageViewBar = Titanium.UI.createView({
 		id : "imageViewBar",
 		backgroundColor : Ti.App.Properties.getString('viewcolor'),
 		height : 80,
@@ -82,45 +85,26 @@ function HorariosWindow(dias, Window)
 		height : 30,
 		top : 10,
 		right: 10
-	});
+	});*/
 	
 	scrollView_1.add(table);
 	
-	imageViewBar.add(imageView);
-	imageViewBar.add(buttonClose);
-	imageViewBar.add(labelTitulo);
-	//imageViewBar.add(labelSubTitulo);
-
-	confHorWdw.add(imageViewBar);
+	function cerrarHorConf()
+	{
+		Ti.Media.vibrate();
+		confHorWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('conferences'),'/images/horarios_blanco.png', cerrarHorConf);
+	
+	confHorWdw.add(topBar);
 	confHorWdw.add(scrollView_1);
 
 	//var dias;
 	var eventosCargados = new Array(); //cada propiedad es un dia que contiene un arreglo de eventos
 	var eventosCargadosLabels = new Array(); //cada propiedad es un dia que contiene un arreglo de eventos
 	
-	/*function showMessage(message)
-	{
-		Ti.UI.createAlertDialog({
-			message: message,
-			ok: L('ok'),
-			title: L('alert_title')
-			}).show();
-	}
-	
-	network.getData(network.SERVICES.CONFERENCES_DAYS, function(response) 
-	{
-		dias = response;
-		if(dias == false)
-		{
-		 	showMessage(L('no_conferencias'));
-		 	cerrar();
-		}
-		else
-		{
-		 	populateTable();
-		}
-	});*/
-
 	function populateTable() 
 	{
 		var data = [];
@@ -254,20 +238,10 @@ function HorariosWindow(dias, Window)
 		}
 	});
 	
-	buttonClose.addEventListener('click', function(e){
-		cerrar();
-	});
-
 	confHorWdw.addEventListener('android:back', function(e) 
 	{
-		cerrar();		
+		cerrarHorConf();		
 	});
-	
-	function cerrar()
-	{
-		Ti.Media.vibrate();
-		confHorWdw.close();
-	}
 
 	return confHorWdw;
 }

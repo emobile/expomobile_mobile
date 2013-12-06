@@ -2,12 +2,16 @@ function DirectorioWindow(Window) {
 
 	var network = require('lib/network');
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	var window1 = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
-		layout : 'vertical'
+		layout : 'vertical',
+		fullscreen: pantallaCompleta
 	});
 
 	var table = Ti.UI.createTableView({

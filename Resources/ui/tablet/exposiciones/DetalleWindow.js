@@ -1,81 +1,48 @@
 function DetalleWindow(Window, day) {
 	var network = require('lib/network');
 
-	var herramientas =  require('tools');
-	var pantallaCompleta = herramientas.isiOS7Plus();
-
 	var exposiciones;
 	var contenedor;
 	var totalExposiciones;
 	var exposicionActual = 0;
+
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	expDetWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundImage : '/images/background.png',
 		width : '100%',
 		height : '100%',
-		layout : 'vertical',
+		layout : 'composite',
 		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
-	
 
 	scrollView = Titanium.UI.createView({
 		id : "scrollView",
 		backGroundColor : 'transparent',
-		height : '70%',
+		height : Ti.UI.SIZE,
 		width : '100%',
-		layout : 'vertical'
+		layout : 'vertical',
+		top:80
 	});
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconexposiciones.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('exhibitions'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
+	function cerrarDetalle()
+	{
+		Ti.Media.vibrate();
+		expDetWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('exhibitions'),'/images/iconexposiciones.png', cerrarDetalle);
 
 	bottomBar = Titanium.UI.createView({
 		id : "bottomBar",
 		backgroundColor : "transparent",
-		height : '10%',
+		height : Ti.UI.SIZE,
 		width : '100%',
-		top : "-1px",
+		bottom : "5",
 		left : 0
 	});
 
@@ -88,15 +55,22 @@ function DetalleWindow(Window, day) {
 		left : "10px"
 	});
 
-	viewSlide = Titanium.UI.createImageView({
-		id : "buttonMiddle",
-		image : "/images/swipefinger.png",
+	buttonPrev = Titanium.UI.createImageView({
+		id : "buttonPrev",
+		image : "/images/previous.png",
 		width : 48,
 		height : 48,
-		center : {
-			x : '50%',
-			y : '0%'
-		}
+		top : "0%",
+		left : "68"
+	});
+
+	buttonNext = Titanium.UI.createImageView({
+		id : "buttonNext",
+		image : "/images/next.png",
+		width : 48,
+		height : 48,
+		top : "0%",
+		right : "68"
 	});
 
 	buttonLast = Titanium.UI.createImageView({
@@ -111,7 +85,7 @@ function DetalleWindow(Window, day) {
 	contenedor = Titanium.UI.createScrollView({
 		backgroundColor : "transparent",
 		width : '100%',
-		height : '100%',
+		height : Ti.UI.SIZE,
 		layout : 'vertical'
 	});
 
@@ -124,11 +98,11 @@ function DetalleWindow(Window, day) {
 			fontSize : '20dp'
 		},
 		color : '#2c2c2c',
-		left : '75%'
+		right : '5%'
 	});
 
 	line = Ti.UI.createView({
-		width : '90%',
+		width : '100%',
 		height : 1,
 		backgroundColor : 'black',
 		anchorPoint : {
@@ -235,6 +209,24 @@ function DetalleWindow(Window, day) {
 		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
+	buttonPrev.addEventListener('click', function(e) {
+		Ti.Media.vibrate();
+		if (exposicionActual > 0) 
+		{
+			exposicionActual--;
+			populateViews();
+		}
+	});
+
+	buttonNext.addEventListener('click', function(e) {
+		Ti.Media.vibrate();
+		if (exposicionActual < totalExposiciones - 1)
+		{ 
+			exposicionActual++;
+			populateViews();
+		}
+	});
+
 	contenedor.add(labelCuentaExposiciones);
 	contenedor.add(line);
 	contenedor.add(labelExposicionTitulo);
@@ -279,12 +271,13 @@ function DetalleWindow(Window, day) {
 		populateViews();
 	});
 
-	expDetWdw.add(imageViewBar);
+	expDetWdw.add(topBar);
 	expDetWdw.add(scrollView);
 
 	bottomBar.add(buttonFirst);
-	bottomBar.add(viewSlide);
 	bottomBar.add(buttonLast);
+	bottomBar.add(buttonPrev);
+	bottomBar.add(buttonNext);
 
 	expDetWdw.add(bottomBar);
 
@@ -307,35 +300,30 @@ function DetalleWindow(Window, day) {
 		exposicionActual = totalExposiciones - 1;
 		populateViews();
 	});
+	
+	buttonPrev.addEventListener('click', function(e) {
+		Ti.Media.vibrate();
+		if (exposicionActual > 0) 
+		{
+			exposicionActual--;
+			populateViews();
+		}
+	});
 
+	buttonNext.addEventListener('click', function(e) {
+		Ti.Media.vibrate();
+		if (exposicionActual < totalExposiciones - 1)
+		{ 
+			exposicionActual++;
+			populateViews();
+		}
+	});
+	
 	function formatDate(date) {
 		var arrayDate = date.substring(0, 10).split("-");
 		var formattedDate = arrayDate[2] + "-" + arrayDate[1] + "-" + arrayDate[0];
 		return formattedDate;
 	}
-
-	scrollView.addEventListener('swipe', function(e) {
-		if (e.direction == 'left') {
-			if (exposicionActual < totalExposiciones - 1) {
-				exposicionActual++;
-				populateViews();
-			} else {
-				Ti.Media.vibrate();
-			}
-		} else if (e.direction == 'right') {
-			if (exposicionActual > 0) {
-				exposicionActual--;
-				populateViews();
-			} else {
-				Ti.Media.vibrate();
-			}
-		}
-	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		expDetWdw.close();
-	});
 
 	expDetWdw.addEventListener('android:back', function() {
 		Ti.Media.vibrate();

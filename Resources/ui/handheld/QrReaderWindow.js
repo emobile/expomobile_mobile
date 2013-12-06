@@ -18,7 +18,12 @@ function QrReaderWindow(Window, win_name) {
 						sendQr(send_qr_code);
 						qrReaderWdw.close();
 					} else {
-						alert(L("qr_not_supported"));
+						Ti.UI.createAlertDialog({
+								message: L("qr_not_supported"),
+								ok: L('ok'),
+								title: L('alert_title') 
+						}).show();
+						
 						qrReaderWdw.close();
 					}
 
@@ -28,15 +33,27 @@ function QrReaderWindow(Window, win_name) {
 					var send_qr_code = validarQR(data.barcode);
 					if (send_qr_code != false) {
 						sendQr(send_qr_code);
-					} else {
-						alert(L("qr_not_supported"));
+					} else 
+					{
+						Ti.UI.createAlertDialog({
+								message: L("qr_not_supported"),
+								ok: L('ok'),
+								title: L('alert_title') 
+						}).show();
+						
 						qrReaderWdw.close();
 					}
 				}
 			},
-			error : function(err) {
+			error : function(err) 
+			{
 				Ti.Media.vibrate();
-				alert(L('errorqrcode'));
+				Ti.UI.createAlertDialog({
+								message: L('errorqrcode'),
+								ok: L('ok'),
+								title: L('alert_title') 
+						}).show();
+				
 				qrReaderWdw.close();
 			},
 			cancel : function() {
@@ -68,7 +85,13 @@ function QrReaderWindow(Window, win_name) {
 						sendQr(send_qr_code);
 						qrReaderWdw.close();
 					} else {
-						alert(L("qr_not_supported"));
+						
+						Ti.UI.createAlertDialog({
+								message: L("qr_not_supported"),
+								ok: L('ok'),
+								title: L('alert_title') 
+						}).show();
+						
 						qrReaderWdw.close();
 					}
 				}
@@ -88,7 +111,7 @@ function QrReaderWindow(Window, win_name) {
 			network.postVisitWorkshop(qrcode, function(response) {
 				if (response != false) {
 					Ti.UI.createAlertDialog({
-					message: alert(response.msg),
+					message: response.msg,
 					ok: L('ok'),
 					title: L('alert_title') 
 				}).show();
@@ -98,7 +121,7 @@ function QrReaderWindow(Window, win_name) {
 			network.postVisitExposition(qrcode, function(response) {
 				if (response != false) {
 					Ti.UI.createAlertDialog({
-					message: alert(response.msg),
+					message: response.msg,
 					ok: L('ok'),
 					title: L('alert_title') 
 				}).show();

@@ -3,6 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>get-task-allow</key>
-	<true/>
+	<false/>
+	<key>keychain-access-groups</key>
+	<string>RRLTLTCP34.mx.com.emobile.expomobile</string>
+	<key>application-identifier</key>
+	<string>RRLTLTCP34.mx.com.emobile.expomobile</string>
 </dict>
 </plist>

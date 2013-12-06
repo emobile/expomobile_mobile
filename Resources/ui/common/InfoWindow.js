@@ -72,7 +72,7 @@ function InfoWindow(args) {
 			x : '50%'
 		},
 		width: Ti.UI.SIZE,
-		left: '10dp',
+		left: '5%',
 		right: '10dp'
 	});
 
@@ -120,7 +120,8 @@ function InfoWindow(args) {
 		width : '100%',
 		height : Ti.UI.SIZE,
 		backgroundColor : 'transparent',
-		layout : 'horizontal'
+		layout : 'horizontal',
+		bottom: '5%'
 	});
 
 	viewTop.add(buttonClose);

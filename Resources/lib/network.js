@@ -37,7 +37,13 @@ exports.getRegistro = function(id, callback) {
 		indicator.openIndicator();
 
 		var network = Titanium.Network.createHTTPClient();
-		var url = 'http://' + hostname + '/mobile_services/get_attendee_id?attendee_id=' + id;
+		
+		var parIdioma = "";
+		
+		if(L("language") == "en")
+			parIdioma = "&language=en";
+		
+		var url = 'http://' + hostname + '/mobile_services/get_attendee_id?attendee_id=' + id + parIdioma;
 
 		network.open('GET', url);
 		network.setRequestHeader("Content-Type", "application/json", "Accept", "application/json");

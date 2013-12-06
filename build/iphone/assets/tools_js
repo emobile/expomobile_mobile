@@ -1,0 +1,1 @@
+exports.isiOS7Plus=function(){if("iPhone OS"==Ti.Platform.name){var e=Ti.Platform.version.split("."),o=parseInt(e[0],10);if(o>=7)return!0}return!1};

@@ -3,6 +3,9 @@ function HorariosWindow(Window, days) {
 	var totalExposiciones;
 	var exposicionActual = 0;
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	var diasSemana = L('weekDays').split(',');
     var nomMeses   = L('months').split(',');
 
@@ -12,7 +15,7 @@ function HorariosWindow(Window, days) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -31,50 +34,16 @@ function HorariosWindow(Window, days) {
 
 	scrollView_1.add(table);
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconexposiciones.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('exhibitions'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-
-	imageViewBar.add(buttonClose);
-
-	expHorWdw.add(imageViewBar);
+	function cerrarExpHor()
+	{
+		Ti.Media.vibrate();
+		expHorWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('exhibitions'),'/images/horarios_blanco.png', cerrarExpHor);
+	
+	expHorWdw.add(topBar);
 	expHorWdw.add(scrollView_1);
 	
 	var dias;
@@ -113,18 +82,11 @@ function HorariosWindow(Window, days) {
 	table.addEventListener('click', function(e) {
 		var Window;
 		var mainWindow = require("ui/handheld/exposiciones/DetalleWindow");
-		//new mainWindow(Window, e.rowData.title).open();
 		new mainWindow(Window, dias[e.index]).open();
 	});
 
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		expHorWdw.close();
-	});
-
 	expHorWdw.addEventListener('android:back', function(e) {
-		Ti.Media.vibrate();
-		expHorWdw.close();
+		cerrarExpHor();
 	});
 
 	return expHorWdw;

@@ -1,23 +1,28 @@
-function PatrocinadoresInfoWindow(id) {
+function PatrocinadoresInfoWindow(indexClick, idPatrocinador, patrocinadores) 
+{
 	var network = require('lib/network');
 
 	var width = '100%', height = '100%';
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	patrocHorWdw = Titanium.UI.createWindow({
 		backgroundColor : 'transparent',
-		fullscreen : false,
+		fullscreen : pantallaCompleta,
 		navBarHidden : true,
-		opacity: 1.0
-		//layout: 'composite'
+		opacity: 1.0,
+		height: '100%'
 	});
 
 	var blackWdw = Titanium.UI.createView({
-		height : '90%',
-		width : width,
-		borderRadius : 1,
+		height : Ti.UI.SIZE,
+		width : '86%',
+		borderRadius : 10,
 		backgroundColor : '#000',
-		opacity : 0.8,
-		top : '80px'
+		opacity : 0.9,
+		bottom: '20',
+		center: { y: '50%' }
 	});
 
 	viewLinea = Titanium.UI.createView({
@@ -81,10 +86,24 @@ function PatrocinadoresInfoWindow(id) {
 
 	labelContacto = Titanium.UI.createLabel({
 		height : Ti.UI.SIZE,
-		left : 10,
-		width : '80%',
+		//left : 10,
+		center: {x :'50%'},
+		width : Ti.UI.SIZE,
 		font : {
-			fontSize : '24dp'
+			fontSize : '18dp',
+			fontWeight: 'bold'
+		},
+		color : 'white'
+	});
+	
+	labelPuesto = Titanium.UI.createLabel({
+		height : Ti.UI.SIZE,
+		//left : 10,
+		center: {x :'50%'},
+		width : Ti.UI.SIZE,
+		font : {
+			fontSize : '16dp',
+			fontWeight: 'bold'
 		},
 		color : 'white'
 	});
@@ -110,31 +129,49 @@ function PatrocinadoresInfoWindow(id) {
 		color : 'white'
 	});
 
+	btnIzquierda = Titanium.UI.createImageView({
+		height : 21,
+		width : 18,
+		left : 2,
+		center: { y: '50%' },
+		image : "/images/btnizquierda.png",
+		opacity : 0.9
+	});
+
+	btnDerecha = Titanium.UI.createImageView({
+		height : 21,
+		width : 18,
+		right : 2,
+		center: { y: '50%' },
+		image : "/images/btnderecha.png",
+		opacity : 0.9
+	});
+
 	imageViewTwitter = Titanium.UI.createImageView({
-		height : 25,
+		height : 20,
 		left : 10,
-		width : 20,
+		width : 24,
 		image : "/images/twitter.png"
 	});
 
 	imageViewFacebook = Titanium.UI.createImageView({
 		height : 25,
 		left : 10,
-		width : 20,
+		width : 25,
 		image : "/images/facebook.png"
 	});
 
 	imageViewTelefono = Titanium.UI.createImageView({
-		height : 25,
+		height : 20,
 		left : 10,
-		width : 20,
+		width : 29,
 		image : "/images/phone.png"
 	});
 
 	imageViewWeb = Titanium.UI.createImageView({
-		height : 25,
+		height : 20,
 		left : 10,
-		width : 20,
+		width : 19,
 		image : "/images/web.png"
 	});
 
@@ -147,15 +184,17 @@ function PatrocinadoresInfoWindow(id) {
 
 	imageViewContacto = Titanium.UI.createImageView({
 		height : 25,
-		left : 10,
+		//left : 10,
+		//center: { x: '50%'},
+		//right: 0,
 		width : 20,
 		image : "/images/contacto.png"
 	});
 
 	imageViewMail = Titanium.UI.createImageView({
-		height : 25,
+		height : 20,
 		left : 10,
-		width : 20,
+		width : 26,
 		image : "/images/mail.png"
 	});
 
@@ -175,19 +214,20 @@ function PatrocinadoresInfoWindow(id) {
 		image : "/images/close.png",
 		width : 30,
 		height : 30,
-		right : '0',
-		top : '0dp'
+		right : '10',
+		top : '10'
 	});
 
 	scrollView = Titanium.UI.createScrollView({
 		width : '100%',
 		height : Ti.UI.SIZE,//'100%',
 		backgroundColor : 'transparent',
-		layout : 'vertical'
+		layout : 'vertical',
+		bottom: '5'
 	});
 
 	view1 = Titanium.UI.createView({
-		width : '90%',
+		width : '100%',
 		height : Ti.UI.SIZE,
 		backgroundColor : 'transparent',
 		layout : 'composite'
@@ -197,7 +237,7 @@ function PatrocinadoresInfoWindow(id) {
 		width : '100%',
 		height : Ti.UI.SIZE,
 		backgroundColor : 'transparent',
-		layout : 'horizontal'
+		layout : 'vertical'
 	});
 
 	view3 = Titanium.UI.createView({
@@ -242,10 +282,19 @@ function PatrocinadoresInfoWindow(id) {
 		layout : 'horizontal'
 	});
 
+	viewCabecera = Ti.UI.createView({
+		width: Ti.UI.SIZE,
+		center: { x: '50%'},
+		layout: 'vertical',
+		height: Ti.UI.SIZE
+	});
+
 	view1.add(imageViewPatrocinador);
 	view1.add(btnCerrar);
-	view2.add(imageViewContacto);
-	view2.add(labelContacto);
+	//viewOtro.add(imageViewContacto);
+	viewCabecera.add(labelContacto);
+	viewCabecera.add(labelPuesto);
+	view2.add(viewCabecera);
 	view2.add(labelRazonSocial);
 	view3.add(imageViewUbicacion);
 	view3.add(labelUbicacion);
@@ -253,8 +302,6 @@ function PatrocinadoresInfoWindow(id) {
 	view4.add(labelWeb);
 	view5.add(imageViewTelefono);
 	view5.add(labelTelefono);
-	// view6.add(imageViewFacebook);
-	// view6.add(labelFacebook);
 	view7.add(imageViewTwitter);
 	view7.add(labelTwitter);
 	view8.add(imageViewMail);
@@ -266,12 +313,13 @@ function PatrocinadoresInfoWindow(id) {
 	scrollView.add(view3);
 	scrollView.add(view4);
 	scrollView.add(view5);
-	// scrollView.add(view6);
 	scrollView.add(view7);
 	scrollView.add(view8);
 
 	blackWdw.add(scrollView);
 	patrocHorWdw.add(blackWdw);
+	patrocHorWdw.add(btnDerecha);
+	patrocHorWdw.add(btnIzquierda);
 
 	function openView() {
 		patrocHorWdw.open();
@@ -288,32 +336,28 @@ function PatrocinadoresInfoWindow(id) {
 	function populateView() {
 		network
 				.getSponsorDetail(
-						id,
+						idPatrocinador,
 						function(response) {
 							if (response != false) {
 								if (response.length == 0) {
 									labelsNoDisponibles();
 								} else {
 									labelTwitter.text = response.twitter;
-									// labelFacebook.text = response.facebook;
 									labelTelefono.text = response.phone;
 									labelWeb.text = response.web_page;
 									labelMail.text = response.email;
-									labelContacto.text = response.social_reason
-											+ "\n" + response.contact;
+									labelContacto.text = response.social_reason;
+									labelPuesto.text = response.contact;
 									labelRazonSocial.text = response.job;
-									labelUbicacion.text = response.work_street + " " +
-											+ response.work_street_number + "\n" +
+									labelUbicacion.text = response.work_street + " " 
+											+ response.work_street_number + "\n" 
 											+ response.work_colony;
-									if (response.mobile_logo_url != false) {
+									if (response.mobile_logo_url != false) 
+									{
 										imageViewPatrocinador.image = 'http://'
 												+ Ti.App.Properties
 														.getString('hostname')
 												+ response.mobile_logo_url;
-										// imageViewPatrocinador.image.width =
-										// 32;
-										// imageViewPatrocinador.image.height =
-										// 32;
 									} else {
 										imageViewPatrocinador.image = "/images/unavailable.jpg";
 									}
@@ -352,6 +396,25 @@ function PatrocinadoresInfoWindow(id) {
 		e.source.removeEventListener('androidback', arguments.callee);
 		cerrar();
 	});
+
+	btnIzquierda.addEventListener('click', function(e){
+		if(indexClick > 0)
+		{
+			indexClick--;
+			idPatrocinador = patrocinadores[indexClick].id;
+			populateView();
+		}	
+	});
+	
+	btnDerecha.addEventListener('click', function(e){
+		if(indexClick < patrocinadores.length-1)
+		{
+			indexClick++;
+			idPatrocinador = patrocinadores[indexClick].id;
+			populateView();
+		}
+	});
+
 
 	return patrocHorWdw;
 }

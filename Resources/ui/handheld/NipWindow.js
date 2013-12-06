@@ -134,7 +134,7 @@ function NipWindow(Window) {
 
 		buttonIngresar = Titanium.UI.createImageView({
 			id : "buttonIngresar",
-			width : '95%',
+			width : Ti.UI.SIZE,
 			top : 10
 		});
 
@@ -146,7 +146,7 @@ function NipWindow(Window) {
 
 		buttonAtras = Titanium.UI.createImageView({
 			id : "buttonAtras",
-			width : '95%',
+			width : Ti.UI.SIZE,
 			top : 5
 		});
 

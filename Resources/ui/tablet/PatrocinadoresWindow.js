@@ -2,13 +2,16 @@ function PatrocinadoresWindow(Window) {
 
 	var patrocinadoresWindow = require("ui/handheld/patrocinadores/PatrocinadoresInfoWindow");
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	patrocinadoresWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -25,60 +28,26 @@ function PatrocinadoresWindow(Window) {
 		layout : 'vertical'
 	});
 	
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconpatrocinadores.png",
-		width : 60,
-		height : 60,
-		top : '10dp',
-		left : '10dp'
-	});
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		width: Ti.UI.SIZE,
-		height : 'auto',
-		text : L('sponsors'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		center : {
-			x : '50%'
-		},
-		top : 15
-	});
+	function cerrarPatro()
+	{
+		Ti.Media.vibrate();
+		patrocinadoresWdw.close();
+	}
 	
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : '10dp',
-		right: '10dp'
-	});
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('sponsors'),'/images/iconpatrocinadores.png', cerrarPatro);
 	
-	imageViewBar.add(imageView);
-	imageViewBar.add(buttonClose);
-	imageViewBar.add(labelTitulo);
-	patrocinadoresWdw.add(imageViewBar);
+	patrocinadoresWdw.add(topBar);
 	scrollView_1.add(table);
+	
+	var data;
 	
 	patrocinadoresWdw.add(scrollView_1);
 	
 	function populateTable() {
-		var data = [];
+		data = [];
 
-	var db = Ti.Database.open('anadicDB');
+		var db = Ti.Database.open('anadicDB');
 		var db_rows = db.execute("SELECT * FROM sponsors");
 		while (db_rows.isValidRow()) {
 			
@@ -94,21 +63,20 @@ function PatrocinadoresWindow(Window) {
 			}
 			
 			var etiqueta = db_rows.fieldByName("social_reason");
-			if(etiqueta.length > 31)
-				etiqueta = etiqueta.substring(0,28)+"...";
+			//if(etiqueta.length > 31)
+				//etiqueta = etiqueta.substring(0,28)+"...";
 			
 			var row = Titanium.UI.createTableViewRow({
 				id : db_rows.fieldByName("id"),
-				//title : db_rows.fieldByName("name"),
 				title : etiqueta,
-				//leftImage : urlImage,
 				isparent : true,
 				opened : false,
 				hasChild : true,
-				color : 'black'
+				color : 'black',
+				horizontalWrap: false
 			});
+			
 			data.push(row);
-
 			db_rows.next();
 		}
 		db_rows.close();
@@ -119,23 +87,16 @@ function PatrocinadoresWindow(Window) {
 
 	populateTable();
 	
-	table.addEventListener('click', function(e) {
+	table.addEventListener('click', function(e) 
+	{
 		Ti.Media.vibrate();
-		var patrocinadoresView = patrocinadoresWindow.PatrocinadoresInfoWindow(e.rowData.id);
+		var patrocinadoresView = patrocinadoresWindow.PatrocinadoresInfoWindow(e.index, e.rowData.id, data);
 		patrocinadoresView.openView();
 	});
 
-	buttonClose.addEventListener('click', cerrar);
-	
-	function cerrar()
-	{
-		Ti.Media.vibrate();
-		patrocinadoresWdw.close();
-	}
-	
 	patrocinadoresWdw.addEventListener('android:back', evento = function(e){
 	    e.source.removeEventListener('android:back', arguments.callee);
-	    cerrar();
+	    cerrarPatro();
 	});
 
 	return patrocinadoresWdw;

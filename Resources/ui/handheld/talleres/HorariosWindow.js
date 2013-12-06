@@ -123,41 +123,6 @@ function HorariosWindow(dias,Window) {
 	var eventosCargadosLabels = new Array();
 	//cada propiedad es un dia que contiene un arreglo de eventos
 
-	/*var customAlert = Ti.UI.createAlertDialog({
-			message: L('no_workshops'),
-			ok: L('ok'),
-			title: L('alert_title')
-			});
-	
-	//tallHorWdw.add(customAlert);
-	
-	customAlert.addEventListener('click', function(ev) 
-	{
-	    if (ev.index == 0) { 
-	    	cerrar(); 
-	    } 
-	});
-	
-	network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response) 
-	{
-		dias = response;
-		
-		if(response.length == 0) 
-		{
-			customAlert.show();
-		}	
-		else if(response.length > 0) 
-		{
-			populateTable();
-		}
-		else 
-		{
-			//error de conexion
-		}
-		
-	});*/
-
-
 	function populateTable() 
 	{
 		var data = [];
@@ -262,7 +227,7 @@ function HorariosWindow(dias,Window) {
 						evento[L('start_hour')] = parEvento.start_hour;
 						evento[L('end_hour')] = parEvento.end_hour;
 						evento[L('teacher')] = parEvento.teacher_name;
-						evento[L('room_id')] = parEvento.room_id;
+						evento[L('room_name')] = parEvento.room_name;
 
 						infoView.openView(evento);
 					}

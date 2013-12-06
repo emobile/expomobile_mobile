@@ -1,25 +1,28 @@
-function ExposicionesInfoWindow(id) {
+//function ExposicionesInfoWindow(id) {
+/*function ExposicionesInfoWindow(indexClick, idExpositor, expositores){
 	var network = require('lib/network');
 
 	var width = '100%', height = '90%';
 	var top = '10%';
+	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	expoInfWdw = Titanium.UI.createWindow({
-		//touchEnabled : false,
 		backgroundColor : 'transparent',
-		fullscreen : false,
+		fullscreen : pantallaCompleta,
 		navBarHidden : true,
 		opacity: 1.0
 	});
 	
 	var blackWdw = Titanium.UI.createView({
-		height : height,
-		width : width,
-		borderRadius : 1,
-		//touchEnabled : false,
+		height : Ti.UI.SIZE,
+		width : '86%',
+		borderRadius : 10,
 		backgroundColor : '#000',
-		opacity : 0.8,
-		top: '80'
+		opacity : 0.9,
+		top : '100',
+		bottom: '20'
 	});
 
 	viewLinea = Titanium.UI.createView({
@@ -30,15 +33,24 @@ function ExposicionesInfoWindow(id) {
 		left : '5%'
 	});
 
-	/*labelTwitter = Titanium.UI.createLabel({
-		height : Ti.UI.SIZE,
-		left : 10,
-		width : '80%',
-		font : {
-			fontSize : '18dp'
-		},
-		color : 'white'
-	});*/
+	
+	btnIzquierda = Titanium.UI.createImageView({
+		height : 21,
+		width : 18,
+		left : 2,
+		center: { y: '50%' },
+		image : "/images/btnizquierda.png",
+		opacity : 0.9
+	});
+
+	btnDerecha = Titanium.UI.createImageView({
+		height : 21,
+		width : 18,
+		right : 2,
+		center: { y: '50%' },
+		image : "/images/btnderecha.png",
+		opacity : 0.9
+	});
 
 	labelFacebook = Titanium.UI.createLabel({
 		height : Ti.UI.SIZE,
@@ -86,7 +98,8 @@ function ExposicionesInfoWindow(id) {
 		left : 10,
 		width : '80%',
 		font : {
-			fontSize : '24dp'
+			fontSize : '18dp',
+			fontWeight: 'bold'
 		},
 		color : 'white'
 	});
@@ -101,22 +114,6 @@ function ExposicionesInfoWindow(id) {
 		textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 	});
 
-	/*labelMail = Titanium.UI.createLabel({
-		height : Ti.UI.SIZE,
-		left : 10,
-		width : '80%',
-		font : {
-			fontSize : '18dp'
-		},
-		color : 'white'
-	});*/
-
-	/*imageViewTwitter = Titanium.UI.createImageView({
-		height : 25,
-		left : 10,
-		width : 20,
-		image : "/images/twitter.png"
-	})*/;
 
 	imageViewFacebook = Titanium.UI.createImageView({
 		height : 25,
@@ -125,12 +122,6 @@ function ExposicionesInfoWindow(id) {
 		image : "/images/facebook.png"
 	});
 
-	/*imageViewTelefono = Titanium.UI.createImageView({
-		height : 25,
-		left : 10,
-		width : 20,
-		image : "/images/phone.png"
-	});*/
 
 	imageViewWeb = Titanium.UI.createImageView({
 		height : 25,
@@ -152,13 +143,6 @@ function ExposicionesInfoWindow(id) {
 		width : 20,
 		image : "/images/contacto.png"
 	});
-
-	/*imageViewMail = Titanium.UI.createImageView({
-		height : 25,
-		left : 10,
-		width : 20,
-		image : "/images/mail.png"
-	});*/
 
 	imageViewPatrocinador = Titanium.UI.createImageView({
 		height : Ti.UI.SIZE,
@@ -274,6 +258,8 @@ function ExposicionesInfoWindow(id) {
 	
 	blackWdw.add(scrollView);
 	expoInfWdw.add(blackWdw);
+	expoInfWdw.add(btnIzquierda);
+	expoInfWdw.add(btnDerecha);
 	
 	function openView() {
 		expoInfWdw.open();
@@ -288,7 +274,7 @@ function ExposicionesInfoWindow(id) {
 	expoInfWdw.closeView = closeView;
 
 	function populateView() {
-		network.getExhibitorDetail(id, function(response) {
+		network.getExhibitorDetail(idExpositor, function(response) {
 			if (response != false) {
 				if (response.length == 0) {
 					labelsNoDisponibles();
@@ -342,8 +328,27 @@ function ExposicionesInfoWindow(id) {
 	    e.source.removeEventListener('androidback', arguments.callee);
 	    cerrar();
 	});
+	
+	btnIzquierda.addEventListener('click', function(e){
+		if(indexClick > 0)
+		{
+			indexClick--;
+			idExpositor = expositores[indexClick].id;
+			populateView();
+		}	
+	});
+	
+	btnDerecha.addEventListener('click', function(e){
+		if(indexClick < expositores.length-1)
+		{
+			indexClick++;
+			idExpositor = expositores[indexClick].id;
+			populateView();
+		}
+	});
 
 	return expoInfWdw;
 }
 
 exports.ExposicionesInfoWindow = ExposicionesInfoWindow;
+*/

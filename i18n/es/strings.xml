@@ -114,4 +114,5 @@
 	<string name="hora">Hora</string>
 	<string name="no_ofertas">No hay ofertas disponibles</string>
 	<string name="cancelar">Cancelar</string>
+	<string name="room_name">Nombre de la Sala</string>
 </resources>

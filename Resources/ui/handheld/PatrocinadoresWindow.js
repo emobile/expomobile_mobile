@@ -40,12 +40,14 @@ function PatrocinadoresWindow(Window) {
 	patrocinadoresWdw.add(topBar);
 	scrollView_1.add(table);
 	
+	var data;
+	
 	patrocinadoresWdw.add(scrollView_1);
 	
 	function populateTable() {
-		var data = [];
+		data = [];
 
-	var db = Ti.Database.open('anadicDB');
+		var db = Ti.Database.open('anadicDB');
 		var db_rows = db.execute("SELECT * FROM sponsors");
 		while (db_rows.isValidRow()) {
 			
@@ -61,21 +63,20 @@ function PatrocinadoresWindow(Window) {
 			}
 			
 			var etiqueta = db_rows.fieldByName("social_reason");
-			if(etiqueta.length > 31)
-				etiqueta = etiqueta.substring(0,28)+"...";
+			//if(etiqueta.length > 31)
+				//etiqueta = etiqueta.substring(0,28)+"...";
 			
 			var row = Titanium.UI.createTableViewRow({
 				id : db_rows.fieldByName("id"),
-				//title : db_rows.fieldByName("name"),
 				title : etiqueta,
-				//leftImage : urlImage,
 				isparent : true,
 				opened : false,
 				hasChild : true,
-				color : 'black'
+				color : 'black',
+				horizontalWrap: false
 			});
+			
 			data.push(row);
-
 			db_rows.next();
 		}
 		db_rows.close();
@@ -86,9 +87,10 @@ function PatrocinadoresWindow(Window) {
 
 	populateTable();
 	
-	table.addEventListener('click', function(e) {
+	table.addEventListener('click', function(e) 
+	{
 		Ti.Media.vibrate();
-		var patrocinadoresView = patrocinadoresWindow.PatrocinadoresInfoWindow(e.rowData.id);
+		var patrocinadoresView = patrocinadoresWindow.PatrocinadoresInfoWindow(e.index, e.rowData.id, data);
 		patrocinadoresView.openView();
 	});
 

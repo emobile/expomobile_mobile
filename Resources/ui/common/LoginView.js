@@ -38,12 +38,35 @@ function LoginView()
 		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
 	});
 
+
+	var topBar = Ti.UI.createView({
+		width: '100%',
+		height: Ti.UI.SIZE,
+		layout: 'composite'
+	});
+	
+	var labelVersion = Ti.UI.createLabel({
+		id: 'labelVersion',
+		text: 'v. '+ Titanium.App.version,
+		right: '10',
+		center: { y:'50%'},
+		width: Ti.UI.SIZE,
+		font:{
+			fontWeight: 'bold',
+			fontSize: '14dp'
+		},
+		color: '#EEEEEE'
+	});
+
 	var createAttachChWindow = function() {
 
 		createAttachChScrollView_1();
 
-		loginView.add(imageViewBar);
-
+		//loginView.add(imageViewBar);
+		topBar.add(imageViewBar);
+		topBar.add(labelVersion);
+		
+		loginView.add(topBar);
 		loginView.add(scrollView_1);
 
 	};

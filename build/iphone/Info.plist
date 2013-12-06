@@ -32,9 +32,9 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIRequiresPersistentWiFi</key>
@@ -59,6 +59,8 @@
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>appicon.png</string>
+		<string>appicon@2x.png</string>
+		<string>appicon-72.png</string>
 	</array>
 </dict>
 </plist>

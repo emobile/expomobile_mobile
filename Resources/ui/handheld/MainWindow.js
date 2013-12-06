@@ -6,7 +6,6 @@ function MainWindow(Window) {
 	 Ti.Facebook.permissions = ['publish_stream', 'read_stream', 'email', 'user_about_me', 'create_event'];*/
 
 	var ANActivityIndicator = require('ui/common/ANActivityIndicator');
-	var info = new ANActivityIndicator(L('loading'));
 
 	/*var facebookAlert = Titanium.UI.createAlertDialog({
 	 title : L('tittlealert'),
@@ -24,8 +23,6 @@ function MainWindow(Window) {
 
 	var herramientas = require('tools');
 	var pantallaCompleta = herramientas.isiOS7Plus();
-
-	info.show();
 
 	mainWindow = Titanium.UI.createWindow({
 		tabBarHidden : true,
@@ -399,7 +396,7 @@ function MainWindow(Window) {
 	 alert('Logged out');
 	 });*/
 
-	info.hide();
+	//info.hide();
 
 	return mainWindow;
 }

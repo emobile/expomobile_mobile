@@ -1,6 +1,9 @@
 function HorariosWindow(dias,Window) {
 	var network = require('lib/network');
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	var sub_group = '';
 
 	var db = Ti.Database.open('anadicDB');
@@ -30,7 +33,7 @@ function HorariosWindow(dias,Window) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -71,7 +74,8 @@ function HorariosWindow(dias,Window) {
 		height : 'auto',
 		text : L('my_schedule'),
 		font : {
-			fontSize : '22dp'
+			fontSize : '22dp',
+			fontWeight: 'bold'
 		},
 		color : 'white',
 		center : {
@@ -118,41 +122,6 @@ function HorariosWindow(dias,Window) {
 	//cada propiedad es un dia que contiene un arreglo de eventos
 	var eventosCargadosLabels = new Array();
 	//cada propiedad es un dia que contiene un arreglo de eventos
-
-	/*var customAlert = Ti.UI.createAlertDialog({
-			message: L('no_workshops'),
-			ok: L('ok'),
-			title: L('alert_title')
-			});
-	
-	//tallHorWdw.add(customAlert);
-	
-	customAlert.addEventListener('click', function(ev) 
-	{
-	    if (ev.index == 0) { 
-	    	cerrar(); 
-	    } 
-	});
-	
-	network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response) 
-	{
-		dias = response;
-		
-		if(response.length == 0) 
-		{
-			customAlert.show();
-		}	
-		else if(response.length > 0) 
-		{
-			populateTable();
-		}
-		else 
-		{
-			//error de conexion
-		}
-		
-	});*/
-
 
 	function populateTable() 
 	{
@@ -258,7 +227,7 @@ function HorariosWindow(dias,Window) {
 						evento[L('start_hour')] = parEvento.start_hour;
 						evento[L('end_hour')] = parEvento.end_hour;
 						evento[L('teacher')] = parEvento.teacher_name;
-						evento[L('room_id')] = parEvento.room_id;
+						evento[L('room_name')] = parEvento.room_name;
 
 						infoView.openView(evento);
 					}

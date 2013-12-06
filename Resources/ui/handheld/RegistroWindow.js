@@ -196,14 +196,16 @@ function RegistroWindow(Window) {
 		var db = Ti.Database.open('anadicDB');
 		db.execute('CREATE TABLE IF NOT EXISTS rating(rateId INTEGER PRIMARY KEY, rate TEXT);');
 		var row = db.execute('SELECT rate FROM rating WHERE rateId = 1;');
-		db.close();
 
-		if (row.isValidRow()) {
-			alert(L("qualified") + "\n" + L("qualified2") + " " + row.fieldByName("rate"));
-			row.close();
-
+		if (row.isValidRow()) 
+		{
+			Ti.UI.createAlertDialog({
+				message: L("qualified") + "\n" + L("qualified2") + " " + row.fieldByName("rate"),
+				ok: L('ok'),
+				title: L('alert_title')
+			}).show();
+			
 		} else {
-			row.close();
 			//var contactoView = contactoWindow.ContactoWindow();
 			//contactoView.openView();
 			
@@ -211,6 +213,9 @@ function RegistroWindow(Window) {
 			var contactoWindow = require("/ui/common/ContactoWindow");
 			new contactoWindow.ContactoWindow();
 		}
+		
+		db.close();
+		row.close();
 
 	});
 

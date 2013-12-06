@@ -1,4 +1,5 @@
 function DetalleWindow(Window, day) {
+	
 	var network = require('lib/network');
 
 	var usuario = '';
@@ -33,7 +34,7 @@ function DetalleWindow(Window, day) {
 		backgroundImage : '/images/background.png',
 		width : '100%',
 		height : '100%',
-		layout : 'vertical',
+		layout : 'composite',
 		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
@@ -45,9 +46,10 @@ function DetalleWindow(Window, day) {
 	scrollView = Titanium.UI.createView({
 		id : "scrollView",
 		backGroundColor : 'transparent',
-		height : '70%',
+		height : Ti.UI.SIZE,
 		width : '100%',
-		layout : 'vertical'
+		layout : 'vertical',
+		top: '80'
 	});
 
 	function cerrarDetalleWdw()
@@ -62,10 +64,9 @@ function DetalleWindow(Window, day) {
 	bottomBar = Titanium.UI.createView({
 		id : "bottomBar",
 		backgroundColor : "transparent",
-		height : '10%',
+		height : Ti.UI.SIZE,
 		width : '100%',
-		top : "-1px",
-		left : 0
+		bottom: '5'
 	});
 
 	buttonFirst = Titanium.UI.createImageView({
@@ -77,7 +78,7 @@ function DetalleWindow(Window, day) {
 		left : "10px"
 	});
 
-	viewSlide = Titanium.UI.createImageView({
+	/*viewSlide = Titanium.UI.createImageView({
 		id : "buttonMiddle",
 		image : "/images/swipefinger.png",
 		width : 48,
@@ -86,7 +87,7 @@ function DetalleWindow(Window, day) {
 			x : '50%',
 			y : '50%'
 		}
-	});
+	});*/
 
 	buttonLast = Titanium.UI.createImageView({
 		id : "buttonLast",
@@ -97,12 +98,12 @@ function DetalleWindow(Window, day) {
 		right : "10px"
 	});
 
-	contenedor = Titanium.UI.createScrollView({
+	contenedor = Titanium.UI.createView({
 		backgroundColor : "transparent",
 		width : '100%',
-		height : '100%',
+		height : Ti.UI.SIZE,
 		layout : 'vertical'
-	});
+			});
 
 	labelCuentaCitas = Titanium.UI.createLabel({
 		id : "labelCuentaCitas",
@@ -113,7 +114,7 @@ function DetalleWindow(Window, day) {
 			fontSize : '20dp'
 		},
 		color : '#2c2c2c',
-		left : '75%'
+		right : '5%'
 	});
 
 	labelSocioTitulo = Titanium.UI.createLabel({
@@ -296,6 +297,24 @@ function DetalleWindow(Window, day) {
 		color : '#798d8d',
 		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
+	
+	buttonPrev = Titanium.UI.createImageView({
+		id : "buttonPrev",
+		image : "/images/previous.png",
+		width : 48,
+		height : 48,
+		top : "0%",
+		left : "68"
+	});
+
+	buttonNext = Titanium.UI.createImageView({
+		id : "buttonNext",
+		image : "/images/next.png",
+		width : 48,
+		height : 48,
+		top : "0%",
+		right : "68"
+	});
 
 	contenedor.add(labelCuentaCitas);
 	contenedor.add(labelSocioTitulo);
@@ -305,8 +324,6 @@ function DetalleWindow(Window, day) {
 	contenedor.add(textFieldEntrevista);
 	contenedor.add(labelEmpresaTitulo);
 	contenedor.add(textFieldEmpresa);
-	//contenedor.add(labelEmailTitulo);
-	//contenedor.add(textFieldEmail);
 	contenedor.add(labelTelefonoTitulo);
 	contenedor.add(textFieldTelefono);
 	contenedor.add(labelFechaInicio);
@@ -348,7 +365,8 @@ function DetalleWindow(Window, day) {
 	faceDetWdw.add(scrollView);
 
 	bottomBar.add(buttonFirst);
-	bottomBar.add(viewSlide);
+	bottomBar.add(buttonPrev);
+	bottomBar.add(buttonNext);
 	bottomBar.add(buttonLast);
 
 	faceDetWdw.add(bottomBar);
@@ -372,6 +390,24 @@ function DetalleWindow(Window, day) {
 		citaActual = totalCitas - 1;
 		populateViews();
 	});
+	
+	buttonPrev.addEventListener('click', function(e) {
+		Ti.Media.vibrate();
+		if (citaActual > 0) 
+		{
+			citaActual--;
+			populateViews();
+		}
+	});
+
+	buttonNext.addEventListener('click', function(e) {
+		Ti.Media.vibrate();
+		if (citaActual < totalCitas - 1)
+		{ 
+			citaActual++;
+			populateViews();
+		}
+	});
 
 	function formatDate(date) {
 		var arrayDate = date.substring(0, 10).split("-");
@@ -379,25 +415,6 @@ function DetalleWindow(Window, day) {
 		var formattedDate = arrayDate[2] + "-" + arrayDate[1] + "-" + arrayDate[0] + "  "+hora;
 		return formattedDate;
 	}
-
-
-	scrollView.addEventListener('swipe', function(e) {
-		if (e.direction == 'left') {
-			if (citaActual < totalCitas - 1) {
-				citaActual++;
-				populateViews();
-			} else {
-				Ti.Media.vibrate();
-			}
-		} else if (e.direction == 'right') {
-			if (citaActual > 0) {
-				citaActual--;
-				populateViews();
-			} else {
-				Ti.Media.vibrate();
-			}
-		}
-	});
 
 	faceDetWdw.addEventListener('android:back', function() {
 		Ti.Media.vibrate();

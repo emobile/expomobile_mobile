@@ -1,7 +1,10 @@
 eclipse.preferences.version=1
-provisioning_profiles/development/B43E1CF4-B552-497A-908F-586D4E0FFE92/appid=mx.com.emobile.*
-provisioning_profiles/development/B43E1CF4-B552-497A-908F-586D4E0FFE92/name=Profile Dev
-provisioning_profiles/development/B43E1CF4-B552-497A-908F-586D4E0FFE92/uuid=B43E1CF4-B552-497A-908F-586D4E0FFE92
-provisioning_profiles/development/CC21BEB2-9AA2-4F20-AF5C-542BE53B3497/appid=mx.com.emobile.*
-provisioning_profiles/development/CC21BEB2-9AA2-4F20-AF5C-542BE53B3497/name=Profile Dev
-provisioning_profiles/development/CC21BEB2-9AA2-4F20-AF5C-542BE53B3497/uuid=CC21BEB2-9AA2-4F20-AF5C-542BE53B3497
+provisioning_profiles/development/FA4037E0-0521-4B4D-8546-CBD9C528B29C/appid=mx.com.emobile.*
+provisioning_profiles/development/FA4037E0-0521-4B4D-8546-CBD9C528B29C/name=Profile Dev
+provisioning_profiles/development/FA4037E0-0521-4B4D-8546-CBD9C528B29C/uuid=FA4037E0-0521-4B4D-8546-CBD9C528B29C
+provisioning_profiles/distribution/845A1D9E-700C-43BC-AA43-450FACAB192E/appid=mx.com.emobile.*
+provisioning_profiles/distribution/845A1D9E-700C-43BC-AA43-450FACAB192E/name=Profile_Distribution
+provisioning_profiles/distribution/845A1D9E-700C-43BC-AA43-450FACAB192E/uuid=845A1D9E-700C-43BC-AA43-450FACAB192E
+provisioning_profiles/distribution/84DD97D1-3A24-43FB-9D55-E28052F5C5B9/appid=mx.com.emobile.expomobile
+provisioning_profiles/distribution/84DD97D1-3A24-43FB-9D55-E28052F5C5B9/name=Profile_Distribution
+provisioning_profiles/distribution/84DD97D1-3A24-43FB-9D55-E28052F5C5B9/uuid=84DD97D1-3A24-43FB-9D55-E28052F5C5B9

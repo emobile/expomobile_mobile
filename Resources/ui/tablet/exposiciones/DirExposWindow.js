@@ -1,6 +1,10 @@
 function DirExposWindow(Window) {
 
-	var expoInfoWindow = require("ui/handheld/exposiciones/ExposicionesInfoWindow");
+	//var expoInfoWindow = require("ui/handheld/exposiciones/ExposicionesInfoWindow");
+	var expoInfoWindow = require("ui/handheld/exposiciones/ExpoInfoWindow");
+	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	patrocinadoresWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
@@ -8,7 +12,7 @@ function DirExposWindow(Window) {
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -25,97 +29,25 @@ function DirExposWindow(Window) {
 		layout : 'vertical'
 	});
 	
-	/*imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconexposiciones.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
+	function cerrarDirExpo()
+	{
+		Ti.Media.vibrate();
+		patrocinadoresWdw.close();
+	}
 	
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		text : L('exhibitions'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('exhibitions'),'/images/iconexposiciones.png', cerrarDirExpo);
 	
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 10,
-		right: 10
-	});*/
+	patrocinadoresWdw.add(topBar);
 	
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconexposiciones.png",
-		width : 60,
-		height : 60,
-		top : '10dp',
-		left : '10dp'
-	});
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		width: Ti.UI.SIZE,
-		height : 'auto',
-		text : L('exhibitions'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		center : {
-			x : '50%'
-		},
-		top : 15
-	});
-	
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : '10dp',
-		right: '10dp'
-	});
-	
-	imageViewBar.add(labelTitulo);
-	imageViewBar.add(imageView);
-	imageViewBar.add(buttonClose);
-	patrocinadoresWdw.add(imageViewBar);
 	scrollView_1.add(table);
 	patrocinadoresWdw.add(scrollView_1);
 	
+	var data;
+	
 	function populateTable() 
 	{
-		var data = [];
+		data = [];
 
 		var db = Ti.Database.open('anadicDB');
 		var db_rows = db.execute("SELECT * FROM exhibitors");
@@ -133,8 +65,8 @@ function DirExposWindow(Window) {
 			}
 			
 			var etiqueta = db_rows.fieldByName("social_reason");
-			if(etiqueta.length > 25)
-				etiqueta = etiqueta.substring(0,24)+"...";
+			//if(etiqueta.length > 25)
+				//etiqueta = etiqueta.substring(0,24)+"...";
 			
 			var row = Titanium.UI.createTableViewRow({
 				id : db_rows.fieldByName("id"),
@@ -145,7 +77,8 @@ function DirExposWindow(Window) {
 				opened : false,
 				hasChild : true,
 				color : 'black',
-				height: 32
+				height: 32,
+				horizontalWrap: false
 			});
 			data.push(row);
 
@@ -161,21 +94,14 @@ function DirExposWindow(Window) {
 	
 	table.addEventListener('click', function(e) {
 		Ti.Media.vibrate();
-		var patrocinadoresView = expoInfoWindow.ExposicionesInfoWindow(e.rowData.id);
+		//var patrocinadoresView = expoInfoWindow.ExposicionesInfoWindow(e.rowData.id);
+		var patrocinadoresView = expoInfoWindow.ExpoInfoWindow(e.index, e.rowData.id, data);
 		patrocinadoresView.openView();
 	});
 
-	buttonClose.addEventListener('click', cerrar);
-	
-	function cerrar()
-	{
-		Ti.Media.vibrate();
-		patrocinadoresWdw.close();
-	}
-	
 	patrocinadoresWdw.addEventListener('android:back', evento = function(e){
 	    e.source.removeEventListener('android:back', arguments.callee);
-	    cerrar();
+	    cerrarDirExpo();
 	});
 
 	return patrocinadoresWdw;

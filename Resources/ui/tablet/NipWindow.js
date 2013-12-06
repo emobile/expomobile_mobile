@@ -29,12 +29,17 @@ function NipWindow(Window) {
 
 	db.close();
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	var nipWindow = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "black",
 		width : '100%',
 		layout : 'vertical',
-		height : Ti.UI.SIZE
+		height : Ti.UI.SIZE,
+		fullscreen: pantallaCompleta,
+		navBarHidden:true
 	});
 
 	var labelPaso = Titanium.UI.createLabel({
@@ -43,7 +48,8 @@ function NipWindow(Window) {
 		width : 'auto',
 		text : L('step2'),
 		font : {
-			fontSize : '20dp'
+			fontSize : '20dp',
+			fontWeight: 'bold'
 		},
 		color : 'white'
 	});
@@ -118,7 +124,7 @@ function NipWindow(Window) {
 
 		scrollView_1.add(buttonIngresar);
 
-		scrollView_1.add(buttonCorreo);
+		//scrollView_1.add(buttonCorreo);
 
 		scrollView_1.add(buttonAtras);
 
@@ -128,7 +134,7 @@ function NipWindow(Window) {
 
 		buttonIngresar = Titanium.UI.createImageView({
 			id : "buttonIngresar",
-			width : '95%',
+			width : Ti.UI.SIZE,
 			top : 10
 		});
 
@@ -140,7 +146,7 @@ function NipWindow(Window) {
 
 		buttonAtras = Titanium.UI.createImageView({
 			id : "buttonAtras",
-			width : '95%',
+			width : Ti.UI.SIZE,
 			top : 5
 		});
 
@@ -163,7 +169,8 @@ function NipWindow(Window) {
 			id : "textFieldNip",
 			width : '60%',
 			passwordMask : true,
-			value : nip
+			value : nip,
+			borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 		});
 
 		if (nip != '') {

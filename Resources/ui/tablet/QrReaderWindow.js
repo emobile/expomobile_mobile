@@ -4,15 +4,6 @@ function QrReaderWindow(Window, win_name) {
 	var qrReaderWdw = Ti.UI.createWindow({
 		backgroundColor : 'white'
 	});
-	
-	function showMessage(message)
-	{
-		Ti.UI.createAlertDialog({
-			message: message,
-			ok: L('ok'),
-			title: L('alert_title')
-			}).show();
-	}
 
 	if (Ti.Platform.osname == 'android') {
 		var titaniumBarcode = require('com.mwaysolutions.barcode');
@@ -27,7 +18,12 @@ function QrReaderWindow(Window, win_name) {
 						sendQr(send_qr_code);
 						qrReaderWdw.close();
 					} else {
-						showMessage(L("qr_not_supported"));
+						Ti.UI.createAlertDialog({
+								message: L("qr_not_supported"),
+								ok: L('ok'),
+								title: L('alert_title') 
+						}).show();
+						
 						qrReaderWdw.close();
 					}
 
@@ -37,15 +33,27 @@ function QrReaderWindow(Window, win_name) {
 					var send_qr_code = validarQR(data.barcode);
 					if (send_qr_code != false) {
 						sendQr(send_qr_code);
-					} else {
-						showMessage(L("qr_not_supported"));
+					} else 
+					{
+						Ti.UI.createAlertDialog({
+								message: L("qr_not_supported"),
+								ok: L('ok'),
+								title: L('alert_title') 
+						}).show();
+						
 						qrReaderWdw.close();
 					}
 				}
 			},
-			error : function(err) {
+			error : function(err) 
+			{
 				Ti.Media.vibrate();
-				showMessage(L('errorqrcode'));
+				Ti.UI.createAlertDialog({
+								message: L('errorqrcode'),
+								ok: L('ok'),
+								title: L('alert_title') 
+						}).show();
+				
 				qrReaderWdw.close();
 			},
 			cancel : function() {
@@ -77,7 +85,13 @@ function QrReaderWindow(Window, win_name) {
 						sendQr(send_qr_code);
 						qrReaderWdw.close();
 					} else {
-						showMessage(L("qr_not_supported"));
+						
+						Ti.UI.createAlertDialog({
+								message: L("qr_not_supported"),
+								ok: L('ok'),
+								title: L('alert_title') 
+						}).show();
+						
 						qrReaderWdw.close();
 					}
 				}
@@ -86,7 +100,7 @@ function QrReaderWindow(Window, win_name) {
 				qrReaderWdw.close();
 			},
 			error : function() {
-				showMessage(L('errorqrcode'));
+				alert(L('errorqrcode'));
 				qrReaderWdw.close();
 			}
 		});
@@ -96,13 +110,21 @@ function QrReaderWindow(Window, win_name) {
 		if (win_name == 'talleres') {
 			network.postVisitWorkshop(qrcode, function(response) {
 				if (response != false) {
-					showMessage(response.msg);
+					Ti.UI.createAlertDialog({
+					message: response.msg,
+					ok: L('ok'),
+					title: L('alert_title') 
+				}).show();
 				}
 			});
 		} else if (win_name == 'exposiciones') {
 			network.postVisitExposition(qrcode, function(response) {
 				if (response != false) {
-					showMessage(response.msg);
+					Ti.UI.createAlertDialog({
+					message: response.msg,
+					ok: L('ok'),
+					title: L('alert_title') 
+				}).show();
 				}
 			});
 		}

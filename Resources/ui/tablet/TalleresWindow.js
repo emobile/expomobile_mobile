@@ -1,13 +1,16 @@
 function TalleresWindow(Window) {
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+
 	talleresWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
-		navBarHidden: true
+		fullscreen : pantallaCompleta,
+		navBarHidden : true
 	});
 
 	table = Ti.UI.createTableView({
@@ -24,50 +27,17 @@ function TalleresWindow(Window) {
 	});
 
 	scrollView_1.add(table);
-
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/icontalleres.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('workshops'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-	talleresWdw.add(imageViewBar);
-
+	
+	function cerrarTalleres()
+	{
+		Ti.Media.vibrate();
+		talleresWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('workshops'),'/images/icontalleres.png', cerrarTalleres);
+	
+	talleresWdw.add(topBar);
 	talleresWdw.add(scrollView_1);
 
 	function populateTable() {
@@ -121,46 +91,44 @@ function TalleresWindow(Window) {
 	populateTable();
 
 	table.addEventListener('click', function(e) {
-		if (e.rowData.id == 1) 
-		{
+		if (e.rowData.id == 1) {
 			var network = require('lib/network');
-			network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response)
-			{
-				if(response.length == 0) 
-				{
+			network.getData(network.SERVICES.WORKSHOPS_DAYS, function(response) {
+				if (response.length == 0) {
 					Ti.UI.createAlertDialog({
-					message: L('no_workshops'),
-					ok: L('ok'),
-					title: L('alert_title')
+						message : L('no_workshops'),
+						ok : L('ok'),
+						title : L('alert_title')
 					}).show();
-				}	
-	    		else if(response.length > 0) 
-				{
+				} else if (response.length > 0) {
 					var Window;
 					var mainWindow = require("ui/handheld/talleres/HorariosWindow");
-					new mainWindow(response,Window).open();
-				}
-	    		else 
-				{
+					new mainWindow(response, Window).open();
+				} else {
 					//error de conexion
-				}	
-			}); 
-			
-			
+				}
+			});
+
 		} else if (e.rowData.id == 2) {
 			var Window;
 			var mainWindow = require("ui/handheld/mapa/MapaWindow");
 			new mainWindow(Window).open();
 		} else if (e.rowData.id == 3) {
-			var Window;
-			var mainWindow = require("ui/handheld/QrReaderWindow");
-			new mainWindow(Window, 'talleres').open();
+			if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') 
+			{
+				var w = Titanium.UI.createWindow({
+				  url:'ui/handheld/QRReaderIOSWindow.js',
+				  win_name: 'talleres'
+				});
+				
+				w.open();
+			} 
+			else {
+				var Window;
+				var mainWindow = require("ui/handheld/QrReaderWindow");
+				new mainWindow(Window, 'talleres').open();
+			}
 		}
-	});
-
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		talleresWdw.close();
 	});
 
 	talleresWdw.addEventListener('android:back', function(e) {

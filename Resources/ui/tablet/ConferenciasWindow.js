@@ -1,13 +1,16 @@
 
 function ConferenciasWindow(Window) {
 
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
+	
 	confWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundColor : "white",
 		width : '100%',
 		height : '100%',
 		layout : 'vertical',
-		fullscreen: false,
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -25,71 +28,21 @@ function ConferenciasWindow(Window) {
 	});
 	scrollView_1.add(table);
 
-	imageViewBar = Titanium.UI.createView({
-		id : "imageViewBar",
-		backgroundColor : Ti.App.Properties.getString('viewcolor'),
-		height : 80,
-		left : 0,
-		top : 0,
-		width : '100%',
-		layout : 'horizontal'
-	});
-
-	imageView = Titanium.UI.createImageView({
-		id : "imageView",
-		image : "/images/iconconferencias.png",
-		width : 60,
-		height : 60,
-		top : 7,
-		right : 3
-	});
-	imageViewBar.add(imageView);
-
-	labelTitulo = Titanium.UI.createLabel({
-		id : "labelTitulo",
-		height : 'auto',
-		width : '70%',
-		text : L('conferences'),
-		font : {
-			fontSize : '22dp'
-		},
-		color : 'white',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-	});
-	imageViewBar.add(labelTitulo);
-
-	buttonClose = Titanium.UI.createImageView({
-		id : "buttonClose",
-		image : "/images/close.png",
-		width : 30,
-		height : 30,
-		top : 25
-	});
-	imageViewBar.add(buttonClose);
-
-	confWdw.add(imageViewBar);
-
+	
+	function cerrarConferencias()
+	{
+		Ti.Media.vibrate();
+		confWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('conferences'),'/images/iconconferencias.png', cerrarConferencias);
+	
+	confWdw.add(topBar);
 	confWdw.add(scrollView_1);
 
 	function populateTable() {
 		var data = [];
-
-		/*var row = Titanium.UI.createTableViewRow({
-			id : 1,
-			title : L('directory'),
-			leftImage : '/images/directorio.png',
-			isparent : true,
-			opened : false,
-			hasChild : false,
-			sub : [{
-				title : "Child 1"
-			}],
-			font : {
-				fontSize : '22dp'
-			},
-			color : 'black'
-		});
-		data.push(row);*/
 
 		var row = Titanium.UI.createTableViewRow({
 			id : 2,
@@ -163,13 +116,7 @@ function ConferenciasWindow(Window) {
 		}
 	});
 
-	buttonClose.addEventListener('click', function(e) {
-		Ti.Media.vibrate();
-		confWdw.close();
-	});
-
 	confWdw.addEventListener('android:back', function(e) {
-		//confWdw.removeEventListener('android:back');
 		Ti.Media.vibrate();
 		confWdw.close();
 	});

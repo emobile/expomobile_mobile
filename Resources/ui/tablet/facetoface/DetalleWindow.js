@@ -1,4 +1,5 @@
 function DetalleWindow(Window, day) {
+	
 	var network = require('lib/network');
 
 	var usuario = '';
@@ -6,8 +7,10 @@ function DetalleWindow(Window, day) {
 	var db = Ti.Database.open('anadicDB');
 	var id = db.execute('SELECT name FROM users WHERE userId = 1;');
 	
+
 	if (id.isValidRow()) {
 		usuario = id.fieldByName('name');
+		
 		if (usuario === 'undefined' || usuario == 'null') {
 			usuario = '';
 		}
@@ -23,14 +26,16 @@ function DetalleWindow(Window, day) {
 	var totalCitas;
 	var citaActual = 0;
 	
+	var herramientas =  require('tools');
+	var pantallaCompleta = herramientas.isiOS7Plus();
 
 	faceDetWdw = Titanium.UI.createWindow({
 		tabBarHidden : true,
 		backgroundImage : '/images/background.png',
 		width : '100%',
 		height : '100%',
-		layout : 'vertical',
-		fullscreen: false,
+		layout : 'composite',
+		fullscreen: pantallaCompleta,
 		navBarHidden: true
 	});
 
@@ -41,18 +46,27 @@ function DetalleWindow(Window, day) {
 	scrollView = Titanium.UI.createView({
 		id : "scrollView",
 		backGroundColor : 'transparent',
-		height : '70%',
+		height : Ti.UI.SIZE,
 		width : '100%',
-		layout : 'vertical'
+		layout : 'vertical',
+		top: '80'
 	});
+
+	function cerrarDetalleWdw()
+	{
+		Ti.Media.vibrate();
+		faceDetWdw.close();
+	}
+	
+	var templates = require('templates');
+	var topBar = templates.getTopBar(L('facetoface'),'/images/iconfacetoface.png', cerrarDetalleWdw);
 
 	bottomBar = Titanium.UI.createView({
 		id : "bottomBar",
 		backgroundColor : "transparent",
-		height : '10%',
+		height : Ti.UI.SIZE,
 		width : '100%',
-		top : "-1px",
-		left : 0
+		bottom: '5'
 	});
 
 	buttonFirst = Titanium.UI.createImageView({
@@ -64,16 +78,16 @@ function DetalleWindow(Window, day) {
 		left : "10px"
 	});
 
-	viewSlide = Titanium.UI.createImageView({
+	/*viewSlide = Titanium.UI.createImageView({
 		id : "buttonMiddle",
 		image : "/images/swipefinger.png",
 		width : 48,
 		height : 48,
 		center : {
 			x : '50%',
-			y : '0%'
+			y : '50%'
 		}
-	});
+	});*/
 
 	buttonLast = Titanium.UI.createImageView({
 		id : "buttonLast",
@@ -84,12 +98,12 @@ function DetalleWindow(Window, day) {
 		right : "10px"
 	});
 
-	contenedor = Titanium.UI.createScrollView({
+	contenedor = Titanium.UI.createView({
 		backgroundColor : "transparent",
 		width : '100%',
-		height : '100%',
+		height : Ti.UI.SIZE,
 		layout : 'vertical'
-	});
+			});
 
 	labelCuentaCitas = Titanium.UI.createLabel({
 		id : "labelCuentaCitas",
@@ -100,7 +114,7 @@ function DetalleWindow(Window, day) {
 			fontSize : '20dp'
 		},
 		color : '#2c2c2c',
-		left : '75%'
+		right : '5%'
 	});
 
 	labelSocioTitulo = Titanium.UI.createLabel({
@@ -161,7 +175,8 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	labelEmpresaTitulo = Titanium.UI.createLabel({
@@ -184,7 +199,8 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	labelEmailTitulo = Titanium.UI.createLabel({
@@ -230,7 +246,8 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	labelFechaInicio = Titanium.UI.createLabel({
@@ -253,7 +270,8 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	labelFechaTermino = Titanium.UI.createLabel({
@@ -276,7 +294,26 @@ function DetalleWindow(Window, day) {
 			fontWeight : 'bold',
 			fontSize : '18dp'
 		},
-		color : '#798d8d'
+		color : '#798d8d',
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+	});
+	
+	buttonPrev = Titanium.UI.createImageView({
+		id : "buttonPrev",
+		image : "/images/previous.png",
+		width : 48,
+		height : 48,
+		top : "0%",
+		left : "68"
+	});
+
+	buttonNext = Titanium.UI.createImageView({
+		id : "buttonNext",
+		image : "/images/next.png",
+		width : 48,
+		height : 48,
+		top : "0%",
+		right : "68"
 	});
 
 	contenedor.add(labelCuentaCitas);
@@ -308,6 +345,7 @@ function DetalleWindow(Window, day) {
 			labelCuentaCitas.text = citaActual + 1 + " " + L('of') + " " + totalCitas;
 			textFieldEntrevista.value = citas[citaActual].int_name;
 			textFieldEmpresa.value = citas[citaActual].int_social_reason;
+			//textFieldEmail.value = citas[citaActual].app_email;
 			textFieldTelefono.value = citas[citaActual].attendee_phone;
 			textFieldFechaInicio.value = formatDate(citas[citaActual].start_date);
 			textFieldFechaTermino.value = formatDate(citas[citaActual].end_date);
@@ -316,15 +354,6 @@ function DetalleWindow(Window, day) {
 			alert.show();
 		}
 	}
-
-	function cerrarDetalleFace()
-	{
-		Ti.Media.vibrate();
-		faceDetWdw.close();
-	}
-	
-	var templates = require('templates');
-	var topBar = templates.getTopBar(L('facetoface'),'/images/iconfacetoface.png', cerrarDetalleFace);
 
 	network.getFacetoFace(day, function(response) {
 		citas = response;
@@ -336,7 +365,8 @@ function DetalleWindow(Window, day) {
 	faceDetWdw.add(scrollView);
 
 	bottomBar.add(buttonFirst);
-	bottomBar.add(viewSlide);
+	bottomBar.add(buttonPrev);
+	bottomBar.add(buttonNext);
 	bottomBar.add(buttonLast);
 
 	faceDetWdw.add(bottomBar);
@@ -360,6 +390,24 @@ function DetalleWindow(Window, day) {
 		citaActual = totalCitas - 1;
 		populateViews();
 	});
+	
+	buttonPrev.addEventListener('click', function(e) {
+		Ti.Media.vibrate();
+		if (citaActual > 0) 
+		{
+			citaActual--;
+			populateViews();
+		}
+	});
+
+	buttonNext.addEventListener('click', function(e) {
+		Ti.Media.vibrate();
+		if (citaActual < totalCitas - 1)
+		{ 
+			citaActual++;
+			populateViews();
+		}
+	});
 
 	function formatDate(date) {
 		var arrayDate = date.substring(0, 10).split("-");
@@ -368,27 +416,9 @@ function DetalleWindow(Window, day) {
 		return formattedDate;
 	}
 
-
-	scrollView.addEventListener('swipe', function(e) {
-		if (e.direction == 'left') {
-			if (citaActual < totalCitas - 1) {
-				citaActual++;
-				populateViews();
-			} else {
-				Ti.Media.vibrate();
-			}
-		} else if (e.direction == 'right') {
-			if (citaActual > 0) {
-				citaActual--;
-				populateViews();
-			} else {
-				Ti.Media.vibrate();
-			}
-		}
-	});
-
 	faceDetWdw.addEventListener('android:back', function() {
-		cerrarDetalleFace();
+		Ti.Media.vibrate();
+		faceDetWdw.close();
 	});
 
 	return faceDetWdw;
